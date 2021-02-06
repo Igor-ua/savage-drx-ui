@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Switch, Route} from "react-router-dom";
 
-import AComponent from "./../A.react";
-import BComponent from "./../B.react";
+import AComponent from "./A.react";
+import BComponent from "./B.react";
 
-import './../../css/App.css';
+import '../css/App.css';
 
 class App extends Component {
 
