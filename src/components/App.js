@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Switch, Route} from "react-router-dom";
 
-import AComponent from "./A.react";
-import BComponent from "./B.react";
+import Main from "./Main";
+import Results from "./Results";
 
-import '../css/App.css';
+import '../css/app.css';
 
 class App extends Component {
 
@@ -12,8 +12,9 @@ class App extends Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path={["/", "/a"]} component={AComponent}/>
-                    <Route exact path="/b" component={BComponent}/>
+                    {/*<Route exact path={["/", "/a"]} component={Main}/>*/}
+                    <Route exact path="/results" component={Results}/>
+                    <Route exact path="/" component={Main}/>
                 </Switch>
             </div>
         );
