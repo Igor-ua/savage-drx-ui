@@ -1,8 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import SideBar from "./SideBar"
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -10,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        height: '100vh',
+        height: '100%',
         backgroundColor: '#282c34'
     },
     content: {
@@ -27,7 +25,6 @@ export default function ResultsDrawer() {
     return (
 
         <div className={classes.root}>
-            <CssBaseline/>
             <SideBar/>
 
             <main className={classes.content}>

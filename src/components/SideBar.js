@@ -19,9 +19,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-        height: '100vh',
-        // backgroundColor: '#282c34'
+        display: 'flex'
     },
     sidebarWrapper: {
         background: 'linear-gradient(0deg, #3358f4, #1d8cf8)'
@@ -37,8 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drawer: {
         width: drawerWidth,
-        flexShrink: 0,
-        // backgroundColor: 'grey'
+        flexShrink: 0
     },
     drawerPaper: {
         width: drawerWidth,

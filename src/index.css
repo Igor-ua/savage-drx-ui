@@ -21,3 +21,8 @@ code {
 body {
     background-color: #282c34;
 }
+
+#root {
+    height: 100%;
+    background-color: #282c34;
+}
