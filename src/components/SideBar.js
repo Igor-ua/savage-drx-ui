@@ -13,7 +13,7 @@ import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import {createMuiTheme, responsiveFontSizes} from '@material-ui/core/styles';
 import {ThemeProvider} from "@material-ui/styles";
 import {Link} from "react-router-dom";
-import CameraIcon from '@material-ui/icons/Camera';
+import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
 
@@ -21,17 +21,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex'
     },
-    sidebarWrapper: {
-        background: 'linear-gradient(0deg, #3358f4, #1d8cf8)'
-    },
     list: {
-        background: 'linear-gradient(0deg, #3358f4, #1d8cf8)',
+        background: 'linear-gradient(0deg, #114d8a, #404c75)',
         borderRadius: '5px',
         marginRight: '10px',
         marginLeft: '10px'
-    },
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
     },
     drawer: {
         width: drawerWidth,
@@ -43,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
         borderRight: 0
     },
     drawerContainer: {
-        overflow: 'auto'
+        overflow: 'auto',
+        marginTop: theme.spacing(15)
     },
     content: {
         flexGrow: 1,
@@ -57,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         position: 'relative',
         opacity: '1',
+        textAlign: '-webkit-center',
         '&::after': {
             content: '""',
             position: 'absolute',
@@ -88,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
 
     iconText: {
         color: 'white'
+    },
+    sideIcon: {
+        width: theme.spacing(5),
+        height: theme.spacing(5)
     }
 }));
 
@@ -103,55 +103,51 @@ export default function SideBar() {
 
     return (
 
-        <div>
+        <div className={classes.root}>
             <CssBaseline/>
-            <div className={classes.sidebarWrapper}>
-                <Drawer
-                    className={classes.drawer}
-                    variant="permanent"
-                    classes={{
-                        paper: classes.drawerPaper
-                    }}>
-                    <Toolbar/>
-                    <ThemeProvider theme={theme}>
-                        <div className={classes.drawerContainer}>
-                            <List className={classes.list}>
+            <Drawer
+                className={classes.drawer}
+                variant="permanent"
+                classes={{
+                    paper: classes.drawerPaper
+                }}>
+                <ThemeProvider theme={theme}>
+                    <div className={classes.drawerContainer}>
+                        <List className={classes.list}>
 
-                                <div className={classes.logo}>
-                                    <CameraIcon className={classes.logoIcon}/>
-                                    <ListItemText primary={'Community Server'} className={classes.logoText}/>
-                                </div>
+                            <div className={classes.logo}>
+                                <Avatar alt={'S'} src={'./xr_logo/savagexr_icon_64.png'} variant="rounded"
+                                        className={classes.sideIcon}/>
+                            </div>
 
-                                <Link to={"/"} className={classes.link}>
-                                    <ListItem button key={'Home'}>
-                                        <ListItemIcon>
-                                            <HomeIcon className={classes.icon}/>
-                                        </ListItemIcon>
-                                        <ListItemText primary={'Home'} className={classes.iconText}/>
-                                    </ListItem>
-                                </Link>
-                                <Link to={"/results"} className={classes.link}>
-                                    <ListItem button key={'Results'}>
-                                        <ListItemIcon>
-                                            <EqualizerIcon className={classes.icon}/>
-                                        </ListItemIcon>
-                                        <ListItemText primary={'Statistics'} className={classes.iconText}/>
-                                    </ListItem>
-                                </Link>
-                                <Link to={"/else"} className={classes.link}>
-                                    <ListItem button key={'PlaceHolder'}>
-                                        <ListItemIcon>
-                                            <SportsEsportsIcon className={classes.icon}/>
-                                        </ListItemIcon>
-                                        <ListItemText primary={'PlaceHolder'} className={classes.iconText}/>
-                                    </ListItem>
-                                </Link>
-                            </List>
-                        </div>
-                    </ThemeProvider>
-                </Drawer>
-
-            </div>
+                            <Link to={"/"} className={classes.link}>
+                                <ListItem button key={'Home'}>
+                                    <ListItemIcon>
+                                        <HomeIcon className={classes.icon}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={'Home'} className={classes.iconText}/>
+                                </ListItem>
+                            </Link>
+                            <Link to={"/results"} className={classes.link}>
+                                <ListItem button key={'Results'}>
+                                    <ListItemIcon>
+                                        <EqualizerIcon className={classes.icon}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={'Statistics'} className={classes.iconText}/>
+                                </ListItem>
+                            </Link>
+                            <Link to={"/else"} className={classes.link}>
+                                <ListItem button key={'PlaceHolder'}>
+                                    <ListItemIcon>
+                                        <SportsEsportsIcon className={classes.icon}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={'PlaceHolder'} className={classes.iconText}/>
+                                </ListItem>
+                            </Link>
+                        </List>
+                    </div>
+                </ThemeProvider>
+            </Drawer>
         </div>
     );
 }

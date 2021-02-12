@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from "@material-ui/core/Avatar";
 import shortid from 'shortid';
+import Moment from 'react-moment';
 
 const useStyles = theme => ({
     root: {
@@ -17,17 +18,17 @@ const useStyles = theme => ({
         textTransform: 'uppercase',
         paddingBottom: theme.spacing(2)
     },
-    worldAvatar: {
+    latestWorld: {
         color: '#fff',
-        width: theme.spacing(25),
-        height: theme.spacing(25),
-        float: 'right'
+        width: theme.spacing(18),
+        height: theme.spacing(18),
+        float: 'left'
     },
     gridWorld: {
-        paddingBottom: theme.spacing(2)
+        paddingLeft: theme.spacing(5)
     },
-    gridTeam: {
-        padding: theme.spacing(2)
+    gridTeamLatest: {
+        padding: theme.spacing(0)
     },
     dataLeft: {
         textAlign: 'left',
@@ -39,13 +40,11 @@ const useStyles = theme => ({
     },
     playersLeft: {
         textAlign: 'left',
-        paddingLeft: theme.spacing(0.5),
-        verticalAlign: 'middle',
-        alignItems: 'center'
+        paddingLeft: theme.spacing(0.5)
     },
     playersRight: {
         textAlign: 'right',
-        paddingRight: theme.spacing(0)
+        paddingRight: theme.spacing(0.5)
     },
     playersCenter: {
         textAlign: 'center',
@@ -55,56 +54,93 @@ const useStyles = theme => ({
         textTransform: 'capitalize',
         paddingBottom: theme.spacing(2)
     },
-    clanIcon: {
+    clanIconLatest: {
         display: 'inline-block',
+        verticalAlign: 'middle',
         width: theme.spacing(2),
         height: theme.spacing(2)
     },
     playerWrapper: {
         display: 'flex'
+    },
+    middle: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    resultsContainerA: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        backgroundColor: '#182d31',
+        borderRadius: '10px 10px 10px 10px'
+    },
+    resultsContainerB: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        backgroundColor: '#2b3542',
+        borderRadius: '10px 10px 10px 10px'
     }
 });
 
-const getRaces = (data) => {
-    let races = data.race1 + " VS " + data.race2;
-    if (data.race3) {
-        races += " VS " + data.race3;
+const getWinner = (id) => {
+    if (id === 0) {
+        return 'Draw'
     }
-    if (data.race4) {
-        races += " VS " + data.race4;
+    if (id === 1) {
+        return 'Human'
     }
-    return races;
+    if (id === 2) {
+        return 'Beast'
+    }
 }
 
-const makeGrid = (teamName, players, classes) => {
-    const clanIconUrl = 'https://community-server.info/public/cached/icondir/'
+const getTeamName = (teamId, teamName, race) => {
+    if (teamId === 0) {
+        return `Spectators`
+    }
+    if (teamId === 1) {
+        return `Team1 Human`
+    }
+    if (teamId === 2) {
+        return `Team2 Beast`
+    }
+}
 
-    return <Grid item xs={4} className={classes.gridTeam}>
-        <div className={classes.teamHeader}>{teamName}</div>
+const makeLatestGrid = (teamNumber, game, classes) => {
+    const clanIconUrl = './public/cached/icondir/'
+    const players = game.teams[teamNumber].players;
+
+    return <Grid item xl={2} className={classes.gridTeam}>
+        <div className={classes.teamHeader}>
+            {getTeamName(game.teams[teamNumber].team_id, game.teams[teamNumber].team_name, game.teams[teamNumber].race)}
+        </div>
+
         {players.map((player) => {
-                const prefix = player[0];
-                const clan = player[1];
-                const name = player[2];
-
-            return <div key={shortid.generate()}>
-                <span>
-                    {prefix ? <span>{prefix}&nbsp;</span> : null}
+                return <div key={shortid.generate()} className={classes.middle}>
+                <span className={classes.playersRight}>
                 </span>
-                <span>
+                    <span>
                     {
-                        clan
-                            ? <Avatar alt={name} src={clanIconUrl + clan + '.png'} variant="rounded"
-                                      className={classes.clanIcon}/>
+                        player.clan_id !== 0
+                            ? <Avatar alt={player.name} src={clanIconUrl + player.clan_id + '.png'} variant="rounded"
+                                      className={classes.clanIconLatest}/>
                             : null
-                    }&nbsp;
+                    }
                 </span>
-                <span>
-                    {name}
+                    <span className={classes.playersLeft}>
+                    {player.name}
                 </span>
-            </div>
+                </div>
             }
         )}
     </Grid>
+}
+
+const formatGameTime = (gameTime) => {
+    const date = new Date(0);
+    date.setSeconds(gameTime / 1000);
+    return date.toISOString().substr(11, 8);
 }
 
 
@@ -112,59 +148,44 @@ class Latest extends Component {
 
     render() {
         const {classes} = this.props;
-        const data = this.props.data.data;
-        const teams = this.props.data.teams;
-
-        console.log('Online data: ', data)
-        console.log('Online teams: ', teams)
-
-        const worldImg = `https://www.newerth.com/maps/sav1/${data.world}_overhead.jpg`
-
-        const date = new Date(0);
-        date.setSeconds(data.time);
-        const timeString = date.toISOString().substr(11, 8);
-        const races = getRaces(data)
-
 
         return <div className={classes.root}>
             <Grid container>
-                <Grid item xs={12} className={classes.header}>
-                    {data.world}
+                <Grid item xl={12} className={classes.header}>
+                    History (Last 5 finished maps)
                 </Grid>
-                <Grid item xs={3} className={classes.dataRight}>
-                    <div>Name:</div>
-                    <div>IP:</div>
-                    <div>Players:</div>
-                    <div>Version:</div>
-                    <div>Game Type:</div>
-                    <div>Time Limit:</div>
-                    <div>Passworded:</div>
-                    <div>Time:</div>
-                    <div>Races:</div>
-                    <div>Notes:</div>
-                </Grid>
-                <Grid item xs={3} className={classes.dataLeft}>
-                    <div>{data.name}</div>
-                    <div>89.39.105.27:11235</div>
-                    <div>{data.cnum}/{data.cmax}</div>
-                    <div>{data.ver}</div>
-                    <div>{data.gametype}</div>
-                    <div>{data.timelimit}</div>
-                    <div>{data.pass === 0 ? 'No!' : 'Yes!'}</div>
-                    <div>{timeString}</div>
-                    <div>{races}</div>
-                    <div>{data.notes}</div>
-                </Grid>
-                <Grid item xs={6} className={classes.gridWorld}>
-                    <Avatar alt={data.world} src={worldImg} variant="rounded" className={classes.worldAvatar}>
-                        World
-                    </Avatar>
-                </Grid>
+                {this.props.latest.slice(0).reverse().map((result, index) => {
 
-                {makeGrid(teams[1].name, teams[1].players, classes)}
-                {makeGrid(teams[2].name, teams[2].players, classes)}
-                {makeGrid(teams[0].name, teams[0].players, classes)}
-
+                        return <Grid container key={shortid.generate()}
+                                     className={index % 2 ? classes.resultsContainerA : classes.resultsContainerB}>
+                            <Grid item xl={1} className={classes.dataLeft}>
+                                <div>Map:</div>
+                                <div>Finished:</div>
+                                <div>Game Time:</div>
+                                <div>Winner:</div>
+                                <div>Online:</div>
+                            </Grid>
+                            <Grid item xl={1} className={classes.dataLeft}>
+                                <div>{result.game.map_name}</div>
+                                <div><Moment unix format="ddd HH:mm:ss">{result.timestamp}</Moment></div>
+                                <div>{formatGameTime(result.game.game_time)}</div>
+                                <div>{getWinner(result.winner)}</div>
+                                <div>{result.game.online}</div>
+                            </Grid>
+                            <Grid item xl={3} className={classes.gridWorld}>
+                                <Avatar alt={result.game.map_name}
+                                        src={`https://www.newerth.com/maps/sav1/${result.game.map_name}_overhead.jpg`}
+                                        variant="rounded"
+                                        className={classes.latestWorld}>
+                                    World
+                                </Avatar>
+                            </Grid>
+                            {makeLatestGrid(1, result.game, classes)}
+                            {makeLatestGrid(2, result.game, classes)}
+                            {makeLatestGrid(0, result.game, classes)}
+                        </Grid>
+                    }
+                )}
             </Grid>
         </div>
     }

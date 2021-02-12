@@ -39,13 +39,11 @@ const useStyles = theme => ({
     },
     playersLeft: {
         textAlign: 'left',
-        paddingLeft: theme.spacing(0.5),
-        verticalAlign: 'middle',
-        alignItems: 'center'
+        paddingLeft: theme.spacing(0.5)
     },
     playersRight: {
         textAlign: 'right',
-        paddingRight: theme.spacing(0)
+        paddingRight: theme.spacing(0.5)
     },
     playersCenter: {
         textAlign: 'center',
@@ -57,11 +55,16 @@ const useStyles = theme => ({
     },
     clanIcon: {
         display: 'inline-block',
-        width: theme.spacing(2),
-        height: theme.spacing(2)
+        verticalAlign: 'middle',
+        width: theme.spacing(3),
+        height: theme.spacing(3)
     },
     playerWrapper: {
         display: 'flex'
+    },
+    middle: {
+        display: 'flex',
+        alignItems: 'center'
     }
 });
 
@@ -76,32 +79,45 @@ const getRaces = (data) => {
     return races;
 }
 
-const makeGrid = (teamName, players, classes) => {
-    const clanIconUrl = 'https://community-server.info/public/cached/icondir/'
+const formatPrefix = (prefix) => {
+    if (prefix === '[O]') {
+        return <span style={{'color': 'cyan'}}>{prefix}</span>
+    }
+    if (prefix === '[C]') {
+        return <span style={{'color': 'green'}}>{prefix}</span>
+    }
+    if (prefix === '[R]') {
+        return <span style={{'color': 'yellow'}}>{prefix}</span>
+    }
+    return prefix
+}
 
-    return <Grid item xs={4} className={classes.gridTeam}>
-        <div className={classes.teamHeader}>{teamName}</div>
+const makeGrid = (teamNumber, teamName, players, classes) => {
+    const clanIconUrl = './public/cached/icondir/'
+
+    return <Grid item xl={4} className={classes.gridTeam}>
+        <div className={classes.teamHeader}>{teamNumber !== 0 ? 'Team' + teamNumber : null} {teamName}</div>
         {players.map((player) => {
                 const prefix = player[0];
                 const clan = player[1];
                 const name = player[2];
 
-            return <div key={shortid.generate()}>
-                <span>
-                    {prefix ? <span>{prefix}&nbsp;</span> : null}
+                return <div key={shortid.generate()} className={classes.middle}>
+                <span className={classes.playersRight}>
+                    {formatPrefix(prefix)}
                 </span>
-                <span>
+                    <span>
                     {
                         clan
                             ? <Avatar alt={name} src={clanIconUrl + clan + '.png'} variant="rounded"
                                       className={classes.clanIcon}/>
                             : null
-                    }&nbsp;
+                    }
                 </span>
-                <span>
+                    <span className={classes.playersLeft}>
                     {name}
                 </span>
-            </div>
+                </div>
             }
         )}
     </Grid>
@@ -115,9 +131,6 @@ class Online extends Component {
         const data = this.props.data.data;
         const teams = this.props.data.teams;
 
-        console.log('Online data: ', data)
-        console.log('Online teams: ', teams)
-
         const worldImg = `https://www.newerth.com/maps/sav1/${data.world}_overhead.jpg`
 
         const date = new Date(0);
@@ -128,12 +141,13 @@ class Online extends Component {
 
         return <div className={classes.root}>
             <Grid container>
-                <Grid item xs={12} className={classes.header}>
-                    {data.world}
+                <Grid item xl={12} className={classes.header}>
+                    IN PROGRESS
                 </Grid>
-                <Grid item xs={3} className={classes.dataRight}>
+                <Grid item xl={3} className={classes.dataRight}>
                     <div>Name:</div>
                     <div>IP:</div>
+                    <div>Map:</div>
                     <div>Players:</div>
                     <div>Version:</div>
                     <div>Game Type:</div>
@@ -143,9 +157,10 @@ class Online extends Component {
                     <div>Races:</div>
                     <div>Notes:</div>
                 </Grid>
-                <Grid item xs={3} className={classes.dataLeft}>
+                <Grid item xl={3} className={classes.dataLeft}>
                     <div>{data.name}</div>
                     <div>89.39.105.27:11235</div>
+                    <div>{data.world}</div>
                     <div>{data.cnum}/{data.cmax}</div>
                     <div>{data.ver}</div>
                     <div>{data.gametype}</div>
@@ -155,15 +170,17 @@ class Online extends Component {
                     <div>{races}</div>
                     <div>{data.notes}</div>
                 </Grid>
-                <Grid item xs={6} className={classes.gridWorld}>
+                <Grid item xl={6} className={classes.gridWorld}>
                     <Avatar alt={data.world} src={worldImg} variant="rounded" className={classes.worldAvatar}>
                         World
                     </Avatar>
                 </Grid>
 
-                {makeGrid(teams[1].name, teams[1].players, classes)}
-                {makeGrid(teams[2].name, teams[2].players, classes)}
-                {makeGrid(teams[0].name, teams[0].players, classes)}
+                {makeGrid(1, teams[1].name, teams[1].players, classes)}
+                {makeGrid(2,teams[2].name, teams[2].players, classes)}
+                {makeGrid(0, teams[0].name, teams[0].players, classes)}
+
+                {/*todo if team 3-4?*/}
 
             </Grid>
         </div>
