@@ -4,69 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from "@material-ui/core/Avatar";
 import shortid from 'shortid';
 
-const useStyles = theme => ({
-    root: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        backgroundColor: '#1e1e25',
-        color: 'white',
-        borderRadius: '10px 10px 10px 10px'
-    },
-    header: {
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        paddingBottom: theme.spacing(2)
-    },
-    worldAvatar: {
-        color: '#fff',
-        width: theme.spacing(25),
-        height: theme.spacing(25),
-        float: 'right'
-    },
-    gridWorld: {
-        paddingBottom: theme.spacing(2)
-    },
-    gridTeam: {
-        padding: theme.spacing(2)
-    },
-    dataLeft: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(1)
-    },
-    dataRight: {
-        textAlign: 'right',
-        paddingRight: theme.spacing(1)
-    },
-    playersLeft: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(0.5)
-    },
-    playersRight: {
-        textAlign: 'right',
-        paddingRight: theme.spacing(0.5)
-    },
-    playersCenter: {
-        textAlign: 'center',
-        paddingLeft: theme.spacing(0.5)
-    },
-    teamHeader: {
-        textTransform: 'capitalize',
-        paddingBottom: theme.spacing(2)
-    },
-    clanIcon: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        width: theme.spacing(3),
-        height: theme.spacing(3)
-    },
-    playerWrapper: {
-        display: 'flex'
-    },
-    middle: {
-        display: 'flex',
-        alignItems: 'center'
-    }
-});
+import {useStyles} from '../css/online-css'
 
 const getRaces = (data) => {
     let races = data.race1 + " VS " + data.race2;
@@ -78,45 +16,59 @@ const getRaces = (data) => {
     }
     return races;
 }
+/*
+ * Possible values: [C], [O], [R], [AO], [R] + [C], [R] + [AO], [R] + [O]
+ */
+const formatPrefix = (prefixes, classes) => {
+    const prefix = prefixes.length === 2 ? prefixes[1] : prefixes[0];
 
-const formatPrefix = (prefix) => {
-    if (prefix === '[O]') {
-        return <span style={{'color': 'cyan'}}>{prefix}</span>
+    if (prefix === '[C]' || prefix === '[AO]') {
+        return getIcon('./public/user-24.png', classes);
     }
-    if (prefix === '[C]') {
-        return <span style={{'color': 'green'}}>{prefix}</span>
+    if (prefix === '[O]') {
+        return getIcon('./public/officer.png', classes);
     }
     if (prefix === '[R]') {
-        return <span style={{'color': 'yellow'}}>{prefix}</span>
+        return getIcon('./public/red-user-24.png', classes);
     }
-    return prefix
+}
+
+const getIcon = (src, classes) => {
+    return <Avatar src={src} variant="rounded" className={classes.clanIcon}/>
 }
 
 const makeGrid = (teamNumber, teamName, players, classes) => {
     const clanIconUrl = './public/cached/icondir/'
 
+    const sortedPlayers = [...players].sort(function (a, b) {
+        a = a.length === 2 ? a[1] : a[0];
+        b = b.length === 2 ? b[1] : b[0];
+        return a[0].localeCompare(b[0]);
+    });
+
     return <Grid item xl={4} className={classes.gridTeam}>
         <div className={classes.teamHeader}>{teamNumber !== 0 ? 'Team' + teamNumber : null} {teamName}</div>
-        {players.map((player) => {
+        {sortedPlayers.map((player, index) => {
                 const prefix = player[0];
                 const clan = player[1];
                 const name = player[2];
 
                 return <div key={shortid.generate()} className={classes.middle}>
-                <span className={classes.playersRight}>
-                    {formatPrefix(prefix)}
-                </span>
-                    <span>
-                    {
-                        clan
-                            ? <Avatar alt={name} src={clanIconUrl + clan + '.png'} variant="rounded"
-                                      className={classes.clanIcon}/>
-                            : null
-                    }
-                </span>
+                    <span style={{marginRight: "10px"}}>{index + 1}</span>
+                    <span className={classes.playersRight}>
+                        {formatPrefix(prefix, classes)}
+                    </span>
+                        <span>
+                        {
+                            clan
+                                ? <Avatar alt={name} src={clanIconUrl + clan + '.png'} variant="rounded"
+                                          className={classes.clanIcon}/>
+                                : null
+                        }
+                    </span>
                     <span className={classes.playersLeft}>
-                    {name}
-                </span>
+                        {name}
+                    </span>
                 </div>
             }
         )}
@@ -145,19 +97,19 @@ class Online extends Component {
                     IN PROGRESS
                 </Grid>
                 <Grid item xl={3} className={classes.dataRight}>
-                    <div>Name:</div>
-                    <div>IP:</div>
-                    <div>Map:</div>
-                    <div>Players:</div>
-                    <div>Version:</div>
-                    <div>Game Type:</div>
-                    <div>Time Limit:</div>
-                    <div>Passworded:</div>
-                    <div>Time:</div>
-                    <div>Races:</div>
-                    <div>Notes:</div>
+                    <div>Name</div>
+                    <div>IP</div>
+                    <div>Map</div>
+                    <div>Players</div>
+                    <div>Version</div>
+                    <div>Game Type</div>
+                    <div>Time Limit</div>
+                    <div>Passworded</div>
+                    <div>Time</div>
+                    <div>Races</div>
+                    <div>Notes</div>
                 </Grid>
-                <Grid item xl={3} className={classes.dataLeft}>
+                <Grid item xl={4} className={classes.dataLeft}>
                     <div>{data.name}</div>
                     <div>89.39.105.27:11235</div>
                     <div>{data.world}</div>
@@ -165,19 +117,19 @@ class Online extends Component {
                     <div>{data.ver}</div>
                     <div>{data.gametype}</div>
                     <div>{data.timelimit}</div>
-                    <div>{data.pass === 0 ? 'No!' : 'Yes!'}</div>
+                    <div>{data.pass === '0' ? 'No!' : 'Yes!'}</div>
                     <div>{timeString}</div>
                     <div>{races}</div>
                     <div>{data.notes}</div>
                 </Grid>
-                <Grid item xl={6} className={classes.gridWorld}>
+                <Grid item xl={5} className={classes.gridWorld}>
                     <Avatar alt={data.world} src={worldImg} variant="rounded" className={classes.worldAvatar}>
                         World
                     </Avatar>
                 </Grid>
 
                 {makeGrid(1, teams[1].name, teams[1].players, classes)}
-                {makeGrid(2,teams[2].name, teams[2].players, classes)}
+                {makeGrid(2, teams[2].name, teams[2].players, classes)}
                 {makeGrid(0, teams[0].name, teams[0].players, classes)}
 
                 {/*todo if team 3-4?*/}

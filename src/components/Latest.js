@@ -4,84 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from "@material-ui/core/Avatar";
 import shortid from 'shortid';
 import Moment from 'react-moment';
-
-const useStyles = theme => ({
-    root: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        backgroundColor: '#1e1e25',
-        color: 'white',
-        borderRadius: '10px 10px 10px 10px'
-    },
-    header: {
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        paddingBottom: theme.spacing(2)
-    },
-    latestWorld: {
-        color: '#fff',
-        width: theme.spacing(18),
-        height: theme.spacing(18),
-        float: 'left'
-    },
-    gridWorld: {
-        paddingLeft: theme.spacing(5)
-    },
-    gridTeamLatest: {
-        padding: theme.spacing(0)
-    },
-    dataLeft: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(1)
-    },
-    dataRight: {
-        textAlign: 'right',
-        paddingRight: theme.spacing(1)
-    },
-    playersLeft: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(0.5)
-    },
-    playersRight: {
-        textAlign: 'right',
-        paddingRight: theme.spacing(0.5)
-    },
-    playersCenter: {
-        textAlign: 'center',
-        paddingLeft: theme.spacing(0.5)
-    },
-    teamHeader: {
-        textTransform: 'capitalize',
-        paddingBottom: theme.spacing(2)
-    },
-    clanIconLatest: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        width: theme.spacing(2),
-        height: theme.spacing(2)
-    },
-    playerWrapper: {
-        display: 'flex'
-    },
-    middle: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    resultsContainerA: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
-        marginBottom: theme.spacing(2),
-        backgroundColor: '#182d31',
-        borderRadius: '10px 10px 10px 10px'
-    },
-    resultsContainerB: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
-        marginBottom: theme.spacing(2),
-        backgroundColor: '#2b3542',
-        borderRadius: '10px 10px 10px 10px'
-    }
-});
+import {useStyles} from '../css/latest-css'
 
 const getWinner = (id) => {
     if (id === 0) {
@@ -107,33 +30,46 @@ const getTeamName = (teamId, teamName, race) => {
     }
 }
 
-const makeLatestGrid = (teamNumber, game, classes) => {
+const makeLatestGrid = (teamNumber, game, classes, index) => {
     const clanIconUrl = './public/cached/icondir/'
-    const players = game.teams[teamNumber].players;
+    const players = [...game.teams[teamNumber].players].sort(function (a, b) {
+        return (a.is_commander === b.is_commander) ? 0 : a.is_commander ? -1 : 1;
+    });
 
-    return <Grid item xl={2} className={classes.gridTeam}>
+    return <Grid item xl={2}>
         <div className={classes.teamHeader}>
             {getTeamName(game.teams[teamNumber].team_id, game.teams[teamNumber].team_name, game.teams[teamNumber].race)}
         </div>
+        <div className={index % 2 ? classes.gridTeamA : classes.gridTeamB}>
 
-        {players.map((player) => {
-                return <div key={shortid.generate()} className={classes.middle}>
-                <span className={classes.playersRight}>
-                </span>
-                    <span>
-                    {
-                        player.clan_id !== 0
-                            ? <Avatar alt={player.name} src={clanIconUrl + player.clan_id + '.png'} variant="rounded"
-                                      className={classes.clanIconLatest}/>
-                            : null
-                    }
-                </span>
-                    <span className={classes.playersLeft}>
-                    {player.name}
-                </span>
-                </div>
-            }
-        )}
+            {players.map((player) => {
+                    return <div key={shortid.generate()} className={classes.middle}>
+                            <span>
+                                {
+                                    player.is_commander
+                                        ? <Avatar alt={player.name} src={'./public/user-24.png'} variant="rounded"
+                                                  className={classes.clanIconLatest}/>
+                                        : null
+                                }
+                            </span>
+
+                        <span>
+                                {
+                                    player.clan_id !== 0
+                                        ? <Avatar alt={player.name} src={clanIconUrl + player.clan_id + '.png'}
+                                                  variant="rounded"
+                                                  className={classes.clanIconLatest}/>
+                                        : null
+                                }
+                            </span>
+
+                        <span className={classes.playersLeft}>
+                                {player.name}
+                            </span>
+                    </div>
+                }
+            )}
+        </div>
     </Grid>
 }
 
@@ -158,14 +94,14 @@ class Latest extends Component {
 
                         return <Grid container key={shortid.generate()}
                                      className={index % 2 ? classes.resultsContainerA : classes.resultsContainerB}>
-                            <Grid item xl={1} className={classes.dataLeft}>
+                            <Grid item xl={1} className={index % 2 ? classes.dataLeftA : classes.dataLeftB}>
                                 <div>Map:</div>
                                 <div>Finished:</div>
                                 <div>Game Time:</div>
                                 <div>Winner:</div>
                                 <div>Online:</div>
                             </Grid>
-                            <Grid item xl={1} className={classes.dataLeft}>
+                            <Grid item xl={2} className={index % 2 ? classes.dataLeftA : classes.dataLeftB}>
                                 <div>{result.game.map_name}</div>
                                 <div><Moment unix format="ddd HH:mm:ss">{result.timestamp}</Moment></div>
                                 <div>{formatGameTime(result.game.game_time)}</div>
@@ -180,9 +116,9 @@ class Latest extends Component {
                                     World
                                 </Avatar>
                             </Grid>
-                            {makeLatestGrid(1, result.game, classes)}
-                            {makeLatestGrid(2, result.game, classes)}
-                            {makeLatestGrid(0, result.game, classes)}
+                            {makeLatestGrid(1, result.game, classes, index)}
+                            {makeLatestGrid(2, result.game, classes, index)}
+                            {makeLatestGrid(0, result.game, classes, index)}
                         </Grid>
                     }
                 )}

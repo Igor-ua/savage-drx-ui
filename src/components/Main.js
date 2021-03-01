@@ -58,12 +58,7 @@ class Main extends Component {
 
 
     render() {
-        console.log('render this.state: ', this.state)
         const {classes} = this.props;
-
-        if (this.state?.latest) {
-            console.log('Main latest: ', this.state.latest)
-        }
 
         return <div className={classes.root}>
             <CssBaseline/>
