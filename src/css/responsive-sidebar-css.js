@@ -1,18 +1,40 @@
 import {makeStyles} from "@material-ui/core/styles";
 
+const drawerWidth = 200;
+
 export const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex'
+        display: 'flex',
+    },
+    drawer: {
+        [theme.breakpoints.up('md')]: {
+            width: drawerWidth,
+            flexShrink: 0
+        },
+    },
+    appBar: {
+        [theme.breakpoints.up('md')]: {
+            display: 'none'
+        },
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('md')]: {
+            display: 'none',
+        },
+    },
+    toolbar: {
+        backgroundColor: '#282c34'
+    },
+    content: {
+        flexGrow: 1,
+        // padding: theme.spacing(5),
     },
     list: {
         background: 'linear-gradient(0deg, #114d8a, #404c75)',
         borderRadius: '5px',
         marginRight: '10px',
         marginLeft: '10px'
-    },
-    drawer: {
-        width: 240,
-        flexShrink: 0
     },
     drawerPaper: {
         width: 240,
@@ -22,10 +44,6 @@ export const useStyles = makeStyles((theme) => ({
     drawerContainer: {
         overflow: 'auto',
         marginTop: theme.spacing(15)
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3)
     },
     link: {
         textTransform: "unset",

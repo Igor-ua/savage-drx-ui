@@ -4,64 +4,44 @@ export const useStyles = theme => ({
         padding: theme.spacing(2),
         backgroundColor: '#1e1e25',
         color: 'white',
-        borderRadius: '10px 10px 10px 10px'
+        borderRadius: '10px 10px 10px 10px',
+        marginTop: theme.spacing(3),
+        [theme.breakpoints.down('xl')]: {
+            marginLeft: theme.spacing(5)
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: theme.spacing(1)
+        },
     },
     header: {
         textAlign: 'center',
-        textTransform: 'uppercase',
-        paddingBottom: theme.spacing(2)
+        // textTransform: 'uppercase',
+        paddingBottom: theme.spacing(2),
+        color: 'yellow',
+        fontSize: 14
     },
     latestWorld: {
+        display: 'block',
         color: '#fff',
-        width: theme.spacing(18),
-        height: theme.spacing(18),
-        float: 'left'
+
+        width: '75%',
+        height: '75%',
+
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        borderRadius: '10px 10px 10px 10px',
+
     },
     gridWorld: {
-        paddingLeft: theme.spacing(5)
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
-    gridTeamA: {
-        "& div": {
-            background: "#283544",
-            marginBottom: '5px',
-            marginRight: '5px'
-        }
-    },
-    gridTeamB: {
-        "& div": {
-            background: "#324358",
-            marginBottom: '5px',
-            marginRight: '5px'
-        }
-    },
-    dataLeftA: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(1),
-        "& div": {
-            background: "#283544",
-            marginBottom: '5px'
-        }
-    },
-    dataLeftB: {
-        textAlign: 'left',
-        paddingLeft: theme.spacing(1),
-        "& div": {
-            background: "#324358",
-            marginBottom: '5px'
-        }
-    },
-    dataRight: {
-        textAlign: 'right',
-        paddingRight: theme.spacing(1)
+    imageWrapper: {
+        // marginTop: '10px'
     },
     playersLeft: {
         textAlign: 'left'
-    },
-    teamHeader: {
-        textTransform: 'capitalize',
-        background: "#2c6868",
-        marginBottom: theme.spacing(1),
-        marginRight: theme.spacing(0.5)
     },
     clanIconLatest: {
         display: 'inline-block',
@@ -71,10 +51,6 @@ export const useStyles = theme => ({
     },
     playerWrapper: {
         display: 'flex'
-    },
-    middle: {
-        display: 'flex',
-        alignItems: 'center'
     },
     resultsContainerA: {
         paddingTop: theme.spacing(2),
@@ -89,5 +65,104 @@ export const useStyles = theme => ({
         marginBottom: theme.spacing(2),
         backgroundColor: '#2b3542',
         borderRadius: '10px 10px 10px 10px'
+    },
+
+    tableA: {
+        tableLayout: 'auto',
+        width: '78%',
+        border: 'none',
+        borderRadius: '10px 10px 10px 10px',
+        borderSpacing: '5px',
+        "& tr": {
+            background: "#2d3c4c",
+            border: 'none'
+        },
+        "& td": {
+            border: 'none',
+            paddingBottom: '0'
+        }
+    },
+
+    tableB: {
+        tableLayout: 'auto',
+        width: '78%',
+        border: 'none',
+        borderRadius: '10px 10px 10px 10px',
+        borderSpacing: '5px',
+        "& tr": {
+            background: "#144856",
+            border: 'none'
+        },
+        "& td": {
+            border: 'none',
+            paddingBottom: '0'
+        }
+    },
+    tableContainer: {
+        textAlign: '-webkit-center',
+    },
+
+    tablePlayersA: {
+        tableLayout: 'auto',
+        width: '100%',
+        border: 'none',
+        borderRadius: '10px 10px 10px 10px',
+        borderSpacing: '3px',
+        paddingLeft: '2px',
+        paddingBottom: '2px',
+        "& th": {
+            background: '#2c6868',
+            marginBottom: '5px',
+            textAlign: 'left',
+        },
+        "& tr": {
+            backgroundColor: '#2d3c4c',
+            border: 'none',
+        },
+        "& td": {
+            border: 'none',
+        }
+    },
+    tablePlayersB: {
+        tableLayout: 'auto',
+        width: '100%',
+        border: 'none',
+        borderRadius: '10px 10px 10px 10px',
+        borderSpacing: '3px',
+        paddingLeft: '2px',
+        paddingBottom: '2px',
+        "& th": {
+            background: '#2c6868',
+            marginBottom: '5px',
+            textAlign: 'left',
+        },
+        "& tr": {
+            backgroundColor: '#144856',
+            border: 'none',
+        },
+        "& td": {
+            border: 'none',
+        }
+    },
+    tdInnerDiv: {
+        display: 'table',
+        height: '20px',
+        overflow: 'hidden',
+        "& span": {
+            display: 'table-cell',
+            verticalAlign: 'middle'
+        }
+    },
+    emptyTDA: {
+        backgroundColor: '#182d31',
+    },
+    emptyTDB: {
+        backgroundColor: '#283544',
+    },
+    latestTableWrapper: {
+        paddingRight: theme.spacing(1),
+        [theme.breakpoints.down('sm')]: {
+            paddingRight: theme.spacing(0)
+        },
     }
 });

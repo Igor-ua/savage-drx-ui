@@ -1,30 +1,14 @@
 import React, {Component} from 'react';
 import {createMuiTheme, withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
-
 import API from './Api';
-import SideBar from "./SideBar"
 import Online from "./Online"
 import Latest from "./Latest"
 import {ThemeProvider} from "@material-ui/styles";
+import ResponsiveSideBar from "./ResponsiveSideBar";
+import {useStyles} from '../css/main-css'
 
-const useStyles = theme => ({
-    root: {
-        display: 'flex',
-        height: '100%',
-        backgroundColor: '#282c34'
-    },
-    content: {
-        flexGrow: 1,
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
-        marginTop: theme.spacing(2)
-    }
-});
 
 const theme = createMuiTheme({
     typography: {
@@ -64,13 +48,13 @@ class Main extends Component {
             <CssBaseline/>
 
             <ThemeProvider theme={theme}>
-                <SideBar/>
+                <ResponsiveSideBar/>
                 <main className={classes.content}>
-                    <Grid container spacing={3}>
-                        <Grid item xl={7}>
+                    <Grid container spacing={3} className={classes.gridContainer}>
+                        <Grid item xl={7} className={classes.latest}>
                             {this.state?.latest ? <Latest latest={this.state.latest}/> : null}
                         </Grid>
-                        <Grid item xl={5}>
+                        <Grid item xl={5} className={classes.online}>
                             {this.state?.online ? <Online data={this.state.online}/> : null}
                         </Grid>
                     </Grid>

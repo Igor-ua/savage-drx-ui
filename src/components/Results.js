@@ -1,44 +1,68 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import SideBar from "./SideBar"
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import React, {Component} from 'react';
+import {createMuiTheme, withStyles} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import API from './Api';
+import {ThemeProvider} from "@material-ui/styles";
+import ResponsiveSideBar from "./ResponsiveSideBar";
+import {useStyles} from '../css/main-css'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        height: '100%',
-        backgroundColor: '#282c34'
+
+const theme = createMuiTheme({
+    typography: {
+        fontSize: 12
     },
-    content: {
-        flexGrow: 1,
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
+});
+
+class Results extends Component {
+
+    constructor(props) {
+        super(props);
+        this.getOnline().then(online =>
+            this.setState({
+                online: online.data
+            })
+        )
+        this.getLatestResults().then(latest =>
+            this.setState({
+                latest: latest.data
+            })
+        )
     }
-}));
 
-export default function ResultsDrawer() {
-    const classes = useStyles();
+    async getOnline() {
+        return await API.get(`stats/online`);
+    }
 
-    return (
+    async getLatestResults() {
+        return await API.get(`stats/results/5`);
+    }
 
-        <div className={classes.root}>
-            <SideBar/>
 
-            <main className={classes.content}>
-                <Toolbar/>
-                <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>xs=6</Paper>
+    render() {
+        const {classes} = this.props;
+
+        return <div className={classes.root}>
+            <CssBaseline/>
+
+            <ThemeProvider theme={theme}>
+                <ResponsiveSideBar/>
+                <main className={classes.content}>
+                    <Grid container spacing={3} className={classes.gridContainer}>
+                        <Grid item xl={6} className={classes.latest}>
+                            123
+                        </Grid>
+                        <Grid item xl={6} className={classes.online}>
+                            456
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>xs=6</Paper>
-                    </Grid>
-                </Grid>
-            </main>
+                </main>
+            </ThemeProvider>
 
         </div>
-    );
+    }
+
+
 }
+
+export default withStyles(useStyles)(Results)
