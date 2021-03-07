@@ -1,0 +1,1 @@
+export const CLAN_ICON_URL = '/public/cached/icondir/'

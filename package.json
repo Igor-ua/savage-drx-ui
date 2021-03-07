@@ -9,6 +9,8 @@
     "axios": "^0.21.1",
     "dateformat": "^4.5.1",
     "fontsource-roboto": "^4.0.0",
+    "highcharts": "^9.0.1",
+    "highcharts-react-official": "^3.0.0",
     "moment-timezone": "^0.5.33",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

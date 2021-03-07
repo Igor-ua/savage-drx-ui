@@ -3,7 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from "@material-ui/core/Avatar";
 import shortid from 'shortid';
-import {useStyles} from '../css/online-css'
+import {useStyles} from '../css/live-css'
 import TableContainer from "@material-ui/core/TableContainer";
 
 const getRaces = (data) => {
@@ -23,13 +23,13 @@ const formatPrefix = (prefixes, classes) => {
     const prefix = prefixes.length === 2 ? prefixes[1] : prefixes[0];
 
     if (prefix === '[C]' || prefix === '[AO]') {
-        return getIcon('./public/user-24.png', classes);
+        return getIcon('/public/user-24.png', classes);
     }
     if (prefix === '[O]') {
-        return getIcon('./public/officer.png', classes);
+        return getIcon('/public/officer.png', classes);
     }
     if (prefix === '[R]') {
-        return getIcon('./public/red-user-24.png', classes);
+        return getIcon('/public/red-user-24.png', classes);
     }
 }
 
@@ -139,7 +139,7 @@ const buildTable = (teams, classes) => {
 }
 
 
-class Online extends Component {
+class Live extends Component {
 
     render() {
         const {classes} = this.props;
@@ -225,4 +225,4 @@ class Online extends Component {
     }
 }
 
-export default withStyles(useStyles)(Online)
+export default withStyles(useStyles)(Live)

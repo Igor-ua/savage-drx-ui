@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import API from './Api';
 import {ThemeProvider} from "@material-ui/styles";
 import ResponsiveSideBar from "./ResponsiveSideBar";
-import {useStyles} from '../css/main-css'
+import {useStyles} from '../css/map-stats-css'
+import DailyMapsComponent from "./DailyMapsComponent";
 
 
 const theme = createMuiTheme({
@@ -14,55 +15,40 @@ const theme = createMuiTheme({
     },
 });
 
-class Results extends Component {
+class MapStats extends Component {
 
     constructor(props) {
         super(props);
-        this.getOnline().then(online =>
+        this.getResultsPerDay(1612310087, 1612314087).then(result =>
             this.setState({
-                online: online.data
+                daily: result.data
             })
-        )
-        this.getLatestResults().then(latest =>
-            this.setState({
-                latest: latest.data
-            })
-        )
+        );
     }
 
-    async getOnline() {
-        return await API.get(`stats/online`);
+    async getResultsPerDay(from, to) {
+        return await API.get(`/stats/results/${from}/${to}`);
     }
-
-    async getLatestResults() {
-        return await API.get(`stats/results/5`);
-    }
-
 
     render() {
         const {classes} = this.props;
 
         return <div className={classes.root}>
             <CssBaseline/>
-
             <ThemeProvider theme={theme}>
                 <ResponsiveSideBar/>
                 <main className={classes.content}>
                     <Grid container spacing={3} className={classes.gridContainer}>
-                        <Grid item xl={6} className={classes.latest}>
-                            123
+                        <Grid item xl={6}>
+                            {this.state?.daily ? <DailyMapsComponent daily={this.state.daily}/> : null}
                         </Grid>
                         <Grid item xl={6} className={classes.online}>
-                            456
                         </Grid>
                     </Grid>
                 </main>
             </ThemeProvider>
-
         </div>
     }
-
-
 }
 
-export default withStyles(useStyles)(Results)
+export default withStyles(useStyles)(MapStats)

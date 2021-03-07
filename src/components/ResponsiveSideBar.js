@@ -17,7 +17,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {Link} from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
-import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 
 import {useStyles} from '../css/responsive-sidebar-css'
 
@@ -38,7 +38,7 @@ function ResponsiveSideBar(props) {
             <List className={classes.list}>
 
                 <div className={classes.logo}>
-                    <Avatar alt={'S'} src={'./xr_logo/savagexr_icon_64.png'} variant="rounded"
+                    <Avatar alt={'S'} src={'/xr_logo/savagexr_icon_64.png'} variant="rounded"
                             className={classes.sideIcon}/>
                 </div>
 
@@ -50,14 +50,22 @@ function ResponsiveSideBar(props) {
                         <ListItemText primary={'Home'} className={classes.iconText}/>
                     </ListItem>
                 </Link>
-                <Link to={"/results"} className={classes.link}>
-                    <ListItem button key={'Results'}>
+                <Link to={"/online"} className={classes.link}>
+                    <ListItem button key={'Online stats'}>
                         <ListItemIcon>
                             <EqualizerIcon className={classes.icon}/>
                         </ListItemIcon>
-                        <ListItemText primary={'Stats (in-progress)'} className={classes.iconText}/>
+                        <ListItemText primary={'Online stats'} className={classes.iconText}/>
                     </ListItem>
                 </Link>
+                {/*<Link to={"/maps"} className={classes.link}>*/}
+                {/*    <ListItem button key={'Map stats'}>*/}
+                {/*        <ListItemIcon>*/}
+                {/*            <DirectionsRunIcon className={classes.icon}/>*/}
+                {/*        </ListItemIcon>*/}
+                {/*        <ListItemText primary={'Maps history & stats'} className={classes.iconText}/>*/}
+                {/*    </ListItem>*/}
+                {/*</Link>*/}
             </List>
         </div>
     );

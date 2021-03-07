@@ -3,7 +3,7 @@ import {createMuiTheme, withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import API from './Api';
-import Online from "./Online"
+import Live from "./Live"
 import Latest from "./Latest"
 import {ThemeProvider} from "@material-ui/styles";
 import ResponsiveSideBar from "./ResponsiveSideBar";
@@ -20,9 +20,9 @@ class Main extends Component {
 
     constructor(props) {
         super(props);
-        this.getOnline().then(online =>
+        this.getLive().then(live =>
             this.setState({
-                online: online.data
+                live: live.data
             })
         )
         this.getLatestResults().then(latest =>
@@ -32,8 +32,8 @@ class Main extends Component {
         )
     }
 
-    async getOnline() {
-        return await API.get(`stats/online`);
+    async getLive() {
+        return await API.get(`stats/live`);
     }
 
     async getLatestResults() {
@@ -54,8 +54,8 @@ class Main extends Component {
                         <Grid item xl={7} className={classes.latest}>
                             {this.state?.latest ? <Latest latest={this.state.latest}/> : null}
                         </Grid>
-                        <Grid item xl={5} className={classes.online}>
-                            {this.state?.online ? <Online data={this.state.online}/> : null}
+                        <Grid item xl={5} className={classes.live}>
+                            {this.state?.live ? <Live data={this.state.live}/> : null}
                         </Grid>
                     </Grid>
                 </main>

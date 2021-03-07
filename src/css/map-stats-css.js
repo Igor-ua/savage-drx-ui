@@ -6,8 +6,9 @@ export const useStyles = theme => ({
     },
     content: {
         flexGrow: 1,
-        paddingRight: theme.spacing(2),
+        paddingRight: theme.spacing(1),
         paddingBottom: theme.spacing(3),
+        marginTop: theme.spacing(2),
     },
     latest: {
         flexGrow: '2'
@@ -20,6 +21,6 @@ export const useStyles = theme => ({
         flexDirection: 'row',
         flexWrap: 'wrap-reverse',
         maxWidth: '1700px',
-        justifyContent: 'center'
+        justifyContent: 'center',
     }
 });

@@ -6,48 +6,15 @@ import shortid from 'shortid';
 import Moment from 'react-moment';
 import {useStyles} from '../css/latest-css'
 import TableContainer from "@material-ui/core/TableContainer";
-
-const getWinner = (id) => {
-    if (id === 0) {
-        return 'Draw'
-    }
-    if (id === 1) {
-        return 'Human'
-    }
-    if (id === 2) {
-        return 'Beast'
-    }
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const getTeamName = (teamId, teamName, race) => {
-    if (teamId === 0) {
-        return `Spectators`
-    }
-    return `${teamName} ${capitalizeFirstLetter(race)}`
-}
-
-const formatGameTime = (gameTime) => {
-    const date = new Date(0);
-    date.setSeconds(gameTime / 1000);
-    return date.toISOString().substr(11, 8);
-}
+import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import {formatGameTime, getTeamName, getWinner, sortCommanders} from "../utils/utils";
+import {CLAN_ICON_URL} from "../utils/constants";
 
 const buildTableLatest = (game, upperIndex, classes) => {
-    const clanIconUrl = './public/cached/icondir/'
-
-    const sortPlayers = (players) => {
-        return [...players].sort(function (a, b) {
-            return (a.is_commander === b.is_commander) ? 0 : a.is_commander ? -1 : 1;
-        })
-    }
-
     const getRowsA = (game) => {
-        const t1 = sortPlayers(game.teams[1].players);
-        const t2 = sortPlayers(game.teams[2].players);
+        const t1 = sortCommanders(game.teams[1].players);
+        const t2 = sortCommanders(game.teams[2].players);
         const maxSize = Math.max(t1?.length || 0 , t2?.length || 0);
 
         let result = []
@@ -63,9 +30,9 @@ const buildTableLatest = (game, upperIndex, classes) => {
     }
 
     const getRowsB = (game) => {
-        const t3 = game.teams[3] ? sortPlayers(game.teams[3].players) : null;
-        const t4 = game.teams[4] ? sortPlayers(game.teams[4].players) : null;
-        const specs = sortPlayers(game.teams[0].players);
+        const t3 = game.teams[3] ? sortCommanders(game.teams[3].players) : null;
+        const t4 = game.teams[4] ? sortCommanders(game.teams[4].players) : null;
+        const specs = sortCommanders(game.teams[0].players);
         const maxSize = Math.max(t3?.length || 0, t4?.length || 0, specs?.length || 0);
 
         let result = []
@@ -90,11 +57,11 @@ const buildTableLatest = (game, upperIndex, classes) => {
             <div className={classes.tdInnerDiv}>
                 <span style={{paddingRight: '5px', color: 'grey'}}>{index + 1}</span>
                 <span>
-                    {player.is_commander ? <Avatar alt={player.name} src={'./public/user-24.png'} variant="rounded"
+                    {player.is_commander ? <Avatar alt={player.name} src={'/public/user-24.png'} variant="rounded"
                                                className={classes.clanIconLatest}/> : null }
                 </span>
                 <span>
-                    {player.clan_id !== 0 ? <Avatar alt={player.name} src={clanIconUrl + player.clan_id + '.png'}
+                    {player.clan_id !== 0 ? <Avatar alt={player.name} src={CLAN_ICON_URL + player.clan_id + '.png'}
                                                     variant="rounded" className={classes.clanIconLatest}/> : null }
                 </span>
                 <span className={classes.playersLeft}>{player.name}</span>
@@ -168,42 +135,52 @@ const getTableResults = (result, index, classes) => {
 }
 
 
-class Latest extends Component {
-    render() {
-        const {classes} = this.props;
-        return <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12} className={classes.header}>
-                    History
-                </Grid>
-                    {this.props.latest.slice(0).reverse().map((result, index) => {
-                        return <Grid container key={shortid.generate()}
-                                     className={index % 2 ? classes.resultsContainerB : classes.resultsContainerA}>
-                            <Grid item xl={6} className={classes.gridWorld}>
-                                <div className={classes.imageWrapper}>
-                                    <img alt={result.game.map_name}
-                                         src={`https://www.newerth.com/maps/sav1/${result.game.map_name}_overhead.jpg`}
-                                         className={classes.latestWorld}
-                                    />
-                                    {/*<Avatar*/}
-                                    {/*    src={`https://www.newerth.com/maps/sav1/${result.game.map_name}_overhead.jpg`}*/}
-                                    {/*    className={classes.latestWorld}>World</Avatar>*/}
-                                </div>
+const Latest = (props) => {
+    const classes = props.classes;
+    let history = useHistory();
 
-                                <div>
-                                    {getTableResults(result, index, classes)}
-                                </div>
-                            </Grid>
+    const handleResult = value => {
+        history.push({
+            pathname: `/result/${value}`
+        });
+    };
 
-                            <Grid item xl={6}>
-                                {buildTableLatest(result.game, index, classes)}
-                            </Grid>
-                        </Grid>
-                        })
-                    }
+    return <div className={classes.root}>
+        <Grid container>
+            <Grid item xs={12} className={classes.header}>
+                History
             </Grid>
-        </div>
-    }
+            {props.latest.slice(0).reverse().map((result, index) => {
+                return <Grid container key={shortid.generate()}
+                             className={index % 2 ? classes.resultsContainerB : classes.resultsContainerA}>
+                    <Grid item xl={6} className={classes.gridWorld}>
+                        <div className={classes.imageWrapper}>
+                            <img alt={result.game.map_name}
+                                 src={`https://www.newerth.com/maps/sav1/${result.game.map_name}_overhead.jpg`}
+                                 className={classes.latestWorld}
+                            />
+                        </div>
+
+                        <div>
+                            {getTableResults(result, index, classes)}
+                        </div>
+                    </Grid>
+
+                    <Grid item xl={6}>
+                        {buildTableLatest(result.game, index, classes)}
+                    </Grid>
+                    <Grid item xl={12} xs={12} className={classes.buttonWrapper}>
+                        <Button variant="contained" size="small" color="primary" onClick={() => {
+                            handleResult(result.timestamp);
+                        }}>
+                            MAP STATS
+                        </Button>
+                    </Grid>
+                </Grid>
+            })
+            }
+        </Grid>
+    </div>
 }
 
 export default withStyles(useStyles)(Latest)
