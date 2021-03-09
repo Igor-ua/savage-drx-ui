@@ -16,6 +16,7 @@ class WeeklyChart extends Component {
         const {classes} = this.props;
         const data = this.props.daily.map((x) => {
             const tooltipData = {}
+            tooltipData.mapName = x.map_name;
             tooltipData.t0 = extractPlayers(x.teams[0]);
             tooltipData.t1 = extractPlayers(x.teams[1]);
             tooltipData.t2 = extractPlayers(x.teams[2]);
@@ -85,7 +86,9 @@ class WeeklyChart extends Component {
             },
             tooltip: {
                 formatter: function() {
-                    let result = '<b>Team1:</b> ' + this.point.tooltipData.t1.join(', ') + '<br/>';
+                    let result = '<b>Online:</b> ' + this.point.y + '<br/>';
+                    result += '<b>Map:</b> ' + this.point.tooltipData.mapName + '<br/>';
+                    result += '<b>Team1:</b> ' + this.point.tooltipData.t1.join(', ') + '<br/>';
                     result += '<b>Team2:</b> ' + this.point.tooltipData.t2.join(', ') + '<br/>';
                     result += this.point.tooltipData?.t3 ? '<b>Team3:</b> ' + this.point.tooltipData.t3.join(', ') + '<br/>' : ''
                     result += this.point.tooltipData?.t4 ? '<b>Team3:</b> ' + this.point.tooltipData.t4.join(', ') + '<br/>' : ''

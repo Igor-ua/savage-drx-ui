@@ -68,13 +68,17 @@ const getTablesWithsStats = (game, playersInfo, classes) => {
     return [
         buildTableWithStats(game.teams[1], info, classes),
         buildTableWithStats(game.teams[2], info, classes),
-        buildTableWithStats(game.teams[0], info, classes),
         game.teams[3] ? buildTableWithStats(game.teams[3], info, classes) : null,
         game.teams[4] ? buildTableWithStats(game.teams[4], info, classes) : null,
+        buildTableWithStats(game.teams[0], info, classes),
     ];
 }
 
 const buildTableWithStats = (team, info, classes) => {
+    if (team.players && team.players.length === 0) {
+        return;
+    }
+
     const getRows = (team) => {
         const players = sortCommanders(team.players);
 
@@ -130,8 +134,9 @@ const buildTableWithStats = (team, info, classes) => {
                 <td key={shortid.generate()}>{getInfo(player, 'kill_streak')}</td>,
                 <td key={shortid.generate()}>{getInfo(player, 'melee_kill')}</td>,
                 <td key={shortid.generate()}>{getInfo(player, 'mine')}</td>,
-                <td key={shortid.generate()}>{getInfo(player, 'money_gained')}</td>,
-                <td key={shortid.generate()}>{getInfo(player, 'money_spent')}</td>,
+                <td key={shortid.generate()}>{
+                        getInfo(player, 'money_gained') - getInfo(player, 'money_spent')
+                }</td>,
                 <td key={shortid.generate()}>{getInfo(player, 'npc_kill')}</td>,
                 <td key={shortid.generate()}>{getInfo(player, 'ranged_kill')}</td>,
                 <td key={shortid.generate()}>{getInfo(player, 'sacrifice')}</td>,
@@ -163,8 +168,7 @@ const buildTableWithStats = (team, info, classes) => {
                     <th>Kill Streak</th>
                     <th>M.kills</th>
                     <th>Mine</th>
-                    <th>M.gained</th>
-                    <th>M.spent</th>
+                    <th>M.gained - spent</th>
                     <th>NPC killed</th>
                     <th>Ranged kill</th>
                     <th>Sacrifice</th>
