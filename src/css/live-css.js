@@ -7,6 +7,12 @@ export const useStyles = theme => ({
         borderRadius: '10px 10px 10px 10px',
         marginTop: theme.spacing(3),
         flexWrap: 'nowrap',
+        [theme.breakpoints.down('xl')]: {
+            marginLeft: theme.spacing(5)
+        },
+        [theme.breakpoints.up('xl')]: {
+            marginLeft: theme.spacing(0)
+        },
         [theme.breakpoints.down('sm')]: {
             marginTop: theme.spacing(9),
             marginLeft: theme.spacing(1)
@@ -20,23 +26,8 @@ export const useStyles = theme => ({
     },
     worldAvatar: {
         color: '#fff',
-        // width: 'auto',
-        // height: 'auto',
-
-        // display: 'block',
-
-        maxWidth: '97%',
-        maxHeight: '97%',
-
-        // maxHeight: theme.spacing(29),
-        // maxWidth: theme.spacing(29),
-
-        // width: '100%',
-        // height: '100%',
-
-        // width: theme.spacing(29),
-        // height: theme.spacing(29),
-        // float: 'right',
+        maxWidth: '83%',
+        maxHeight: '83%',
         borderRadius: '10px 10px 10px 10px',
     },
     gridWorld: {

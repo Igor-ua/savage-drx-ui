@@ -69,7 +69,7 @@ export const useStyles = theme => ({
 
     tableA: {
         tableLayout: 'auto',
-        width: '78%',
+        width: '100%',
         border: 'none',
         borderRadius: '10px 10px 10px 10px',
         borderSpacing: '5px',
@@ -85,7 +85,7 @@ export const useStyles = theme => ({
 
     tableB: {
         tableLayout: 'auto',
-        width: '78%',
+        width: '100%',
         border: 'none',
         borderRadius: '10px 10px 10px 10px',
         borderSpacing: '5px',
@@ -99,7 +99,8 @@ export const useStyles = theme => ({
         }
     },
     tableContainer: {
-        textAlign: '-webkit-center',
+        width: '78%',
+        margin: 'auto'
     },
 
     tablePlayersA: {

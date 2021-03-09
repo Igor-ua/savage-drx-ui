@@ -72,7 +72,7 @@ class WeeklyChart extends Component {
         };
 
         return <div className={classes.root}>
-            <HighchartsReact highcharts={Highcharts} options={options} />
+            <HighchartsReact highcharts={Highcharts} options={options} className={classes.highChart}/>
         </div>
     }
 }

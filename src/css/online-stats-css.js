@@ -6,7 +6,15 @@ export const useStyles = theme => ({
     },
     content: {
         flexGrow: 1,
-        paddingRight: theme.spacing(1),
+        [theme.breakpoints.down('xl')]: {
+            marginLeft: theme.spacing(5),
+            marginRight: theme.spacing(3),
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1)
+        },
+
         paddingBottom: theme.spacing(3),
     },
     latest: {
@@ -21,6 +29,5 @@ export const useStyles = theme => ({
         flexWrap: 'wrap-reverse',
         maxWidth: '1700px',
         justifyContent: 'center',
-
     }
 });

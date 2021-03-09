@@ -17,8 +17,6 @@ import Avatar from "@material-ui/core/Avatar";
 import {Link} from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
-import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
-
 import {useStyles} from '../css/responsive-sidebar-css'
 
 function ResponsiveSideBar(props) {
@@ -38,8 +36,7 @@ function ResponsiveSideBar(props) {
             <List className={classes.list}>
 
                 <div className={classes.logo}>
-                    <Avatar alt={'S'} src={'/xr_logo/savagexr_icon_64.png'} variant="rounded"
-                            className={classes.sideIcon}/>
+                    <img alt={'S'} src={'/xr_logo/savagexr_icon_64.png'} className={classes.sideIcon}/>
                 </div>
 
                 <Link to={"/"} className={classes.link}>

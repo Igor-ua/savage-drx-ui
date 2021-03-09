@@ -60,14 +60,13 @@ export const useStyles = theme => ({
     },
     resultsContainer: {
         paddingTop: theme.spacing(1),
-        // paddingBottom: theme.spacing(2),
         marginBottom: theme.spacing(2),
         backgroundColor: '#2b3542',
         borderRadius: '10px 10px 10px 10px'
     },
     table: {
         tableLayout: 'auto',
-        width: '78%',
+        width: '100%',
         border: 'none',
         borderRadius: '10px 10px 10px 10px',
         borderSpacing: '5px',
@@ -81,7 +80,8 @@ export const useStyles = theme => ({
         }
     },
     tableContainer: {
-        textAlign: '-webkit-center',
+        margin: 'auto',
+        width: '78%',
     },
     tablePlayers: {
         tableLayout: 'fixed',

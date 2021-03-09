@@ -28,7 +28,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 1,
-        // padding: theme.spacing(5),
     },
     list: {
         background: 'linear-gradient(0deg, #114d8a, #404c75)',
@@ -53,7 +52,7 @@ export const useStyles = makeStyles((theme) => ({
     logo: {
         position: 'relative',
         opacity: '1',
-        textAlign: '-webkit-center',
+        textAlign: 'center',
         '&::after': {
             content: '""',
             position: 'absolute',

@@ -52,17 +52,13 @@ class OnlineStats extends Component {
                 <ResponsiveSideBar/>
                 <main className={classes.content}>
                     <Grid container spacing={3} className={classes.gridContainer}>
-                        <Grid item xl={11}>
+                        <Grid item xl={12}>
                             {this.state?.weekly ? <WeeklyChart weekly={this.state.weekly}/> : null}
-                        {/*</Grid>*/}
-                        {/*<Grid item xl={6} className={classes.online}>*/}
                         </Grid>
                     </Grid>
                     <Grid container spacing={3} className={classes.gridContainer}>
-                        <Grid item xl={11}>
+                        <Grid item xl={12}>
                             {this.state?.daily ? <DailyChart daily={this.state.daily}/> : null}
-                            {/*</Grid>*/}
-                            {/*<Grid item xl={6} className={classes.online}>*/}
                         </Grid>
                     </Grid>
                 </main>
