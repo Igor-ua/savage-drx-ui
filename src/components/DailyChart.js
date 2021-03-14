@@ -34,6 +34,7 @@ class WeeklyChart extends Component {
             chart: {
                 type: 'spline',
                 zoomType: 'x',
+                height: '350px'
             },
             mapNavigation: {
                 enableMouseWheelZoom: true

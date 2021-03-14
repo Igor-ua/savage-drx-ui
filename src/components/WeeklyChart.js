@@ -19,6 +19,7 @@ class WeeklyChart extends Component {
             chart: {
                 type: 'spline',
                 zoomType: 'x',
+                height: '350px'
             },
             mapNavigation: {
                 enableMouseWheelZoom: true
@@ -68,11 +69,11 @@ class WeeklyChart extends Component {
                     },
                     threshold: null
                 },
-            },
+            }
         };
 
         return <div className={classes.root}>
-            <HighchartsReact highcharts={Highcharts} options={options} className={classes.highChart}/>
+            <HighchartsReact highcharts={Highcharts} options={options} className={classes.highCharts}/>
         </div>
     }
 }

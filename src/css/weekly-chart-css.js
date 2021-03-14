@@ -1,8 +1,8 @@
 export const useStyles = theme => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing(2),
-        backgroundColor: '#1e1e25',
+        padding: theme.spacing(1),
+        backgroundColor: '#359cbf',
         color: 'white',
         borderRadius: '10px 10px 10px 10px',
         marginTop: theme.spacing(3),
@@ -12,6 +12,6 @@ export const useStyles = theme => ({
             marginLeft: theme.spacing(1)
         },
     },
-    highChart: {
+    highCharts: {
     }
 });

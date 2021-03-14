@@ -6,13 +6,14 @@ export const useStyles = theme => ({
     },
     content: {
         flexGrow: 1,
+        maxWidth: '100%',
         [theme.breakpoints.down('xl')]: {
             marginLeft: theme.spacing(5),
-            marginRight: theme.spacing(3),
+            maxWidth: '100%'
         },
         [theme.breakpoints.down('sm')]: {
             marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1)
+            maxWidth: '100%'
         },
 
         paddingBottom: theme.spacing(3),
@@ -20,14 +21,10 @@ export const useStyles = theme => ({
     latest: {
         flexGrow: '2'
     },
-    online: {
-        flexGrow: '1',
-        maxWidth: '600px'
-    },
     gridContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap-reverse',
-        maxWidth: '1700px',
+        maxWidth: '100%',
         justifyContent: 'center',
     }
 });
