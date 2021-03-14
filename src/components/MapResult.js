@@ -10,7 +10,7 @@ import API from "./Api";
 import TableContainer from "@material-ui/core/TableContainer";
 import Moment from "react-moment";
 import Avatar from "@material-ui/core/Avatar";
-import {formatGameTime, getTeamName, getWinner, sortCommanders} from "../utils/utils";
+import {formatGameTime, getTeamName, getWinner, getWorldImage, sortCommanders} from "../utils/utils";
 import {CLAN_ICON_URL} from "../utils/constants";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -333,7 +333,7 @@ const MapResult = (props) => {
                             <Grid item xl={12} className={classes.gridWorld}>
                                 <div className={classes.imageWrapper}>
                                     <img alt={d.game.map_name}
-                                         src={`https://www.newerth.com/maps/sav1/${d.game.map_name}_overhead.jpg`}
+                                         src={getWorldImage(d.game.map_name)}
                                          className={classes.world}
                                     />
                                 </div>

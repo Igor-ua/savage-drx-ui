@@ -32,3 +32,7 @@ export const sortCommanders = (players) => {
         return (a.is_commander === b.is_commander) ? 0 : a.is_commander ? -1 : 1;
     })
 }
+
+export const getWorldImage = (name) => {
+    return process.env.REACT_APP_WORLD_LOCATION + name + '_overhead.jpg';
+}

@@ -8,7 +8,7 @@ import {useStyles} from '../css/latest-css'
 import TableContainer from "@material-ui/core/TableContainer";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-import {formatGameTime, getTeamName, getWinner, sortCommanders} from "../utils/utils";
+import {formatGameTime, getTeamName, getWinner, getWorldImage, sortCommanders} from "../utils/utils";
 import {CLAN_ICON_URL} from "../utils/constants";
 
 const buildTableLatest = (game, upperIndex, classes) => {
@@ -156,7 +156,7 @@ const Latest = (props) => {
                     <Grid item xl={6} className={classes.gridWorld}>
                         <div className={classes.imageWrapper}>
                             <img alt={result.game.map_name}
-                                 src={`https://www.newerth.com/maps/sav1/${result.game.map_name}_overhead.jpg`}
+                                 src={getWorldImage(result.game.map_name)}
                                  className={classes.latestWorld}
                             />
                         </div>

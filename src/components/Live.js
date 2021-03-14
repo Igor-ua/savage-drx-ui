@@ -5,6 +5,8 @@ import Avatar from "@material-ui/core/Avatar";
 import shortid from 'shortid';
 import {useStyles} from '../css/live-css'
 import TableContainer from "@material-ui/core/TableContainer";
+import {CLAN_ICON_URL} from "../utils/constants";
+import {getWorldImage} from "../utils/utils";
 
 const getRaces = (data) => {
     let races = data.race1 + " VS " + data.race2;
@@ -38,8 +40,6 @@ const getIcon = (src, classes) => {
 }
 
 const buildTable = (teams, classes) => {
-    const clanIconUrl = './public/cached/icondir/'
-
     const sortPlayers = (players) => {
         return [...players].sort(function (a, b) {
             a = a.length === 2 ? a[1] : a[0];
@@ -102,7 +102,7 @@ const buildTable = (teams, classes) => {
                     {formatPrefix(prefix, classes)}
                 </span>
                 <span>
-                    {clan ? <Avatar alt={name} src={clanIconUrl + clan + '.png'} variant="rounded"
+                    {clan ? <Avatar alt={name} src={CLAN_ICON_URL + clan + '.png'} variant="rounded"
                           className={classes.clanIcon}/> : null}
                 </span>
                 <span className={classes.playersLeft}>{name}</span>
@@ -146,73 +146,51 @@ class Live extends Component {
         const data = this.props.data.data;
         const teams = this.props.data.teams;
 
-        const worldImg = `https://www.newerth.com/maps/sav1/${data.world}_overhead.jpg`
-
         const date = new Date(0);
         date.setSeconds(data.time);
         const timeString = date.toISOString().substr(11, 8);
 
         return <div className={classes.root}>
             <Grid container alignItems="flex-start" justify="center">
+
                 <Grid item xs={12} className={classes.header}>
-                    Live!
+                    <b>Live!</b>
                 </Grid>
-                <Grid item xs={6}>
-                    <TableContainer>
+
+                <Grid item xl={6}>
+
+                    <div className={classes.imageWrapper}>
+                        <img className={classes.worldLive} alt={data.world} src={getWorldImage(data.world)}/>
+                    </div>
+
+                    <TableContainer className={classes.tableContainer}>
                         <table className={classes.table}>
                             <thead/>
                             <tbody>
                                 <tr key={shortid.generate()}>
                                     <td align="right">Name</td>
-                                    <td align="left" style={{color: 'yellow'}}>{data.name}</td>
-                                </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">IP</td>
-                                    <td align="left">89.39.105.27:11235</td>
+                                    <td align="left"><b style={{color: 'yellow'}}>{data.name}</b>
+                                        <br/>89.39.105.27:11235</td>
                                 </tr>
                                 <tr key={shortid.generate()}>
                                     <td align="right">Map</td>
-                                    <td align="left" style={{color: 'cyan'}}>{data.world}</td>
+                                    <td align="left">{data.world}</td>
                                 </tr>
                                 <tr key={shortid.generate()}>
                                     <td align="right">Players</td>
-                                    <td align="left" style={{color: 'cyan'}}>{data.cnum}/{data.cmax}</td>
-                                </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">Version</td>
-                                    <td align="left">{data.ver}</td>
-                                </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">Game Type</td>
-                                    <td align="left">{data.gametype}</td>
-                                </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">Time Limit</td>
-                                    <td align="left">{data.timelimit}</td>
-                                </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">Passworded</td>
-                                    <td align="left">{data.pass === '0' ? 'No!' : 'Yes!'}</td>
+                                    <td align="left"><b style={{color: 'red'}}>{data.cnum}</b> / {data.cmax}</td>
                                 </tr>
                                 <tr key={shortid.generate()}>
                                     <td align="right">Time</td>
-                                    <td align="left" style={{color: 'cyan'}}>{timeString}</td>
+                                    <td align="left">{timeString}</td>
                                 </tr>
                                 <tr key={shortid.generate()}>
                                     <td align="right">Races</td>
                                     <td align="left">{getRaces(data)}</td>
                                 </tr>
-                                <tr key={shortid.generate()}>
-                                    <td align="right">Notes</td>
-                                    <td align="left">{data.notes}</td>
-                                </tr>
                             </tbody>
                         </table>
                     </TableContainer>
-
-                </Grid>
-                <Grid item xs={6} className={classes.gridWorld}>
-                    <img className={classes.worldAvatar} alt={data.world} src={worldImg}/>
                 </Grid>
             </Grid>
 

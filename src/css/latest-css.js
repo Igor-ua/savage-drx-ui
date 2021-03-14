@@ -15,7 +15,6 @@ export const useStyles = theme => ({
     },
     header: {
         textAlign: 'center',
-        // textTransform: 'uppercase',
         paddingBottom: theme.spacing(2),
         color: 'yellow',
         fontSize: 14
@@ -23,10 +22,8 @@ export const useStyles = theme => ({
     latestWorld: {
         display: 'block',
         color: '#fff',
-
         width: '75%',
         height: '75%',
-
         marginLeft: 'auto',
         marginRight: 'auto',
         borderRadius: '10px 10px 10px 10px',

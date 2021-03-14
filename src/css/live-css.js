@@ -17,22 +17,28 @@ export const useStyles = theme => ({
             marginTop: theme.spacing(9),
             marginLeft: theme.spacing(1)
         },
+        border: '2px solid red'
     },
     header: {
         textAlign: 'center',
         paddingBottom: theme.spacing(2),
         color: 'red',
-        fontSize: 14
+        fontSize: 16
     },
-    worldAvatar: {
+    worldLive: {
+        display: 'block',
         color: '#fff',
-        maxWidth: '83%',
-        maxHeight: '83%',
+        width: '75%',
+        height: '75%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
         borderRadius: '10px 10px 10px 10px',
     },
-    gridWorld: {
-        paddingTop: theme.spacing(0.5),
-        paddingLeft: theme.spacing(2)
+    imageWrapper: {
+    },
+    tableContainer: {
+        width: '78%',
+        margin: 'auto'
     },
     gridTeam: {
         paddingRight: theme.spacing(2),
@@ -107,9 +113,6 @@ export const useStyles = theme => ({
     },
     playersRight: {
         textAlign: 'right'
-    },
-    playersCenter: {
-        textAlign: 'center'
     },
     teamHeader: {
         textTransform: 'capitalize',
