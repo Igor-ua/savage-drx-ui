@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {createMuiTheme, withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import API from './Api';
@@ -8,13 +8,8 @@ import Latest from "./Latest"
 import {ThemeProvider} from "@material-ui/styles";
 import ResponsiveSideBar from "./ResponsiveSideBar";
 import {useStyles} from '../css/main-css'
+import {defaultTheme} from "../utils/theme";
 
-
-const theme = createMuiTheme({
-    typography: {
-        fontSize: 12
-    },
-});
 
 class Main extends Component {
 
@@ -47,7 +42,7 @@ class Main extends Component {
         return <div className={classes.root}>
             <CssBaseline/>
 
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={defaultTheme}>
                 <ResponsiveSideBar/>
                 <main className={classes.content}>
                     <Grid container spacing={3} className={classes.gridContainer}>

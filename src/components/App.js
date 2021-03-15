@@ -3,8 +3,8 @@ import {Switch, Route} from "react-router-dom";
 
 import Main from "./Main";
 import OnlineStats from "./OnlineStats";
-import MapStats from "./MapStats";
-import MapResult from "./MapResult";
+import MapResult from "./MapResultWrapper";
+import GamesHistory from "./GamesHistory";
 
 class App extends Component {
 
@@ -12,10 +12,10 @@ class App extends Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path="/online" component={OnlineStats}/>
-                    <Route exact path="/maps" component={MapStats}/>
-                    <Route exact path="/result/:timestamp" component={MapResult}/>
                     <Route exact path="/" component={Main}/>
+                    <Route exact path="/online" component={OnlineStats}/>
+                    <Route exact path="/result/:timestamp" component={MapResult}/>
+                    <Route exact path="/history" component={GamesHistory}/>
                 </Switch>
             </div>
         );

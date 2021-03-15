@@ -1,20 +1,4 @@
 export const useStyles = theme => ({
-    root: {
-        display: 'flex',
-        height: '100%',
-        backgroundColor: '#282c34',
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        color: 'white',
-        borderRadius: '10px 10px 10px 10px',
-    },
-    content: {
-        flexGrow: 1,
-        paddingRight: theme.spacing(1),
-        paddingLeft: theme.spacing(2),
-        paddingBottom: theme.spacing(3),
-        marginTop: theme.spacing(2),
-    },
     online: {
         flexGrow: '1',
         maxWidth: '600px'
@@ -32,15 +16,11 @@ export const useStyles = theme => ({
     },
     world: {
         display: 'block',
-        color: '#fff',
-
         width: '75%',
         height: '75%',
-
         marginLeft: 'auto',
         marginRight: 'auto',
         borderRadius: '10px 10px 10px 10px',
-
     },
     gridWorld: {
         display: 'block',
@@ -144,8 +124,7 @@ export const useStyles = theme => ({
         width: '100%',
         border: 'none',
         borderRadius: '10px 10px 10px 10px',
-        borderSpacing: '3px',
-        paddingLeft: '5px',
+        borderSpacing: '1px',
         paddingBottom: '2px',
         "& th": {
             background: '#2c6868',

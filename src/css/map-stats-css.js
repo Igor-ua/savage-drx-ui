@@ -2,7 +2,6 @@ export const useStyles = theme => ({
     root: {
         display: 'flex',
         height: '100%',
-        backgroundColor: '#282c34'
     },
     content: {
         flexGrow: 1,

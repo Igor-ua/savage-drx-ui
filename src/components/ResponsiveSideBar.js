@@ -13,10 +13,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useTheme } from '@material-ui/core/styles';
-import Avatar from "@material-ui/core/Avatar";
 import {Link} from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
+import RestoreIcon from '@material-ui/icons/Restore';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+
 import {useStyles} from '../css/responsive-sidebar-css'
 
 function ResponsiveSideBar(props) {
@@ -32,7 +35,6 @@ function ResponsiveSideBar(props) {
     const drawer = (
         <div>
             <Toolbar className={classes.toolbar}/>
-            <Divider />
             <List className={classes.list}>
 
                 <div className={classes.logo}>
@@ -50,19 +52,19 @@ function ResponsiveSideBar(props) {
                 <Link to={"/online"} className={classes.link}>
                     <ListItem button key={'Online stats'}>
                         <ListItemIcon>
-                            <EqualizerIcon className={classes.icon}/>
+                            <RestoreIcon className={classes.icon}/>
                         </ListItemIcon>
                         <ListItemText primary={'Online stats'} className={classes.iconText}/>
                     </ListItem>
                 </Link>
-                {/*<Link to={"/maps"} className={classes.link}>*/}
-                {/*    <ListItem button key={'Map stats'}>*/}
-                {/*        <ListItemIcon>*/}
-                {/*            <DirectionsRunIcon className={classes.icon}/>*/}
-                {/*        </ListItemIcon>*/}
-                {/*        <ListItemText primary={'Maps history & stats'} className={classes.iconText}/>*/}
-                {/*    </ListItem>*/}
-                {/*</Link>*/}
+                <Link to={"/history"} className={classes.link}>
+                    <ListItem button key={'Maps history'}>
+                        <ListItemIcon>
+                            <SportsEsportsIcon className={classes.icon}/>
+                        </ListItemIcon>
+                        <ListItemText primary={'Maps history'} className={classes.iconText}/>
+                    </ListItem>
+                </Link>
             </List>
         </div>
     );

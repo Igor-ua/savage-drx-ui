@@ -2,6 +2,8 @@ export const useStyles = theme => ({
     root: {
         display: 'flex',
         height: '100%',
+        flexGrow: 1,
+        borderRadius: '10px 10px 10px 10px',
     },
     content: {
         flexGrow: 1,
@@ -15,17 +17,4 @@ export const useStyles = theme => ({
             marginRight: theme.spacing(1)
         },
     },
-    latest: {
-        flexGrow: '2'
-    },
-    online: {
-        flexGrow: '1',
-        maxWidth: '600px'
-    },
-    gridContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap-reverse',
-        maxWidth: '1700px',
-        justifyContent: 'center'
-    }
 });

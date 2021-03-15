@@ -36,3 +36,7 @@ export const sortCommanders = (players) => {
 export const getWorldImage = (name) => {
     return process.env.REACT_APP_WORLD_LOCATION + name + '_overhead.jpg';
 }
+
+export const getDateInSeconds = (date) => {
+    return Math.floor(date.getTime() / 1000);
+}

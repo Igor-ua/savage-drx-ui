@@ -5,13 +5,6 @@ export const useStyles = theme => ({
         backgroundColor: '#1e1e25',
         color: 'white',
         borderRadius: '10px 10px 10px 10px',
-        marginTop: theme.spacing(3),
-        [theme.breakpoints.down('xl')]: {
-            marginLeft: theme.spacing(5)
-        },
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: theme.spacing(1),
-        },
     },
     header: {
         textAlign: 'center',
@@ -21,7 +14,6 @@ export const useStyles = theme => ({
     },
     latestWorld: {
         display: 'block',
-        color: '#fff',
         width: '75%',
         height: '75%',
         marginLeft: 'auto',

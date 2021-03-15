@@ -2,21 +2,24 @@ export const useStyles = theme => ({
     root: {
         display: 'flex',
         height: '100%',
-        backgroundColor: '#282c34'
     },
     content: {
         flexGrow: 1,
         maxWidth: '100%',
+
         [theme.breakpoints.down('xl')]: {
-            marginLeft: theme.spacing(5),
-            maxWidth: '100%'
-        },
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: theme.spacing(1),
             maxWidth: '100%'
         },
 
-        paddingBottom: theme.spacing(3),
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+        marginTop: theme.spacing(3),
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: '100%',
+            marginTop: theme.spacing(10),
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(0)
+        },
     },
     latest: {
         flexGrow: '2'

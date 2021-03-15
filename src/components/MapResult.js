@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {createMuiTheme, withStyles} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {ThemeProvider} from "@material-ui/styles";
-import ResponsiveSideBar from "./ResponsiveSideBar";
 import {useStyles} from '../css/map-result-css'
 import shortid from "shortid";
-import API from "./Api";
 import TableContainer from "@material-ui/core/TableContainer";
 import Moment from "react-moment";
 import Avatar from "@material-ui/core/Avatar";
@@ -14,13 +10,8 @@ import {formatGameTime, getTeamName, getWinner, getWorldImage, sortCommanders} f
 import {CLAN_ICON_URL} from "../utils/constants";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import {defaultTheme} from "../utils/theme";
 
-
-const theme = createMuiTheme({
-    typography: {
-        fontSize: 12
-    },
-});
 
 const getTableResults = (result, classes) => {
     return <TableContainer className={classes.tableContainer}>
@@ -62,8 +53,6 @@ const getTablesWithsStats = (game, playersInfo, classes) => {
             stats: p.info,
         }
     });
-
-    // console.log(info)
 
     return [
         buildTableWithStats(game.teams[1], info, classes),
@@ -244,20 +233,12 @@ const getGraphData = (data) => {
 
 const MapResult = (props) => {
     const classes = props.classes;
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const result = await API.get(`/stats/result/${props.match.params.timestamp}`);
-            setData(result.data);
-        })()
-    }, [])
-
+    const data = props.world;
     const graphData = getGraphData(data);
     const options = {
         chart: {
             type: 'column',
-            height: 600
+            height: 500
         },
         xAxis: {
             type: 'category',
@@ -311,44 +292,38 @@ const MapResult = (props) => {
         },
     };
 
-    return <div className={classes.root}>
-        <CssBaseline/>
-        <ThemeProvider theme={theme}>
-            <ResponsiveSideBar/>
-            <main className={classes.content}>
-                <Grid container spacing={3} className={classes.gridContainer}>
-                    <Grid item xl={9}>
-                        <Grid container className={classes.innerGridContainer}>
-                            <Grid item xl={12}>
-                                <HighchartsReact highcharts={Highcharts} options={options} />
-                            </Grid>
-                            {data.map( d =>
-                                getTablesWithsStats(d.game, d.players, classes)
-                             )}
-                        </Grid>
+    return <ThemeProvider theme={defaultTheme}>
+        <Grid container spacing={3} className={classes.gridContainer}>
+            <Grid item xl={9}>
+                <Grid container className={classes.innerGridContainer}>
+                    <Grid item xl={12}>
+                        <HighchartsReact highcharts={Highcharts} options={options}/>
                     </Grid>
-                    {data.map( d =>
-                    <Grid item xl={3} className={classes.online} key={shortid.generate()}>
-                        <Grid container className={classes.resultsContainer}>
-                            <Grid item xl={12} className={classes.gridWorld}>
-                                <div className={classes.imageWrapper}>
-                                    <img alt={d.game.map_name}
-                                         src={getWorldImage(d.game.map_name)}
-                                         className={classes.world}
-                                    />
-                                </div>
-
-                                <div>
-                                    {getTableResults(d, classes)}
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    {data.map(d =>
+                        getTablesWithsStats(d.game, d.players, classes)
                     )}
                 </Grid>
-            </main>
-        </ThemeProvider>
-    </div>
+            </Grid>
+            {data.map(d =>
+                <Grid item xl={3} className={classes.online} key={shortid.generate()}>
+                    <Grid container className={classes.resultsContainer}>
+                        <Grid item xl={12} className={classes.gridWorld}>
+                            <div className={classes.imageWrapper}>
+                                <img alt={d.game.map_name}
+                                     src={getWorldImage(d.game.map_name)}
+                                     className={classes.world}
+                                />
+                            </div>
+
+                            <div>
+                                {getTableResults(d, classes)}
+                            </div>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            )}
+        </Grid>
+    </ThemeProvider>
 }
 
 export default withStyles(useStyles)(MapResult)

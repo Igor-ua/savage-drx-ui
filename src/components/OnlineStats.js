@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {createMuiTheme, withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import API from './Api';
@@ -8,13 +8,7 @@ import ResponsiveSideBar from "./ResponsiveSideBar";
 import {useStyles} from '../css/online-stats-css'
 import WeeklyChart from "./WeeklyChart";
 import DailyChart from "./DailyChart";
-
-
-const theme = createMuiTheme({
-    typography: {
-        fontSize: 12
-    },
-});
+import {defaultTheme} from "../utils/theme";
 
 class OnlineStats extends Component {
 
@@ -48,7 +42,7 @@ class OnlineStats extends Component {
 
         return <div className={classes.root}>
             <CssBaseline/>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={defaultTheme}>
                 <ResponsiveSideBar/>
                 <main className={classes.content}>
                     <Grid container spacing={3} className={classes.gridContainer}>

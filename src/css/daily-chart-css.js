@@ -6,8 +6,5 @@ export const useStyles = theme => ({
         color: 'white',
         borderRadius: '10px 10px 10px 10px',
         flexWrap: 'nowrap',
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: theme.spacing(1)
-        },
     }
 });
