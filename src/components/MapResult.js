@@ -294,9 +294,9 @@ const MapResult = (props) => {
 
     return <ThemeProvider theme={defaultTheme}>
         <Grid container spacing={3} className={classes.gridContainer}>
-            <Grid item xl={9}>
+            <Grid item xl={9} lg={9}>
                 <Grid container className={classes.innerGridContainer}>
-                    <Grid item xl={12}>
+                    <Grid item xl={12} lg={12}>
                         <HighchartsReact highcharts={Highcharts} options={options}/>
                     </Grid>
                     {data.map(d =>
@@ -305,9 +305,9 @@ const MapResult = (props) => {
                 </Grid>
             </Grid>
             {data.map(d =>
-                <Grid item xl={3} className={classes.online} key={shortid.generate()}>
+                <Grid item xl={3} lg={3} className={classes.online} key={shortid.generate()}>
                     <Grid container className={classes.resultsContainer}>
-                        <Grid item xl={12} className={classes.gridWorld}>
+                        <Grid item xl={12} lg={12} className={classes.gridWorld}>
                             <div className={classes.imageWrapper}>
                                 <img alt={d.game.map_name}
                                      src={getWorldImage(d.game.map_name)}

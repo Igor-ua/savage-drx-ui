@@ -46,10 +46,10 @@ class Main extends Component {
                 <ResponsiveSideBar/>
                 <main className={classes.content}>
                     <Grid container spacing={3} className={classes.gridContainer}>
-                        <Grid item xl={7} className={classes.latest}>
+                        <Grid item xl={7} lg={7} className={classes.latest}>
                             {this.state?.latest ? <Latest latest={this.state.latest}/> : null}
                         </Grid>
-                        <Grid item xl={5} className={classes.live}>
+                        <Grid item xl={5} lg={5} className={classes.live}>
                             {this.state?.live ? <Live data={this.state.live}/> : null}
                         </Grid>
                     </Grid>

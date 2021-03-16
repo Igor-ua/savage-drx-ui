@@ -141,7 +141,8 @@ export const useStyles = theme => ({
         "& span": {
             display: 'table-cell',
             verticalAlign: 'middle'
-        }
+        },
+        wordBreak: 'break-all'
     },
     emptyTDA: {
         backgroundColor: '#182d31',

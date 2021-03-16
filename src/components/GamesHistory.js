@@ -131,7 +131,7 @@ const GameHistory = (props) => {
             <ResponsiveSideBar/>
             <main className={classes.content}>
                 <Grid container spacing={3} className={classes.gridContainer}>
-                    <Grid item xl={12}>
+                    <Grid item xl={12} lg={12}>
                         <div className={classes.datePickerWrapper} color="primary">
                             <MuiPickersUtilsProvider utils={DateFnsUtils} color="primary">
                                 <KeyboardDatePicker
@@ -146,7 +146,7 @@ const GameHistory = (props) => {
                             </MuiPickersUtilsProvider>
                         </div>
                     </Grid>
-                    <Grid item xl={12}>
+                    <Grid item xl={12} lg={12}>
                         <GridList className={classes.gridList} cols={5.5}>
                             {buildDailyMapInfo(data, setSelectedWorldTimestamp, classes)}
                         </GridList>

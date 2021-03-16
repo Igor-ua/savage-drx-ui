@@ -153,7 +153,7 @@ const Latest = (props) => {
             {props.latest.slice(0).reverse().map((result, index) => {
                 return <Grid container key={shortid.generate()}
                              className={index % 2 ? classes.resultsContainerB : classes.resultsContainerA}>
-                    <Grid item xl={6} className={classes.gridWorld}>
+                    <Grid item xl={6} lg={6} className={classes.gridWorld}>
                         <div className={classes.imageWrapper}>
                             <img alt={result.game.map_name}
                                  src={getWorldImage(result.game.map_name)}
@@ -166,7 +166,7 @@ const Latest = (props) => {
                         </div>
                     </Grid>
 
-                    <Grid item xl={6}>
+                    <Grid item xl={6} lg={6}>
                         {buildTableLatest(result.game, index, classes)}
                     </Grid>
                     <Grid item xl={12} xs={12} className={classes.buttonWrapper}>
