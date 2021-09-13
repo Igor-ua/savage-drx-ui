@@ -1,6 +1,12 @@
 .welcome-page {
   display: flex;
-  //height: 100%;
   height: 100vh;
-  color: aliceblue;
+  //background-repeat: no-repeat;
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center center;
+  .msg {
+    margin-top: 100px;
+    color: aliceblue;
+  }
 }
