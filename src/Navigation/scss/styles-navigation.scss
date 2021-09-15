@@ -1,0 +1,10 @@
+.csp-navigation {
+  width: 100%;
+  position: fixed;
+  border-bottom: 1px solid black;
+
+  .csp-menu {
+    opacity: 0.85;
+    background-color: rgba(42, 39, 39, 0.85) !important;
+  }
+}
