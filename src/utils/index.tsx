@@ -1,0 +1,42 @@
+import {GameResult} from "../types";
+
+export const formatGameTime = (gameTime: number) => {
+    const date = new Date(0);
+    date.setSeconds(gameTime / 1000);
+    return date.toISOString().substr(11, 8);
+}
+
+export const getWinner = (id: number) => {
+    if (id === 0) {
+        return 'Draw'
+    }
+    if (id === 1) {
+        return 'Human'
+    }
+    if (id === 2) {
+        return 'Beast'
+    }
+}
+
+export const addCommanders = (gameResults: Array<GameResult>) => {
+    gameResults.map((gr) => {
+        Object.values(gr.game.teams).forEach((team) => {
+            team.players.map((p) => {
+                if (p.is_commander) {
+                    team.commander_name = p.name;
+                    team.commander_clan_id = p.clan_id;
+                }
+            })
+        })
+    });
+    return gameResults;
+}
+
+export const getCurrentTimeSeconds = () => {
+    return Math.round(new Date().getTime() / 1000);
+}
+
+export const isCacheOutdated = (ttl: number, timestamp: number) => {
+    const currentTime = getCurrentTimeSeconds();
+    return currentTime > ttl + timestamp;
+}

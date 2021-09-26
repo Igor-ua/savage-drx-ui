@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios';
+import {Image, Segment, Label, List, Button} from "semantic-ui-react";
+
 import {DiscordInfo} from "../types";
+import {getDiscordServerInfo} from "../requests";
 import './scss/styles-discord.scss';
-import {Icon, Segment, Header, Label, List, Button} from "semantic-ui-react";
 
-const getDiscordServerInfo = () => {
-    return axios.get(`https://discord.com/api/guilds/511261029838225419/widget.json`)
-}
-
-const Discord = () => {
+export default () => {
     const [discordServerInfo, setDiscordServerInfo] = useState<DiscordInfo>();
 
     useEffect(() => {
@@ -18,20 +15,19 @@ const Discord = () => {
     }, []);
 
     return <div className={'csp-discord-wrapper'}>
-        <Segment.Group className={'csp-discord-widget'} piled>
-            <Segment inverted className={'discord-segment-top'}>
-                <Header as='h4' textAlign={"center"}>
-                    <Icon name='discord' size={"big"}/>
-                    <Header.Content>
-                        Discord
-                        <Label className={'online-label'} color='red' size={"small"} pointing={"left"}>
-                            online {discordServerInfo?.presence_count}
-                        </Label>
-                    </Header.Content>
-                </Header>
+        <Segment.Group className={'csp-discord-widget'}>
+            <Segment className={'discord-segment-top'} compact>
+                <Image src={process.env.PUBLIC_URL + '/images/discord-logo.png'} size={"small"} inline
+                       className={'discord-logo'}/>
+                <Label className={'online-label'} color='orange' size={"small"}>
+                    online
+                    <Label.Detail className={'label-detail'}>{discordServerInfo?.presence_count}</Label.Detail>
+                </Label>
 
             </Segment>
-            <Segment inverted className={'discord-users-list customized-scrollbar'}>
+            <Segment inverted className={'discord-users-list customized-scrollbar'} style={{
+                backgroundImage: `url(${process.env.PUBLIC_URL + '/images/discord-background.png'})`
+            }}>
                 <List>
                     {discordServerInfo?.members.map((member) => (
                         <div key={member.username}>
@@ -42,21 +38,19 @@ const Discord = () => {
                 </List>
             </Segment>
             <Segment inverted textAlign='center' className={'discord-segment-bottom'}>
-                <Button secondary
-                        size={"small"}
-                        compact
-                        fluid
-                        onClick={() => {
-                        }}
-                        as={'a'}
-                        href='https://discord.com/invite/Hu6MavHK?utm_source=Discord%20Widget&utm_medium=Connect'
-                        target={'_blank'}>
-                    Connect
+                <Button
+                    primary
+                    size={"small"}
+                    compact
+                    fluid
+                    as={'a'}
+                    href='https://discord.com/invite/Hu6MavHK?utm_source=Discord%20Widget&utm_medium=Connect'
+                    target={'_blank'}>
+                    Join
                 </Button>
             </Segment>
         </Segment.Group>
 
-        <br/>
         {/*<iframe src={"https://discord.com/widget?id=511261029838225419&theme=dark"}*/}
         {/*        width={"250"}*/}
         {/*        height={"400"}*/}
@@ -66,5 +60,3 @@ const Discord = () => {
     </div>
 
 }
-
-export default Discord;

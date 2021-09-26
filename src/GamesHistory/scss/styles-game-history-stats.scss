@@ -1,0 +1,24 @@
+.csp-game-history-stats-wrapper {
+  width: 100%;
+
+  .grid-wrapper {
+    margin: 50px 10% 15px;
+    color: white;
+
+    .grid-column {
+      border: 1px solid yellow;
+
+      .history-table {
+
+        th {
+          background-color: #155b80;
+        }
+
+        tr {
+          background-color: #202225;
+          color: #8a8e94;
+        }
+      }
+    }
+  }
+}

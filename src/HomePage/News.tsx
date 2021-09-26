@@ -2,9 +2,11 @@ import React from "react";
 
 export const getNews = () => {
     return [
-        <div>1</div>,
-        <div>2</div>,
-        <div>3</div>,
+        <div>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>1<br/>
+            1<br/>1<br/>1<br/></div>,
+        <div>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>2<br/>
+        2<br/>2<br/></div>,
+        <div>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/>3<br/></div>,
         <div>4</div>,
         <div>5</div>,
         <div>6</div>,

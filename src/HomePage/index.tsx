@@ -1,32 +1,34 @@
-import React, {useState} from 'react'
-import './scss/styles-homepage.scss';
-import Navigation from "../Navigation";
-import Discord from "../Discord";
+import React, {useState} from 'react';
 import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
-import {getNews} from "./News"
+import {useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+import './scss/styles-homepage.scss';
+
+import Discord from "../Discord";
+import {getNews} from "./News";
+import Live from "../Live";
 
 export default () => {
-    const [page, setPage] = useState(1);
+    const history = useHistory();
+    const params: any = useParams();
+    const [page, setPage] = useState(params?.p ? params.p : 1);
     const news = getNews();
     const maxElementsOnPage = 3;
 
-    return <div className={'home-page'} style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/welcome-page-background.jpg'})`
-    }}>
-        <Navigation/>
+    return <div className={'home-page'}>
         <div className={'grid-wrapper'}>
             <Grid columns='equal'>
                 <Grid.Column>
-                    <Container className={'base'}>
-                        123
+                    <Container className={'base-align-right'}>
+                        <Discord/>
                     </Container>
                 </Grid.Column>
                 <Grid.Column width={6}>
                     <Container className={'base'}>
-                        {news.map((n, i) => {
+                        {news.map((ns, i) => {
                             if (i >= (page - 1) * maxElementsOnPage && i < page * maxElementsOnPage) {
                                 return <Segment inverted secondary key={i}>
-                                    {n}
+                                    {ns}
                                 </Segment>
                             }
                         })}
@@ -41,7 +43,12 @@ export default () => {
                                 siblingRange={1}
                                 totalPages={Math.round(news.length / maxElementsOnPage)}
                                 onPageChange={(e, {activePage}) => {
-                                    setPage(Number(activePage))
+                                    setPage(Number(activePage));
+                                    if (activePage && activePage > 1) {
+                                        history.push("/page/" + activePage)
+                                    } else {
+                                        history.push("/")
+                                    }
                                 }}
                             />
                         </Container>
@@ -49,7 +56,9 @@ export default () => {
                 </Grid.Column>
                 <Grid.Column>
                     <Container className={'base'}>
-                        <Discord/>
+                        <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
+                        <br/>
+                        <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
                     </Container>
                 </Grid.Column>
             </Grid>

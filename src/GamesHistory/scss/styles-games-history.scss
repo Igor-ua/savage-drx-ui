@@ -1,0 +1,58 @@
+.csp-games-history-wrapper {
+  width: 100%;
+
+  .grid-wrapper {
+    margin: 50px 10% 15px;
+    //border: 1px solid red;
+
+    .grid-column {
+      //border: 1px solid yellow;
+
+      .history-table {
+
+        th {
+          background-color: #155b80;
+        }
+
+        tr {
+          background-color: #202225;
+          color: #8a8e94;
+
+          .cell-online {
+            color: #b45d34;
+          }
+
+          .cell-winner-human {
+            color: #2e9696;
+          }
+          .cell-winner-beast {
+            color: #7b6f14;
+          }
+          .cell-winner-draw {
+            color: #464e4a;
+          }
+
+          .span-human-commander {
+            color: #2e9696;
+          }
+
+          .span-beast-commander {
+            color: #7b6f14;
+          }
+
+          .span-vs {
+            color: #464e4a;
+          }
+
+          .span-europe-nl {
+            color: #267aa2;
+          }
+
+          .span-usa-dallas {
+            color: #3c9e23;
+          }
+        }
+      }
+    }
+  }
+}

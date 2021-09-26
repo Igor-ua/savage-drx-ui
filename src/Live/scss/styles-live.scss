@@ -1,0 +1,87 @@
+.csp-online-wrapper {
+
+  .online-widget {
+
+    max-width: 270px;
+    min-width: 270px;
+
+    .online-users-list {
+      overflow: auto;
+      max-height: 300px;
+      min-height: 100px;
+      background-color: #202225 !important;
+      background-blend-mode: saturation;
+      background-repeat: no-repeat, no-repeat !important;
+      background-position: 50% 100%, 100% 100% !important;
+      //background-size: 410px 100%, 110px 130px !important;
+      background-size: auto 100% !important;
+      color: #8a8e94 !important;
+
+      .list img {
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+      }
+
+      span {
+        padding-left: 5px;
+      }
+    }
+
+    .online-segment-top {
+      background-color: #155b80 !important;
+
+      .online-logo {
+        filter: brightness(50%) sepia(100) saturate(100) hue-rotate(330deg);
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .discord-segment-bottom {
+      background-color: #202225;
+    }
+
+    .online-label {
+      margin-left: 45px !important;
+      .label-detail {
+        color: #000000;
+      }
+    }
+
+    .online-clan-icon {
+
+    }
+
+    .name-without-icon {
+      margin-left: 16px;
+    }
+
+    .customized-scrollbar::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .segment-world-info {
+      .world-image {
+        margin-right: 5px;
+      }
+
+      .world-info-table {
+        background-color: #202225;
+        color: #dfe1e3;
+        td {
+          padding: 5px 0 0 0;
+        }
+        td:last-child  {
+          text-align: right;
+        }
+      }
+
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background-color: #202225;
+      color: #8a8e94;
+    }
+  }
+}
+
