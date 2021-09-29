@@ -1,0 +1,29 @@
+.game-history-stats-result {
+
+  width: 100% !important;
+
+  .csp-history-stats-result-table {
+    background-color: #202225 !important;
+    border-color: #202225;
+
+    th {
+      background-color: #155b80 !important;
+    }
+
+    tr {
+      background-color: #202225;
+      color: #8a8e94;
+    }
+
+    img {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 8px;
+    }
+
+    //.cell-image {
+    //  min-width: 10px !important;
+    //  max-width: 10px !important;
+    //}
+  }
+}

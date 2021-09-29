@@ -14,7 +14,6 @@ const initialState = {
 }
 
 export const weeklyOnlineReducer = (state = initialState, action: any) => {
-    console.log('weeklyOnlineReducer action: ', action.payload)
     switch (action.type) {
         case 'SET_WEEKLY_RESULT':
             return {...state, ...action.payload}

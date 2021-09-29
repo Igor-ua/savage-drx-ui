@@ -14,7 +14,6 @@ const initialState = {
 }
 
 export const dailyOnlineReducer = (state = initialState, action: any) => {
-    console.log('dailyOnlineReducer action: ', action.payload)
     switch (action.type) {
         case 'SET_DAILY_ONLINE':
             return {...state, ...action.payload}

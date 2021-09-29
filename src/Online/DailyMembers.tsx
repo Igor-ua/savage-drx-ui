@@ -39,7 +39,7 @@ export const DailyMembers = ({server}: DailyChartInfo) => {
             setDailyPlayersRight(dailyPlayers.slice(0, half))
             setDailyPlayersLeft(dailyPlayers.slice(half))
         }
-    }, [dailyCache]);
+    }, [dailyCache, server]);
 
     return <div className={'csp-daily-members-wrapper'}>
         <Segment.Group className={'daily-members-segment-group'}>

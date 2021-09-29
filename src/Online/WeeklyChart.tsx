@@ -111,6 +111,7 @@ export const WeeklyChart = ({server}: WeeklyChartInfo) => {
         },
         plotOptions: {
             area: {
+                color: '#c28120',
                 fillColor: {
                     linearGradient: {
                         x1: 0,
@@ -123,7 +124,6 @@ export const WeeklyChart = ({server}: WeeklyChartInfo) => {
                         [1, Highcharts.color('cyan').setOpacity(0).get('rgba')]
                     ],
                 },
-                color: 'black',
                 marker: {
                     radius: 2
                 },

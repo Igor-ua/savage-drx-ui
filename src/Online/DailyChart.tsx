@@ -16,8 +16,6 @@ export const DailyChart = ({server}: DailyChartInfo) => {
     const [dailyOnline, setDailyOnline] = useState<Array<DailySnapshot>>();
     const [chartData, setChartData] = useState<Array<any>>();
 
-    // console.log('dailyCache: ', dailyCache)
-
     useEffect(() => {
         if (server) {
             if (isCacheOutdated(dailyCache[server]?.ttl, dailyCache[server]?.timestamp)) {

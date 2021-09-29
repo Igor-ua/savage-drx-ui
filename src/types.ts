@@ -76,10 +76,6 @@ export interface WeeklySnapshot {
     online: number;
 }
 
-export interface WSReduxWrapperTTL extends ReduxWrapperTTL {
-    data: Array<WeeklySnapshot>;
-}
-
 export interface DailySnapshot {
     game_state: number;
     game_time: number;
@@ -94,10 +90,6 @@ export interface DailySnapshot {
         4?: DSTeam;
     },
     timestamp: number;
-}
-
-export interface DSReduxWrapperTTL extends ReduxWrapperTTL {
-    data: Array<DailySnapshot>;
 }
 
 export interface DSPlayer {
@@ -130,13 +122,70 @@ export interface DSTeam {
     team_name: string;
 }
 
-export interface ReduxWrapperTTL {
-    timestamp: number;
-    ttl: number;
+export interface ExtendedGameResult extends GameResult {
+    players: Array<EGRPlayer>;
+    p_accuracies: Array<ACRPlayer>;
 }
 
-export interface GRReduxWrapperTTL extends ReduxWrapperTTL {
-    data: Array<GameResult>;
+export interface ACRPlayer {
+    name: string;
+    clan_id: number;
+    accuracies: Array<AAccuracy>;
+}
+
+export interface AAccuracy {
+    name: string;
+    value: EGRAccuracy;
+}
+
+export interface EGRPlayer {
+    accuracy: Array<EGRAccuracy>;
+    clan_id: number;
+    clan_tag_name: string;
+    info: EGRInfo;
+    name: string;
+    uid: number;
+}
+
+export interface EGRAccuracy {
+    damage: number;
+    deaths: number;
+    hits: number;
+    kills: number;
+    name: string;
+    shots: number;
+}
+
+export interface EGRInfo {
+    auto_buff: number;
+    blocks: number;
+    build: number;
+    build_damage: number;
+    build_kill: number;
+    carn_hp: number;
+    client_damage: number;
+    deaths: number;
+    experience: number;
+    flag_capture: number;
+    heal: number;
+    jumps: number;
+    kill_streak: number;
+    kills: number;
+    melee_kill: number;
+    mine: number;
+    money_gained: number;
+    money_spent: number;
+    npc_damage: number;
+    npc_kill: number;
+    on_team_time: number;
+    order_give: number;
+    order_obeyed: number;
+    outpost_damage: number;
+    peon_damage: number;
+    peon_kill: number;
+    ranged_kill: number;
+    sacrifice: number;
+    siege_kill: number;
 }
 
 export interface GameResult {
@@ -178,4 +227,5 @@ export interface GRPlayer {
     name: string;
     on_team_time: number;
     uid: number;
+    p: EGRPlayer;
 }

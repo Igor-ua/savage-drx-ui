@@ -21,3 +21,7 @@ export const getDailyOnline = (server: string) => {
 export const getGameResults = (quantity: number) => {
     return axios.get(`${SERVER_URL}/stats/results/${quantity}`)
 }
+
+export const getGameResultByTimestamp = (timestamp: number) => {
+    return axios.get(`${SERVER_URL}/stats/result/${timestamp}`)
+}

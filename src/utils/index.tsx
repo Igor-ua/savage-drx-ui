@@ -40,3 +40,14 @@ export const isCacheOutdated = (ttl: number, timestamp: number) => {
     const currentTime = getCurrentTimeSeconds();
     return currentTime > ttl + timestamp;
 }
+
+export const getTeamName = (teamId: number, teamName: string, race: string) => {
+    if (teamId === 0) {
+        return `Spectators`
+    }
+    return `${teamName} ${capitalizeFirstLetter(race)}`
+}
+
+export function capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

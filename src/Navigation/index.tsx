@@ -10,7 +10,7 @@ const Navigation = () => {
     const homeWithPage = useRouteMatch('/page/:p');
     const gameHistoryStats = useRouteMatch('/history/:timestamp');
 
-    const activeColor = 'blue'
+    const activeColor = 'orange'
     const inactiveColor = 'grey'
 
     return <Sticky className={'csp-navigation'}>

@@ -1,81 +1,132 @@
 import React, {useEffect, useState} from "react";
-import {useParams, useHistory, Link} from "react-router-dom";
-import Moment from "react-moment";
+import {useParams} from "react-router-dom";
+import {Container, Grid, Menu} from "semantic-ui-react";
 
-import {Button, Grid, Icon, Image, Table} from "semantic-ui-react";
-import {getGameResults} from "../requests";
+import {getGameResultByTimestamp} from "../requests";
+import {EGRAccuracy, ExtendedGameResult} from "../types";
+import {StatsInfoTable} from "./GameHistoryStatsInfo";
+import {GameHistoryStatsResult} from "./GameHistoryStatsResult";
 
-import {GameResult} from "../types";
 import './scss/styles-game-history-stats.scss';
-import {addCommanders, formatGameTime, getWinner} from "../utils";
+import {StatsAccuracyTable} from "./GameHistoryStatsAccuracy";
 
 
 export const GameHistoryStats = () => {
 
     const params: any = useParams();
     const timestamp = params?.timestamp;
-    const [gameResult, setGameResult] = useState<Array<GameResult>>();
-    const history = useHistory();
+    const [gameResult, setGameResult] = useState<ExtendedGameResult>();
+    // const [activeMenu, setActiveMenu] = useState('stats');
+    const [activeMenu, setActiveMenu] = useState('accuracy');
 
-    console.log(gameResult);
+    // console.log(gameResult)
 
     useEffect(() => {
-        // getGameResults(DEFAULT_QUANTITY).then(res => {
-        //     setGameResult(addCommanders(res.data));
-        // })
+        getGameResultByTimestamp(timestamp).then(res => {
+            if (res.data.length) {
+                const result: ExtendedGameResult = res.data[0];
+
+                interface APMCollection {
+                    [key: string]: {
+                        [key: string]: EGRAccuracy
+                    }
+                }
+
+                const playersMap: any = {};
+                const accuracyPlayerMap: APMCollection = {};
+
+                result.players.map((p) => {
+                    playersMap[p.name] = p;
+                    p.accuracy.map((accuracy) => {
+                        const an = accuracyPlayerMap[accuracy.name] || {};
+                        an[p.name] = accuracy;
+                        accuracyPlayerMap[accuracy.name] = an;
+                    })
+                })
+
+                Object.values(result.game.teams).map((team) => {
+                    team.players.map((player) => {
+                        player.p = playersMap[player.name]
+                    })
+                })
+
+                result.p_accuracies = result.players.map((p) => {
+                    const acPlayer: any = {
+                        name: p.name,
+                        clan_id: p.clan_id,
+                        accuracies: []
+                    };
+
+                    for (const [accuracyName, players] of Object.entries(accuracyPlayerMap)) {
+                        acPlayer.accuracies.push({
+                            name: accuracyName,
+                            value: players[p.name] && players[p.name].shots > 0 ? players[p.name] : null
+                        })
+                    }
+                    return acPlayer;
+                })
+
+                // console.log('accuracies: ', accuracies)
+                // console.log(accuracyPlayerMap)
+
+                setGameResult(result);
+            }
+        })
     }, []);
 
-    return <div className={'csp-game-history-stats-wrapper'}>
+    return <div className={'game-history-stats'}>
         <div className={'grid-wrapper'}>
             <Grid columns='equal'>
                 <Grid.Column className={'grid-column'}>
+                    {gameResult ? GameHistoryStatsResult(gameResult) : null}
 
-                    <Button
-                        primary
-                        size={"small"}
-                        as={Link}
-                        to={'/history'}
-                        onClick={() => {
-                            console.log('click')
-                        }}>
-                        <Icon name='bars' size={"small"}/>
-                        open
-                    </Button>
+                    <Container className={'history-stats-menu-container'}>
+                        <Menu inverted size={"mini"} fluid widths={2} className={'stats-menu'}>
+                            <Menu.Item
+                                className={'menu-item-stats'}
+                                name='Stats'
+                                active={activeMenu === 'stats'}
+                                onClick={() => {
+                                    setActiveMenu('stats')
+                                }}
+                                color={"orange"}
+                                position={"right"}
+                            />
+                            <Menu.Item
+                                className={'menu-item-accuracy'}
+                                name='Accuracy'
+                                active={activeMenu === 'accuracy'}
+                                onClick={() => {
+                                    setActiveMenu('accuracy')
+                                }}
+                                color={"orange"}
+                                position={"left"}
+                            />
+                        </Menu>
+                    </Container>
 
-                    {/*<Table celled inverted compact selectable size={"small"} className={'history-table'}>*/}
-                    {/*    <Table.Header>*/}
-                    {/*        <Table.Row>*/}
-                    {/*            <Table.HeaderCell collapsing>#</Table.HeaderCell>*/}
-                    {/*            <Table.HeaderCell textAlign={"center"}>Server</Table.HeaderCell>*/}
-                    {/*            <Table.HeaderCell textAlign={"center"} collapsing colSpan='2'>Map</Table.HeaderCell>*/}
-                    {/*        </Table.Row>*/}
-                    {/*    </Table.Header>*/}
-
-                    {/*    <Table.Body>*/}
-                    {/*        {gameResult?.slice(0).reverse().map((gr, index) => (*/}
-                    {/*            <Table.Row key={index}>*/}
-                    {/*                <Table.Cell collapsing>{index + 1}</Table.Cell>*/}
-                    {/*                <Table.Cell>*/}
-                    {/*                    {gr.server_name === 'csp'*/}
-                    {/*                        ? <span className={'span-europe-nl'}>Europe (NL)</span>*/}
-                    {/*                        : <span className={'span-usa-dallas'}>USA (Dallas)</span>*/}
-                    {/*                    }*/}
-                    {/*                </Table.Cell>*/}
-                    {/*                <Table.Cell textAlign={"center"} collapsing>*/}
-                    {/*                    <Image*/}
-                    {/*                        src={process.env.REACT_APP_WORLD_LOCATION + gr.game.map_name + '_overhead.jpg'}*/}
-                    {/*                        size={"mini"}*/}
-                    {/*                        inline*/}
-                    {/*                        rounded*/}
-                    {/*                        centered*/}
-                    {/*                    />*/}
-                    {/*                </Table.Cell>*/}
-                    {/*            </Table.Row>*/}
-                    {/*        ))}*/}
-                    {/*    </Table.Body>*/}
-                    {/*</Table>*/}
+                    {activeMenu === 'stats'
+                        ? gameResult ? drawInfo(gameResult) : null
+                        : gameResult?.p_accuracies?.length ? drawAccuracy(gameResult) : null
+                    }
                 </Grid.Column>
             </Grid>
         </div>
+    </div>
+}
+
+const drawInfo = (gameResult: ExtendedGameResult) => {
+    return <div>
+        {StatsInfoTable(gameResult.game.teams['1'])}
+        {StatsInfoTable(gameResult.game.teams['2'])}
+        {gameResult.game.teams['3'] ? StatsInfoTable(gameResult.game.teams['3']) : null}
+        {gameResult.game.teams['4'] ? StatsInfoTable(gameResult.game.teams['4']) : null}
+        {StatsInfoTable(gameResult.game.teams['0'])}
+    </div>
+}
+
+const drawAccuracy = (gameResult: ExtendedGameResult) => {
+    return <div>
+        {StatsAccuracyTable(gameResult.p_accuracies)}
     </div>
 }

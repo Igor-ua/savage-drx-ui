@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {Button, Grid, Icon, Image, Menu, Table} from "semantic-ui-react";
+import {Button, Grid, Icon, Image, Table} from "semantic-ui-react";
 
 import {addCommanders, formatGameTime, getCurrentTimeSeconds, getWinner, isCacheOutdated} from "../utils";
 import {getGameResults} from "../requests";
@@ -17,8 +17,6 @@ export const GamesHistory = () => {
     const dispatch = useDispatch()
     const gamesHistoryCache = useSelector((state: any) => state.gamesHistoryReducer, shallowEqual);
     const [gameResult, setGameResult] = useState<Array<GameResult>>();
-
-    console.log('gamesHistoryCache: ', gamesHistoryCache)
 
     useEffect(() => {
         if (isCacheOutdated(gamesHistoryCache?.ttl, gamesHistoryCache?.timestamp)) {
@@ -39,7 +37,7 @@ export const GamesHistory = () => {
         }
     }, []);
 
-    return <div className={'csp-games-history-wrapper'}>
+    return <div className={'games-history-wrapper'}>
         <div className={'grid-wrapper'}>
             <Grid columns='equal'>
                 <Grid.Column className={'grid-column'}>

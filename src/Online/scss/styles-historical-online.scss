@@ -20,6 +20,10 @@
     .menu-servers {
       width: 100% !important;
       margin-left: 1px !important;
+
+      .active.item {
+        background-color: #5698af !important;
+      }
     }
   }
 }
