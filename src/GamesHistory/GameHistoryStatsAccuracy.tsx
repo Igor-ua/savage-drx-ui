@@ -8,7 +8,6 @@ import './scss/styles-game-history-stats-accuracy.scss';
 
 
 export const StatsAccuracyTable = (players: Array<ACRPlayer>) => {
-    console.log(players)
     players = filterItems(players);
     return <div className={'game-history-stats-accuracy'}>
         <Table celled inverted compact selectable size={"small"} textAlign={"center"}>

@@ -37,6 +37,9 @@ export const getCurrentTimeSeconds = () => {
 }
 
 export const isCacheOutdated = (ttl: number, timestamp: number) => {
+    if (!ttl || !timestamp) {
+        return true;
+    }
     const currentTime = getCurrentTimeSeconds();
     return currentTime > ttl + timestamp;
 }
