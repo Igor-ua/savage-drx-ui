@@ -8,6 +8,7 @@ import {GameHistoryStats, GamesHistory} from "../GamesHistory";
 
 import './scss/styles-app.scss';
 
+
 export default () => {
     return <div className={'app-container'} style={{
         backgroundImage: `url(${process.env.PUBLIC_URL + '/images/main-background.jpg'})`

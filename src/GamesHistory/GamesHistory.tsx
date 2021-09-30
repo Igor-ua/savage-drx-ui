@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {Button, Grid, Icon, Image, Table} from "semantic-ui-react";
 
 import {addCommanders, formatGameTime, getCurrentTimeSeconds, getWinner, isCacheOutdated} from "../utils";
 import {getGameResults} from "../requests";
-import {GameResult} from "../types";
 import {DEFAULT_GAMES_HISTORY_QUANTITY, GAMES_HISTORY_TTL_SECONDS} from "../utils/constants";
+import {GameResult} from "../types";
 
 import './scss/styles-games-history.scss';
 

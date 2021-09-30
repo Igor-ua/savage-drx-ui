@@ -4,10 +4,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 import {getDailyOnline} from "../requests";
-import {DailySnapshot, DailyChartInfo} from "../types";
-import './scss/styles-daily-chart.scss';
 import {getCurrentTimeSeconds, isCacheOutdated} from "../utils";
 import {DAILY_CHART_TTL_SECONDS} from "../utils/constants";
+import {DailySnapshot, DailyChartInfo} from "../types";
+
+import './scss/styles-daily-chart.scss';
+
 
 export const DailyChart = ({server}: DailyChartInfo) => {
 

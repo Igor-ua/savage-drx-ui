@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {Button, Header, Icon, Image, Label, List, Segment, Table} from "semantic-ui-react";
 
 import {CLAN_ICON_URL} from "../utils/constants";
-import {LiveServerInfo, LiveProps, Player} from "../types";
 import {getLiveServerInfo} from "../requests";
+import {LiveServerInfo, LiveProps, Player} from "../types";
 
 import './scss/styles-live.scss';
 

@@ -1,9 +1,11 @@
 import React from 'react'
-import {Icon, Menu, Sticky} from 'semantic-ui-react'
 import {useLocation} from 'react-router-dom'
 import {Link, useRouteMatch} from "react-router-dom";
 
+import {Icon, Menu, Sticky} from 'semantic-ui-react'
+
 import './scss/styles-navigation.scss';
+
 
 const Navigation = () => {
     const location = useLocation();

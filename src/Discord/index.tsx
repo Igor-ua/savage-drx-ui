@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Image, Segment, Label, List, Button} from "semantic-ui-react";
 
-import {DiscordInfo} from "../types";
 import {getDiscordServerInfo} from "../requests";
+import {DiscordInfo} from "../types";
+
 import './scss/styles-discord.scss';
+
 
 export default () => {
     const [discordServerInfo, setDiscordServerInfo] = useState<DiscordInfo>();
@@ -58,5 +60,4 @@ export default () => {
         {/*        sandbox={"allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"}>*/}
         {/*</iframe>*/}
     </div>
-
 }

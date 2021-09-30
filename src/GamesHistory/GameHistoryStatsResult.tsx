@@ -1,11 +1,12 @@
 import React from "react";
-import {Button, Container, Grid, Icon, Image, Table} from "semantic-ui-react";
+import {Link} from "react-router-dom";
+import Moment from "react-moment";
+import {Button, Container, Image, Table} from "semantic-ui-react";
+
+import {formatGameTime} from "../utils";
+import {ExtendedGameResult} from "../types";
 
 import './scss/styles-game-history-stats-result.scss';
-import {formatGameTime} from "../utils";
-import Moment from "react-moment";
-import {ExtendedGameResult} from "../types";
-import {Link} from "react-router-dom";
 
 
 export const GameHistoryStatsResult = (gameResult: ExtendedGameResult) => {

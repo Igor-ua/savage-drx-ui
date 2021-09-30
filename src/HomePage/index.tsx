@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
+import {useHistory, useParams} from 'react-router-dom';
 import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
-import {useHistory} from 'react-router-dom';
-import {useParams} from 'react-router-dom';
-import './scss/styles-homepage.scss';
 
 import Discord from "../Discord";
 import {getNews} from "./News";
 import Live from "../Live";
+
+import './scss/styles-homepage.scss';
+
 
 export default () => {
     const history = useHistory();

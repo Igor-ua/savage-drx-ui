@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {shallowEqual, useSelector} from 'react-redux'
-import {Grid, Header, Icon, Image, Label, List, Segment} from "semantic-ui-react";
+import {Grid, Header, Image, Label, List, Segment} from "semantic-ui-react";
 
 import {DailyChartInfo, DailySnapshot, DPlayer} from "../types";
 import {CLAN_ICON_URL} from "../utils/constants";
 
 import './scss/styles-daily-members.scss';
+
 
 const removeDuplicates = (arr: Array<DPlayer>) =>
     arr.filter((v, i, a) =>

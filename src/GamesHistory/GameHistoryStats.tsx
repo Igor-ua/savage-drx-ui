@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom";
 import {Container, Grid, Menu} from "semantic-ui-react";
 
 import {getGameResultByTimestamp} from "../requests";
-import {EGRAccuracy, ExtendedGameResult} from "../types";
 import {StatsInfoTable} from "./GameHistoryStatsInfo";
 import {GameHistoryStatsResult} from "./GameHistoryStatsResult";
+import {StatsAccuracyTable} from "./GameHistoryStatsAccuracy";
+import {EGRAccuracy, ExtendedGameResult} from "../types";
 
 import './scss/styles-game-history-stats.scss';
-import {StatsAccuracyTable} from "./GameHistoryStatsAccuracy";
 
 
 export const GameHistoryStats = () => {
@@ -16,10 +16,7 @@ export const GameHistoryStats = () => {
     const params: any = useParams();
     const timestamp = params?.timestamp;
     const [gameResult, setGameResult] = useState<ExtendedGameResult>();
-    // const [activeMenu, setActiveMenu] = useState('stats');
-    const [activeMenu, setActiveMenu] = useState('accuracy');
-
-    // console.log(gameResult)
+    const [activeMenu, setActiveMenu] = useState('stats');
 
     useEffect(() => {
         getGameResultByTimestamp(timestamp).then(res => {
@@ -65,9 +62,6 @@ export const GameHistoryStats = () => {
                     }
                     return acPlayer;
                 })
-
-                // console.log('accuracies: ', accuracies)
-                // console.log(accuracyPlayerMap)
 
                 setGameResult(result);
             }

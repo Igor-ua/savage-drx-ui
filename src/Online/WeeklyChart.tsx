@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from "react";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
 
 import {getWeeklyOnline} from "../requests";
-import {WeeklySnapshot, WeeklyChartInfo} from "../types";
 import {WEEKLY_CHART_TTL_SECONDS} from "../utils/constants";
 import {getCurrentTimeSeconds, isCacheOutdated} from "../utils";
+import {WeeklySnapshot, WeeklyChartInfo} from "../types";
 
 import './scss/styles-weekly-chart.scss';
+
 
 export const WeeklyChart = ({server}: WeeklyChartInfo) => {
 

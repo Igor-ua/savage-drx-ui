@@ -1,10 +1,11 @@
 import React from "react";
 import {Image, Table} from "semantic-ui-react";
 
-import {ACRPlayer, EGRAccuracy} from "../types";
 import {CLAN_ICON_URL} from "../utils/constants";
+import {ACRPlayer, EGRAccuracy} from "../types";
 
 import './scss/styles-game-history-stats-accuracy.scss';
+
 
 export const StatsAccuracyTable = (players: Array<ACRPlayer>) => {
     console.log(players)

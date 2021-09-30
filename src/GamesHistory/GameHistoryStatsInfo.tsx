@@ -1,9 +1,9 @@
 import React from "react";
 import {Image, Table} from "semantic-ui-react";
 
-import {GRTeam} from "../types";
 import {formatGameTime} from "../utils";
 import {CLAN_ICON_URL} from "../utils/constants";
+import {GRTeam} from "../types";
 
 import './scss/styles-game-history-stats-info.scss';
 
