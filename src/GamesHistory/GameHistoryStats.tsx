@@ -21,7 +21,7 @@ export const GameHistoryStats = () => {
     const dispatch = useDispatch()
     const gameStatsCache = useSelector((state: any) => state.gameHistoryStatsReducer[timestamp], shallowEqual);
     const [gameResult, setGameResult] = useState<ExtendedGameResult>();
-    const [activeMenu, setActiveMenu] = useState('stats');
+    const [activeMenu, setActiveMenu] = useState('weapons');
 
     useEffect(() => {
         if (isCacheOutdated(gameStatsCache?.ttl, gameStatsCache?.timestamp)) {
@@ -110,15 +110,15 @@ export const GameHistoryStats = () => {
                             </Menu.Item>
                             <Menu.Item
                                 className={'menu-item-accuracy'}
-                                name='Accuracy'
-                                active={activeMenu === 'accuracy'}
+                                name='Weapons'
+                                active={activeMenu === 'weapons'}
                                 onClick={() => {
-                                    setActiveMenu('accuracy')
+                                    setActiveMenu('weapons')
                                 }}
                                 color={"orange"}
                                 position={"left"}>
                                 <Icon name='target'/>
-                                Accuracy
+                                Weapons
                             </Menu.Item>
                         </Menu>
                     </Container>

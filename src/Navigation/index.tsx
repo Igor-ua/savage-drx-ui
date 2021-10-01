@@ -47,25 +47,11 @@ const Navigation = () => {
             </Menu.Item>
             <Menu.Item
                 name='stats'
+                position={"left"}
                 color={location.pathname === '/stats' ? activeColor : inactiveColor}
                 active={location.pathname === '/stats'}>
                 <Icon name='pie graph'/>
                 Stats
-            </Menu.Item>
-            <Menu.Item
-                name='stats'
-                color={location.pathname === '/stats' ? activeColor : inactiveColor}
-                active={location.pathname === '/stats'}>
-                <Icon name='sort amount up'/>
-                A
-            </Menu.Item>
-            <Menu.Item
-                name='stats'
-                position={"left"}
-                color={location.pathname === '/stats' ? activeColor : inactiveColor}
-                active={location.pathname === '/stats'}>
-                <Icon name='trophy'/>
-                B
             </Menu.Item>
         </Menu>
     </Sticky>

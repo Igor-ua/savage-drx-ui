@@ -131,6 +131,7 @@ export interface ACRPlayer {
     name: string;
     clan_id: number;
     accuracies: Array<AAccuracy>;
+    generalDamage: number;
 }
 
 export interface AAccuracy {

@@ -1,24 +1,43 @@
 import React from "react";
-import {Image, Table} from "semantic-ui-react";
+import {Image, Label, Table} from "semantic-ui-react";
 
 import {CLAN_ICON_URL} from "../utils/constants";
+import {drawableItems} from "./items";
 import {ACRPlayer, EGRAccuracy} from "../types";
 
 import './scss/styles-game-history-stats-accuracy.scss';
 
 
 export const StatsAccuracyTable = (players: Array<ACRPlayer>) => {
-    players = filterItems(players);
+    players = editItemsAndPlayers(players);
+    if (!players.length) {
+        return null;
+    }
+
+    console.log(players)
+
     return <div className={'game-history-stats-accuracy'}>
-        <Table celled inverted compact selectable size={"small"} textAlign={"center"}>
+        <Table celled inverted compact={"very"} selectable size={"small"} textAlign={"center"}>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell className={'cell-player-name'}>Player</Table.HeaderCell>
+                    <Table.HeaderCell className={'cell-header-info'}>
+                        <Label size={"tiny"} className={'th-info-label'}>
+                            Accuracy % (hits/shots*100)<br/>
+                            <span className={'th-info-label-span'}>Damage</span>
+                        </Label>
+                    </Table.HeaderCell>
+
                     {players[0].accuracies.map((a, index) => (
-                        <Table.HeaderCell key={index}>{a.name}</Table.HeaderCell>
+                        <Table.HeaderCell key={index}>
+                            <Image src={drawableItems[a.name]}
+                                   size={"small"}
+                                   inline
+                                   className={'header-item-image'}/>
+                        </Table.HeaderCell>
                     ))}
                 </Table.Row>
             </Table.Header>
+
             <Table.Body>
                 {players.map((p, index) => (
                     <Table.Row key={index}>
@@ -31,7 +50,14 @@ export const StatsAccuracyTable = (players: Array<ACRPlayer>) => {
                             <span>{p.name}</span>
                         </Table.Cell>
                         {p.accuracies.map((acr, index) => (
-                            <Table.Cell key={index}>{getAccuracyByValue(acr.value)}</Table.Cell>
+                            <Table.Cell key={index}>
+                                {getAccuracyByValue(acr.value)}
+                                <br/>
+                                {acr.value && acr.value.damage > 0
+                                    ? <span className={'cell-span-damage'}>{acr.value.damage}</span>
+                                    : null
+                                }
+                            </Table.Cell>
                         ))}
                     </Table.Row>
                 ))}
@@ -47,33 +73,26 @@ const getAccuracyByValue = (value: EGRAccuracy) => {
     return null;
 }
 
-const filterItems = (players: Array<ACRPlayer>) => {
-    const itemsToRemove = [
-        'desc 0',
-        'Hatchet',
-        'Saber',
-        'Venomous',
-        'Rabid',
-        'Disrupter',
-        'Bone sword',
-        'Uprooted Tree',
-        'Land Mine',
-        'Battle axe',
-        'Predator claws',
-        'Sacrifice',
-        'Demolition Charge',
-        'Fire Ward',
-        'Immobilizer',
-        'Blessed Potion',
-        'Staff',
-        'Stalker claws',
-        'Mana Crystal',
-        'Carnivorous'
-    ]
+const editItemsAndPlayers = (players: Array<ACRPlayer>) => {
+    const items = Object.keys(drawableItems)
+    const filteredPlayers = Array<ACRPlayer>()
 
     players.map((p) => {
-        p.accuracies = p.accuracies.filter((a) => !itemsToRemove.includes(a.name));
+        const acr = p.accuracies.filter((acr) => acr.value)
+
+        let generalDamage = 0;
+        p.accuracies.forEach((a) => {
+            if (a.value) {
+                generalDamage += a.value.damage;
+            }
+        })
+
+        if (acr.length) {
+            p.accuracies = p.accuracies.filter((a) => items.includes(a.name));
+            p.generalDamage = generalDamage;
+            filteredPlayers.push(p)
+        }
     })
 
-    return players;
+    return filteredPlayers;
 }

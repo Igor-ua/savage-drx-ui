@@ -1,4 +1,5 @@
 export const CLAN_ICON_URL = '/public/cached/icondir/';
+export const ITEMS_ICON_URL = process.env.PUBLIC_URL + '/images/weapons/';
 
 export const GAMES_HISTORY_TTL_SECONDS = 10;
 export const DAILY_CHART_TTL_SECONDS = 60 * 5;

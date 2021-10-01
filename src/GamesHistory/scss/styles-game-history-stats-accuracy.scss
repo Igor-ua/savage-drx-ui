@@ -3,9 +3,26 @@
   background-color: #202225;
   border-color: #202225;
   //margin: 0 5% 0;
+  //overflow: auto;
+  //white-space: nowrap;
 
   th {
     background-color: #155b80 !important;
+    padding: 4px !important;
+
+    .header-item-image {
+      width: 50px !important;
+      height: 50px !important;
+      border-radius: 8px;
+    }
+
+    .th-info-label {
+      background-color: #202225;
+      color: #8a8e94;
+      .th-info-label-span {
+        color: #7b6f14;
+      }
+    }
   }
 
   tr {
@@ -23,11 +40,19 @@
       height: 16px !important;
       border-radius: 8px;
     }
+
+    .cell-span-damage {
+      color: #7b6f14;
+    }
   }
 
   .cell-player-name {
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 170px;
+    max-width: 170px;
+  }
+
+  .cell-header-info {
+    //font-size: 50%
   }
 
   //img {
