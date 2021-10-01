@@ -5,18 +5,12 @@ import {CLAN_ICON_URL} from "../utils/constants";
 import {drawableItems} from "./items";
 import {ACRPlayer, EGRAccuracy} from "../types";
 
-import './scss/styles-game-history-stats-accuracy.scss';
+import './scss/styles-game-history-stats-weapons.scss';
 
 
-export const StatsAccuracyTable = (players: Array<ACRPlayer>) => {
-    players = editItemsAndPlayers(players);
-    if (!players.length) {
-        return null;
-    }
-
+export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {
     console.log(players)
-
-    return <div className={'game-history-stats-accuracy'}>
+    return <div className={'game-history-stats-weapons'}>
         <Table celled inverted compact={"very"} selectable size={"small"} textAlign={"center"}>
             <Table.Header>
                 <Table.Row>
@@ -71,28 +65,4 @@ const getAccuracyByValue = (value: EGRAccuracy) => {
         return Math.round(value.hits / value.shots * 100) + `% (${value.hits}/${value.shots})`;
     }
     return null;
-}
-
-const editItemsAndPlayers = (players: Array<ACRPlayer>) => {
-    const items = Object.keys(drawableItems)
-    const filteredPlayers = Array<ACRPlayer>()
-
-    players.map((p) => {
-        const acr = p.accuracies.filter((acr) => acr.value)
-
-        let generalDamage = 0;
-        p.accuracies.forEach((a) => {
-            if (a.value) {
-                generalDamage += a.value.damage;
-            }
-        })
-
-        if (acr.length) {
-            p.accuracies = p.accuracies.filter((a) => items.includes(a.name));
-            p.generalDamage = generalDamage;
-            filteredPlayers.push(p)
-        }
-    })
-
-    return filteredPlayers;
 }

@@ -230,3 +230,7 @@ export interface GRPlayer {
     uid: number;
     p: EGRPlayer;
 }
+
+export interface WSProps {
+    players: Array<ACRPlayer>;
+}

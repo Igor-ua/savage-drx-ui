@@ -6,12 +6,13 @@ import {Container, Grid, Icon, Menu} from "semantic-ui-react";
 import {getGameResultByTimestamp} from "../requests";
 import {StatsInfoTable} from "./GameHistoryStatsInfo";
 import {GameHistoryStatsResult} from "./GameHistoryStatsResult";
-import {StatsAccuracyTable} from "./GameHistoryStatsAccuracy";
+import {getWeaponStatsTable} from "./GameHistoryStatsWeapons";
 import {getCurrentTimeSeconds, isCacheOutdated} from "../utils";
 import {GAME_HISTORY_TTL_SECONDS} from "../utils/constants";
 import {EGRAccuracy, ExtendedGameResult} from "../types";
 
 import './scss/styles-game-history-stats.scss';
+import {WeaponStats} from "./WeaponStats";
 
 
 export const GameHistoryStats = () => {
@@ -145,6 +146,6 @@ const drawInfo = (gameResult: ExtendedGameResult) => {
 
 const drawAccuracy = (gameResult: ExtendedGameResult) => {
     return <div>
-        {StatsAccuracyTable(gameResult.p_accuracies)}
+        <WeaponStats players={gameResult.p_accuracies} />
     </div>
 }
