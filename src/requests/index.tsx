@@ -25,3 +25,7 @@ export const getGameResults = (quantity: number) => {
 export const getGameResultByTimestamp = (timestamp: number) => {
     return axios.get(`${SERVER_URL}/stats/result/${timestamp}`)
 }
+
+export const getNewsByPage = (page: number) => {
+    return axios.get(`${SERVER_URL}/news/${page}`)
+}

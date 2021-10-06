@@ -9,7 +9,6 @@ import './scss/styles-game-history-stats-weapons.scss';
 
 
 export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {
-    console.log(players)
     return <div className={'game-history-stats-weapons'}>
         <Table celled inverted compact={"very"} selectable size={"small"} textAlign={"center"}>
             <Table.Header>
@@ -61,8 +60,5 @@ export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {
 }
 
 const getAccuracyByValue = (value: EGRAccuracy) => {
-    if (value) {
-        return Math.round(value.hits / value.shots * 100) + `% (${value.hits}/${value.shots})`;
-    }
-    return null;
+    return value ? Math.round(value.hits / value.shots * 100) + `% (${value.hits}/${value.shots})` : null;
 }

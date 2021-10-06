@@ -3,10 +3,12 @@ import {dailyOnlineReducer} from "./DailyOnlineReducer";
 import {gamesHistoryReducer} from "./GamesHistoryReducer";
 import {weeklyOnlineReducer} from "./WeeklyOnlineReducer";
 import {gameHistoryStatsReducer} from "./GameHistoryStatsReducer";
+import {newsPageReducer} from "./NewsReducer";
 
 export default combineReducers({
     dailyOnlineReducer,
     gamesHistoryReducer,
     weeklyOnlineReducer,
-    gameHistoryStatsReducer
+    gameHistoryStatsReducer,
+    newsPageReducer
 })
