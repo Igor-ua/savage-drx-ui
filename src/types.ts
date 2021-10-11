@@ -234,3 +234,8 @@ export interface GRPlayer {
 export interface WSProps {
     players: Array<ACRPlayer>;
 }
+
+export interface LadderProps {
+    body: any;
+    week_name: string;
+}

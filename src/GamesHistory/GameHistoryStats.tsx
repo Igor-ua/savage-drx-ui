@@ -22,7 +22,7 @@ export const GameHistoryStats = () => {
     const dispatch = useDispatch()
     const gameStatsCache = useSelector((state: any) => state.gameHistoryStatsReducer[timestamp], shallowEqual);
     const [gameResult, setGameResult] = useState<ExtendedGameResult>();
-    const [activeMenu, setActiveMenu] = useState('weapons');
+    const [activeMenu, setActiveMenu] = useState('stats');
 
     useEffect(() => {
         if (isCacheOutdated(gameStatsCache?.ttl, gameStatsCache?.timestamp)) {

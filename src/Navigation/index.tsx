@@ -50,8 +50,9 @@ const Navigation = () => {
                 position={"left"}
                 color={location.pathname === '/stats' ? activeColor : inactiveColor}
                 active={location.pathname === '/stats'}>
-                <Icon name='pie graph'/>
-                Stats
+                {/*<Icon name='pie graph'/> All Stats*/}
+                <Icon name='signal'/>
+                Ladder
             </Menu.Item>
         </Menu>
     </Sticky>

@@ -4,6 +4,7 @@ import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
 import parse from 'html-react-parser';
 
 import Discord from "../Discord";
+import Ladder from "../Ladder";
 import Live from "../Live";
 import {getNewsByPage} from "../requests";
 
@@ -50,11 +51,11 @@ export default () => {
                         <Discord/>
                     </Container>
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={7}>
                     <Container className={'base'}>
                         {news.map((ns: any, i) => {
-                            return <Segment inverted secondary key={i}>
-                                {parse(ns.body)}
+                            return <Segment key={i} textAlign='center' className={'base-segment'}>
+                                {ns.is_weekly_ladder ? <Ladder body={ns.body} week_name={ns.week_name}/> : null}
                             </Segment>
                         })}
                         <Container textAlign={"center"} className={'pagination'}>

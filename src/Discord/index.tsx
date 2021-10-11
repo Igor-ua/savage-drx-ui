@@ -33,7 +33,9 @@ export default () => {
                 <List>
                     {discordServerInfo?.members.map((member) => (
                         <div key={member.username}>
-                            <img src={member.avatar_url}/>
+                            <Image src={member.avatar_url}
+                                   size={"small"}
+                                   inline/>
                             <span>{member.username}</span>
                         </div>
                     ))}

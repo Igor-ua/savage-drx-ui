@@ -10,7 +10,22 @@
     .base {
       //background-color: rgba(255, 255, 255, 0.0);
       //border: 1px solid red;
-      color: white;
+      //color: white;
+
+
+      .base-segment {
+        background-color: #2d2e30;
+        color: #8a8e94;
+        .header {
+          color: #8a8e94;
+        }
+      }
+
+      .weekly-header-image {
+        max-width: 600px;
+        //width: 100%;
+
+      }
     }
 
     .base-align-right {
