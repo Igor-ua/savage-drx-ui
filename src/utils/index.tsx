@@ -1,4 +1,5 @@
 import {GameResult} from "../types";
+import { weekNumber } from 'weeknumber'
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -53,4 +54,35 @@ export const getTeamName = (teamId: number, teamName: string, race: string) => {
 
 export function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function getStartDateOfISOWeek(week: number, year: number) {
+    const simple = new Date(year, 0, 1 + (week - 1) * 7);
+    const dow = simple.getDay();
+    const ISOWeekStart = simple;
+    if (dow <= 4)
+        ISOWeekStart.setDate(simple.getDate() - simple.getDay() + 1);
+    else
+        ISOWeekStart.setDate(simple.getDate() + 8 - simple.getDay());
+    return ISOWeekStart;
+}
+
+export function getEndDateOfISOWeek(week: number, year: number) {
+    const startDate = getStartDateOfISOWeek(week, year);
+    const finish = new Date(startDate);
+    finish.setDate(finish.getDate() + 7);
+    finish.setSeconds(finish.getSeconds() - 1);
+    return finish;
+}
+
+export function getFormattedDate(d: Date) {
+    const options: any = {year: 'numeric', month: 'long', day: 'numeric'};
+    return d.toLocaleDateString("en-US", options)
+}
+
+export function getCurrentWeekCode() {
+    const now = new Date()
+    const current_year = now.getFullYear()
+    const current_week = weekNumber(now)
+    return current_year + '_' + current_week
 }

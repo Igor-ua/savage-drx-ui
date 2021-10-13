@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
-import parse from 'html-react-parser';
 
 import Discord from "../Discord";
-import Ladder from "../Ladder";
 import Live from "../Live";
 import {getNewsByPage} from "../requests";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import {LadderNews} from "../Ladder";
 
 import './scss/styles-homepage.scss';
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
 
 
 export default () => {
@@ -55,7 +54,7 @@ export default () => {
                     <Container className={'base'}>
                         {news.map((ns: any, i) => {
                             return <Segment key={i} textAlign='center' className={'base-segment'}>
-                                {ns.is_weekly_ladder ? <Ladder body={ns.body} week_name={ns.week_name}/> : null}
+                                {ns.is_weekly_ladder ? <LadderNews body={ns.body} week_name={ns.week_name}/> : null}
                             </Segment>
                         })}
                         <Container textAlign={"center"} className={'pagination'}>

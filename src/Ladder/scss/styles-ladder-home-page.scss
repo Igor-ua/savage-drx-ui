@@ -1,0 +1,54 @@
+.weekly-ladder-home-page {
+  width: 100%;
+
+  .weekly-grid-wrapper {
+    margin: 50px 10% 15px;
+
+    .grid-row {
+      border: 1px solid red;
+    }
+
+    .grid-column-ladder {
+      border: 1px solid yellow;
+
+      .weekly-table {
+
+        th {
+          background-color: #155b80;
+        }
+
+        tr {
+          background-color: #202225;
+          color: #8a8e94;
+
+          .cell-online {
+            color: #b45d34;
+          }
+        }
+      }
+    }
+
+    .weekly-segment {
+      background-color: #2d2e30;
+      color: #8a8e94;
+
+      .weekly-dropdown-1 {
+        background-color: #47494e;
+        //color: white;
+
+        div {
+          background-color: #47494e;
+        }
+
+        .active {
+          //color: white !important;
+        }
+
+        .divider {
+          //color: white !important;
+        }
+      }
+    }
+  }
+
+}

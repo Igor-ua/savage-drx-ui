@@ -100,10 +100,7 @@ export const GamesHistory = () => {
                                             primary
                                             size={"small"}
                                             as={Link}
-                                            to={'/history/' + gr?.timestamp}
-                                            onClick={() => {
-                                                console.log('click')
-                                            }}>
+                                            to={'/history/' + gr?.timestamp}>
                                             <Icon name='bars' size={"small"}/>
                                             open
                                         </Button>

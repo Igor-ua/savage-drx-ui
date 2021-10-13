@@ -1,49 +1,18 @@
-.weekly-ladder-result {
-  table {
-    th {
-      padding: 3px !important;
-      background-color: #155b80 !important;
-    }
+.ladder-wrapper {
+  width: 100%;
+  margin: 50px 0 15px;
+  border: 1px solid red;
 
-    tr {
-      background-color: #202225;
-
-      td {
-        padding: 3px !important;
-        color: #8a8e94;
-
-        img {
-          width: 16px !important;
-          height: 16px !important;
-          border-radius: 8px;
-        }
-
-        span {
-          padding-left: 5px;
-        }
-      }
-
-    }
-  }
-
-  .div-header {
+  .ladder-menu-container {
+    width: 800px !important;
     margin-top: 10px;
-    margin-bottom: 10px;
 
-    .header {
-      color: #d37f29 !important;
-
-      .week-name {
-        color: #aab932;
-      }
-
-      .year-name {
-        color: #29b8bf;
-      }
+    .ladder-menu {
+      background-color: rgba(42, 39, 39, 0.85) !important;
     }
-  }
 
-  .extended-stats-button {
-    margin-top: 12px !important;
+    .active.item {
+      background-color: #347b4f !important;
+    }
   }
 }

@@ -239,3 +239,159 @@ export interface LadderProps {
     body: any;
     week_name: string;
 }
+
+// ===============================================================================================
+// Weekly Ladder  ================================================================================
+// ===============================================================================================
+
+export interface WeeklyLadder {
+    week_name: string
+    status: string
+    players: {
+        [key: number]: WPlayer
+    }
+    ladder: WLadder
+}
+
+export interface WPlayer {
+    acc_damage: number
+    accuracy: {
+        'Hatchet': WPlayerAccuracy
+        'Saber': WPlayerAccuracy
+        'Battle axe': WPlayerAccuracy
+        'Hunting Bow': WPlayerAccuracy
+        'Marksman\'s Bow': WPlayerAccuracy
+        'Crossbow': WPlayerAccuracy
+        'Scattergun': WPlayerAccuracy
+        'Repeater': WPlayerAccuracy
+        'Coil Rifle': WPlayerAccuracy
+        'Discharger': WPlayerAccuracy
+        'Flux Gun': WPlayerAccuracy
+        'Pulse Cannon': WPlayerAccuracy
+        'Incinerator': WPlayerAccuracy
+        'Mortar': WPlayerAccuracy
+        'Launcher': WPlayerAccuracy
+        'Ballista Weapon': WPlayerAccuracy
+        'Catapult Weapon': WPlayerAccuracy
+        'Bone sword': WPlayerAccuracy
+        'Stalker claws': WPlayerAccuracy
+        'Predator claws': WPlayerAccuracy
+        'Venomous': WPlayerAccuracy
+        'Rabid': WPlayerAccuracy
+        'Carnivorous': WPlayerAccuracy
+        'Ember': WPlayerAccuracy
+        'Blaze': WPlayerAccuracy
+        'Fireball': WPlayerAccuracy
+        'Frost Bolts': WPlayerAccuracy
+        'Tempest': WPlayerAccuracy
+        'Lightning': WPlayerAccuracy
+        'Chaos Bolt': WPlayerAccuracy
+        'Surge': WPlayerAccuracy
+        'Rupture': WPlayerAccuracy
+        'Summoner strike': WPlayerAccuracy
+        'Uprooted Tree': WPlayerAccuracy
+    }
+    clan_id: number
+    clan_tag_name: string
+    comm_stats: {
+        comm_draw: number
+        comm_lose: number
+        comm_points: number
+        comm_wins: number
+    }
+    info: WLInfo
+    name: string
+    names: Array<WLNames>
+    team_stats: {
+        stats: {
+            [key: number]: TeamStats
+        }
+    }
+    uid: number
+}
+
+export interface TeamStats {
+    games: number
+    wins: number
+    lose: number
+    draw: number
+}
+
+export interface WLNames {
+    usages: number
+    name: string
+}
+
+export interface WLInfo extends EGRInfo {
+
+}
+
+export interface WPlayerAccuracy {
+    damage: number
+    deaths: number
+    hits: number
+    kills: number
+    shots: number
+}
+
+export interface WLadder {
+    damage: {
+        acc_damage: any
+        [key: string]: {
+            [key: number]: LDamage
+        }
+    }
+    info: {
+        auto_buff: LInfo
+        blocks: LInfo
+        build: LInfo
+        build_damage: LInfo
+        build_kill: LInfo
+        carn_hp: LInfo
+        client_damage: LInfo
+        deaths: LInfo
+        experience: LInfo
+        flag_capture: LInfo
+        heal: LInfo
+        jumps: LInfo
+        kill_streak: LInfo
+        kills: LInfo
+        melee_kill: LInfo
+        mine: LInfo
+        money_gained: LInfo
+        money_spent: LInfo
+        npc_damage: LInfo
+        npc_kill: LInfo
+        on_team_time: LInfo
+        order_give: LInfo
+        order_obeyed: LInfo
+        outpost_damage: LInfo
+        peon_damage: LInfo
+        peon_kill: LInfo
+        ranged_kill: LInfo
+        sacrifice: LInfo
+        siege_kill: LInfo
+        comm_wins: LInfo
+        comm_lose: LInfo
+        comm_draw: LInfo
+        comm_points: LInfo
+    }
+}
+
+export interface LInfo {
+    [key: number]: {
+        clan_id: number
+        item_value: number
+        name: string
+        uid: number
+    }
+}
+
+export interface LDamage {
+    a_item_damage: number
+    a_item_hits: number
+    a_item_shots: number
+    clan_id: number
+    name: string
+    uid: number
+}

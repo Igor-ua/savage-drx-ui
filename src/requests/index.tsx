@@ -29,3 +29,19 @@ export const getGameResultByTimestamp = (timestamp: number) => {
 export const getNewsByPage = (page: number) => {
     return axios.get(`${SERVER_URL}/news/${page}`)
 }
+
+export const getWeeklyLadder = (week_name: string) => {
+    return axios.get(`${SERVER_URL}/stats/ladder/${week_name}`)
+}
+
+export const getLiveWeeklyLadder = () => {
+    return axios.get(`${SERVER_URL}/stats/ladder/live`)
+}
+
+export const getSSF = (uid: number) => {
+    return axios.get(`${SERVER_URL}/stats/ssf/${uid}`)
+}
+
+export const getLadderWeeks = (year: number) => {
+    return axios.get(`${SERVER_URL}/stats/ladder/weeks/${year}`)
+}

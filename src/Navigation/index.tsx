@@ -11,6 +11,8 @@ const Navigation = () => {
     const location = useLocation();
     const homeWithPage = useRouteMatch('/page/:p');
     const gameHistoryStats = useRouteMatch('/history/:timestamp');
+    const ladderHistorical = useRouteMatch('/ladder/week/:weekName');
+    const ladderLive = useRouteMatch('/ladder/live');
 
     const activeColor = 'orange'
     const inactiveColor = 'grey'
@@ -46,11 +48,12 @@ const Navigation = () => {
                 History
             </Menu.Item>
             <Menu.Item
-                name='stats'
+                name='ladder'
+                as={Link}
+                to={'/ladder'}
                 position={"left"}
-                color={location.pathname === '/stats' ? activeColor : inactiveColor}
-                active={location.pathname === '/stats'}>
-                {/*<Icon name='pie graph'/> All Stats*/}
+                color={location.pathname === '/ladder' || ladderHistorical || ladderLive ? activeColor : inactiveColor}
+                active={location.pathname === '/ladder' || Boolean(ladderHistorical) || Boolean(ladderLive)}>
                 <Icon name='signal'/>
                 Ladder
             </Menu.Item>
