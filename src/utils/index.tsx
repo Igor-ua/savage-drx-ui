@@ -1,10 +1,17 @@
 import {GameResult} from "../types";
-import { weekNumber } from 'weeknumber'
+import {weekNumber} from 'weeknumber'
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
     date.setSeconds(gameTime / 1000);
     return date.toISOString().substr(11, 8);
+}
+
+export const formatGameTimeWithDays = (gameTime: number) => {
+    const date = new Date(0);
+    date.setSeconds(gameTime / 1000);
+
+    return date.toISOString().substr(8, 11);
 }
 
 export const getWinner = (id: number) => {
@@ -56,7 +63,7 @@ export function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function getStartDateOfISOWeek(week: number, year: number) {
+export const getStartDateOfISOWeek = (week: number, year: number) => {
     const simple = new Date(year, 0, 1 + (week - 1) * 7);
     const dow = simple.getDay();
     const ISOWeekStart = simple;
@@ -67,7 +74,7 @@ export function getStartDateOfISOWeek(week: number, year: number) {
     return ISOWeekStart;
 }
 
-export function getEndDateOfISOWeek(week: number, year: number) {
+export const getEndDateOfISOWeek = (week: number, year: number) => {
     const startDate = getStartDateOfISOWeek(week, year);
     const finish = new Date(startDate);
     finish.setDate(finish.getDate() + 7);
@@ -75,7 +82,7 @@ export function getEndDateOfISOWeek(week: number, year: number) {
     return finish;
 }
 
-export function getFormattedDate(d: Date) {
+export const getFormattedDate = (d: Date) => {
     const options: any = {year: 'numeric', month: 'long', day: 'numeric'};
     return d.toLocaleDateString("en-US", options)
 }
@@ -85,4 +92,38 @@ export function getCurrentWeekCode() {
     const current_year = now.getFullYear()
     const current_week = weekNumber(now)
     return current_year + '_' + current_week
+}
+
+export const sliceArray = (inputArray: Array<any>, perChunk: number) => {
+    return inputArray.reduce((all, one, i) => {
+        const ch = Math.floor(i / perChunk);
+        all[ch] = [].concat((all[ch] || []), one);
+        return all
+    }, [])
+}
+
+export const secondsToDhms = (seconds: number) => {
+    seconds = Number(seconds);
+    const d = Math.floor(seconds / (3600 * 24));
+    const h = Math.floor(seconds % (3600 * 24) / 3600);
+    const m = Math.floor(seconds % 3600 / 60);
+    const s = Math.floor(seconds % 60);
+
+    const dDisplay = d > 0 ? d + "d " : "";
+    const hDisplay = h > 0 ? h + ":" : "";
+    const mDisplay = m > 0 ? m + ":" : "";
+    const sDisplay = s > 0 ? s : "";
+    return dDisplay + hDisplay + mDisplay + sDisplay;
+}
+
+export const formatNumber = (n: number) => {
+    return new Intl.NumberFormat().format(n)
+}
+
+export const formatAccumulatedGameTime = (t: number) => {
+    return secondsToDhms(t / 1000)
+}
+
+export const formatMoneyDelta = (t: number) => {
+    return t > 0 ? "+" + formatNumber(t) : formatNumber(t)
 }

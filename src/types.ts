@@ -342,49 +342,38 @@ export interface WLadder {
         }
     }
     info: {
-        auto_buff: LInfo
-        blocks: LInfo
-        build: LInfo
-        build_damage: LInfo
-        build_kill: LInfo
-        carn_hp: LInfo
-        client_damage: LInfo
-        deaths: LInfo
-        experience: LInfo
-        flag_capture: LInfo
-        heal: LInfo
-        jumps: LInfo
-        kill_streak: LInfo
-        kills: LInfo
-        melee_kill: LInfo
-        mine: LInfo
-        money_gained: LInfo
-        money_spent: LInfo
-        npc_damage: LInfo
-        npc_kill: LInfo
-        on_team_time: LInfo
-        order_give: LInfo
-        order_obeyed: LInfo
-        outpost_damage: LInfo
-        peon_damage: LInfo
-        peon_kill: LInfo
-        ranged_kill: LInfo
-        sacrifice: LInfo
-        siege_kill: LInfo
-        comm_wins: LInfo
-        comm_lose: LInfo
-        comm_draw: LInfo
-        comm_points: LInfo
+        [key: string]: LInfo
+    }
+}
+
+export interface SortedWeeklyLadder {
+    week_name: string
+    status: string
+    players: {
+        [key: number]: WPlayer
+    }
+    ladder: SortedWLadder
+}
+
+export interface SortedWLadder {
+    damage: {
+        acc_damage: any
+        [key: string]: Array<LDamage>
+    }
+    info: {
+        [key: string]: Array<SimpleLInfo>
     }
 }
 
 export interface LInfo {
-    [key: number]: {
-        clan_id: number
-        item_value: number
-        name: string
-        uid: number
-    }
+    [key: number]: SimpleLInfo
+}
+
+export interface SimpleLInfo {
+    clan_id: number
+    item_value: number
+    name: string
+    uid: number
 }
 
 export interface LDamage {

@@ -9,7 +9,7 @@ import './scss/styles-ladder-news.scss';
 
 
 export const LadderNews = ({body, week_name}: LadderProps) => {
-    return <div className={'ladder-news'}>
+    return <div className={'ladder-weekly-news'}>
         <Image className={"weekly-header-image"}
                src={process.env.PUBLIC_URL + "/images/weekly.png"}
                rounded
@@ -28,18 +28,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
 
         <Grid columns="equal" textAlign={"center"}>
             <Grid.Column textAlign={"center"}>
-                <Table celled inverted compact size={"small"}
+                <Table celled singleLine fixed inverted compact size={"small"}
                        className={"top-weekly"}
                        textAlign={"center"}>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell collapsing colSpan="2">Commanders (points)</Table.HeaderCell>
+                            <Table.HeaderCell colSpan="3">Commanders (points)</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {body.comm_points.map((c: any) => (
-                            <Table.Row>
-                                <Table.Cell collapsing textAlign={"left"}>
+                        {body.comm_points.map((c: any, index: any) => (
+                            <Table.Row key={index}>
+                                <Table.Cell colSpan="2" textAlign={"left"}>
                                     {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                         size={"small"}
                                                         inline
@@ -53,18 +53,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
                     </Table.Body>
                 </Table>
                 <div>
-                    <Table celled inverted compact size={"small"}
+                    <Table celled singleLine fixed inverted compact size={"small"}
                            className={"top-weekly"}
                            textAlign={"center"}>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell collapsing colSpan="2">Auto buffs</Table.HeaderCell>
+                                <Table.HeaderCell colSpan="3">Auto buffs</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {body.auto_buff.map((c: any) => (
-                                <Table.Row>
-                                    <Table.Cell collapsing textAlign={"left"}>
+                            {body.auto_buff.map((c: any, index: any) => (
+                                <Table.Row key={index}>
+                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
                                         {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                             size={"small"}
                                                             inline
@@ -81,18 +81,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
             </Grid.Column>
 
             <Grid.Column textAlign={"center"}>
-                <Table celled inverted compact size={"small"}
+                <Table celled singleLine fixed inverted compact size={"small"}
                        className={"top-weekly"}
                        textAlign={"center"}>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell collapsing colSpan="2">Kills</Table.HeaderCell>
+                            <Table.HeaderCell colSpan="3">Kills</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {body.kills.map((c: any) => (
-                            <Table.Row>
-                                <Table.Cell collapsing textAlign={"left"}>
+                        {body.kills.map((c: any, index: any) => (
+                            <Table.Row key={index}>
+                                <Table.Cell colSpan="2" collapsing textAlign={"left"}>
                                     {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                         size={"small"}
                                                         inline
@@ -106,18 +106,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
                     </Table.Body>
                 </Table>
                 <div>
-                    <Table celled inverted compact size={"small"}
+                    <Table celled singleLine fixed inverted compact size={"small"}
                            className={"top-weekly"}
                            textAlign={"center"}>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell collapsing colSpan="2">Deaths</Table.HeaderCell>
+                                <Table.HeaderCell colSpan="3">Deaths</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {body.deaths.map((c: any) => (
-                                <Table.Row>
-                                    <Table.Cell collapsing textAlign={"left"}>
+                            {body.deaths.map((c: any, index: any) => (
+                                <Table.Row key={index}>
+                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
                                         {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                             size={"small"}
                                                             inline
@@ -134,18 +134,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
             </Grid.Column>
 
             <Grid.Column textAlign={"center"}>
-                <Table celled inverted compact size={"small"}
+                <Table celled singleLine fixed inverted compact size={"small"}
                        className={"top-weekly"}
                        textAlign={"center"}>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell collapsing colSpan="2">Damage on players</Table.HeaderCell>
+                            <Table.HeaderCell colSpan="3">Damage on players</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {body.client_damage.map((c: any) => (
-                            <Table.Row>
-                                <Table.Cell collapsing textAlign={"left"}>
+                        {body.client_damage.map((c: any, index: any) => (
+                            <Table.Row key={index}>
+                                <Table.Cell colSpan="2" collapsing textAlign={"left"}>
                                     {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                         size={"small"}
                                                         inline
@@ -159,18 +159,18 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
                     </Table.Body>
                 </Table>
                 <div>
-                    <Table celled inverted compact size={"small"}
+                    <Table celled singleLine fixed inverted compact size={"small"}
                            className={"top-weekly"}
                            textAlign={"center"}>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell collapsing colSpan="2">Damage on buildings</Table.HeaderCell>
+                                <Table.HeaderCell collapsing colSpan="3">Damage on buildings</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {body.build_damage.map((c: any) => (
-                                <Table.Row>
-                                    <Table.Cell collapsing textAlign={"left"}>
+                            {body.build_damage.map((c: any, index: any) => (
+                                <Table.Row key={index}>
+                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
                                         {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
                                                             size={"small"}
                                                             inline
