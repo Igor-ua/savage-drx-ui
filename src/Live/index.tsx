@@ -68,9 +68,9 @@ export default ({server, name, background}: LiveProps) => {
                     <Icon name='server'/>
                     <Header.Content>
                         {name}
-                        <Label className={'online-label'} color={'orange'} size={"small"}>
+                        <Label className={'online-label csp-label'} size={"small"}>
                             online
-                            <Label.Detail className={'label-detail'}>{liveServerInfo?.data.cnum}</Label.Detail>
+                            <Label.Detail>{liveServerInfo?.data.cnum}</Label.Detail>
                         </Label>
                     </Header.Content>
                 </Header>

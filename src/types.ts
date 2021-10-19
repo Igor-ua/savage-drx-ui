@@ -384,3 +384,7 @@ export interface LDamage {
     name: string
     uid: number
 }
+
+export interface LadderTopProps {
+    sortedWeeklyLadder: SortedWeeklyLadder
+}

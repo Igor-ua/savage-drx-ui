@@ -8,7 +8,7 @@ import './scss/styles-general-damage-chart.scss';
 
 export const getGeneralDamageChart = (players: Array<ACRPlayer>) => {
 
-    [...players].sort((a, b) => b.generalDamage - a.generalDamage);
+    players.sort((a, b) => b.generalDamage - a.generalDamage);
     const chartData: any = players.map((p) => {
         return {
             name: p.name,

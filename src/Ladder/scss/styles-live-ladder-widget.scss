@@ -1,0 +1,22 @@
+.live-ladder-widget {
+
+  .live-ladder-widget-segment{
+    max-width: 270px;
+    min-width: 270px;
+
+    .live-ladder-widget-segment-top{
+      background-color: #155b80;
+
+      img {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 8px;
+      }
+    }
+
+    .live-ladder-widget-segment-middle{
+      background-color: #202225;
+      color: #8a8e94;
+    }
+  }
+}

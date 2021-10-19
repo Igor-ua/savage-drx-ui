@@ -192,7 +192,7 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
             primary
             size={"small"}
             as={Link}
-            to={'/ladder/week/' + week_name}>
+            to={'/ladder/week/' + week_name + '/top'}>
             <Icon name='bars' size={"small"}/>
             All Results
         </Button>

@@ -40,15 +40,13 @@ export const LadderHomePage = () => {
                 <Grid.Row columns={2}>
                     <Grid.Column className={'grid-column-ladder'}>
                         <Segment className={'weekly-segment'} textAlign={"center"}>
-                            <Header inverted>
-                                Live!
-                            </Header>
+                            <Header inverted content={"Live!"}/>
                             <Table celled inverted compact size={"small"} className={'weekly-table'}>
                                 <Table.Header>
                                     <Table.Row>
-                                        <Table.HeaderCell collapsing textAlign={"center"}>Week</Table.HeaderCell>
-                                        <Table.HeaderCell>From</Table.HeaderCell>
-                                        <Table.HeaderCell>To</Table.HeaderCell>
+                                        <Table.HeaderCell collapsing textAlign={"center"} content={'Week'}/>
+                                        <Table.HeaderCell content={'From'}/>
+                                        <Table.HeaderCell content={'To'}/>
                                         <Table.HeaderCell/>
                                     </Table.Row>
                                 </Table.Header>
@@ -62,7 +60,7 @@ export const LadderHomePage = () => {
                                                 primary
                                                 size={"small"}
                                                 as={Link}
-                                                to={'/ladder/live'}>
+                                                to={'/ladder/live/top'}>
                                                 <Icon name='bars' size={"small"}/>
                                                 open
                                             </Button>
@@ -115,7 +113,7 @@ export const LadderHomePage = () => {
                                                     primary
                                                     size={"small"}
                                                     as={Link}
-                                                    to={'/ladder/week/' + w}>
+                                                    to={'/ladder/week/' + w + '/top'}>
                                                     <Icon name='bars' size={"small"}/>
                                                     open
                                                 </Button>

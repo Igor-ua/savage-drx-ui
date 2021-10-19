@@ -21,9 +21,9 @@ export default () => {
             <Segment className={'discord-segment-top'} compact>
                 <Image src={process.env.PUBLIC_URL + '/images/discord-logo.png'} size={"small"} inline
                        className={'discord-logo'}/>
-                <Label className={'online-label'} color='orange' size={"small"}>
+                <Label className={'online-label csp-label'} size={"small"}>
                     online
-                    <Label.Detail className={'label-detail'}>{discordServerInfo?.presence_count}</Label.Detail>
+                    <Label.Detail>{discordServerInfo?.presence_count}</Label.Detail>
                 </Label>
 
             </Segment>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {Container, Grid, Icon, Menu} from "semantic-ui-react";
 
@@ -16,13 +16,12 @@ import {WeaponStats} from "./WeaponStats";
 
 
 export const GameHistoryStats = () => {
-
     const params: any = useParams();
     const timestamp = params?.timestamp;
     const dispatch = useDispatch()
     const gameStatsCache = useSelector((state: any) => state.gameHistoryStatsReducer[timestamp], shallowEqual);
     const [gameResult, setGameResult] = useState<ExtendedGameResult>();
-    const [activeMenu, setActiveMenu] = useState('stats');
+    const [activeMenu, setActiveMenu] = useState(params?.tab);
 
     useEffect(() => {
         if (isCacheOutdated(gameStatsCache?.ttl, gameStatsCache?.timestamp)) {
@@ -100,6 +99,8 @@ export const GameHistoryStats = () => {
                             <Menu.Item
                                 className={'menu-item-stats'}
                                 name='Stats'
+                                as={Link}
+                                to={'/history/' + timestamp + '/stats'}
                                 active={activeMenu === 'stats'}
                                 onClick={() => {
                                     setActiveMenu('stats')
@@ -112,6 +113,8 @@ export const GameHistoryStats = () => {
                             <Menu.Item
                                 className={'menu-item-accuracy'}
                                 name='Weapons'
+                                as={Link}
+                                to={'/history/' + timestamp + '/weapons'}
                                 active={activeMenu === 'weapons'}
                                 onClick={() => {
                                     setActiveMenu('weapons')

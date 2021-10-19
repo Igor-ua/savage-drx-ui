@@ -1,5 +1,6 @@
 import {GameResult} from "../types";
 import {weekNumber} from 'weeknumber'
+import {INFO_FIELDS} from "./constants";
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -126,4 +127,18 @@ export const formatAccumulatedGameTime = (t: number) => {
 
 export const formatMoneyDelta = (t: number) => {
     return t > 0 ? "+" + formatNumber(t) : formatNumber(t)
+}
+
+export const formatInfoValue = (key: string, value: number) => {
+    let result: any
+    if (key === INFO_FIELDS.MONEY_DELTA.key) {
+        result = formatMoneyDelta(value)
+    }
+    if (key === INFO_FIELDS.ON_TEAM_TIME.key) {
+        result = formatAccumulatedGameTime(value)
+    }
+    if (key !== INFO_FIELDS.MONEY_DELTA.key && key !== INFO_FIELDS.ON_TEAM_TIME.key) {
+        result = formatNumber(value)
+    }
+    return result
 }

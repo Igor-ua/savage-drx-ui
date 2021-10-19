@@ -47,11 +47,9 @@ export const DailyMembers = ({server}: DailyChartInfo) => {
             <Segment className={'daily-members-segment-top'}>
                 <Header as='h5' inverted textAlign={"center"} content={'Players'} subheader={'(last 24h)'}
                         className={'daily-members-header'}/>
-                <Label className={'daily-members-label'} color={'orange'} size={"small"} attached={"top right"}>
+                <Label className={'csp-label'} size={"small"} attached={"top right"}>
                     Total
-                    <Label.Detail className={'label-detail'}>
-                        {dailySize}
-                    </Label.Detail>
+                    <Label.Detail content={dailySize}/>
                 </Label>
             </Segment>
             <Segment secondary className={'daily-members-users-list-segment customized-scrollbar'} style={{

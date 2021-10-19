@@ -6,7 +6,8 @@ import Discord from "../Discord";
 import Live from "../Live";
 import {getNewsByPage} from "../requests";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {LadderNews} from "../Ladder";
+import {LadderNews, LiveLadderWidget} from "../Ladder";
+import {ROUTES} from "../utils/constants";
 
 import './scss/styles-homepage.scss';
 
@@ -48,16 +49,18 @@ export default () => {
                 <Grid.Column>
                     <Container className={'base-align-right'}>
                         <Discord/>
+                        <br/>
+                        <LiveLadderWidget/>
                     </Container>
                 </Grid.Column>
                 <Grid.Column width={7}>
-                    <Container className={'base'}>
+                    <Container className={'base-container'}>
                         {news.map((ns: any, i) => {
                             return <Segment key={i} textAlign='center' className={'base-segment'}>
                                 {ns.is_weekly_ladder ? <LadderNews body={ns.body} week_name={ns.week_name}/> : null}
                             </Segment>
                         })}
-                        <Container textAlign={"center"} className={'pagination'}>
+                        <Container textAlign={"center"} className={'base-pagination'}>
                             <Pagination
                                 inverted
                                 defaultActivePage={page}
@@ -67,7 +70,7 @@ export default () => {
                                     if (activePage && activePage > 1) {
                                         history.push("/page/" + activePage)
                                     } else {
-                                        history.push("/")
+                                        history.push(ROUTES.root)
                                     }
                                 }}
                             />

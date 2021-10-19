@@ -27,13 +27,12 @@
     }
 
     .discord-segment-top {
-      background-color: #155b80 !important;
+      background-color: #155b80;
       padding-top: 7px;
       padding-bottom: 5px;
 
       .discord-logo {
         filter: invert(1);
-
       }
     }
 
@@ -47,10 +46,6 @@
 
     .online-label {
       margin-left: 5px;
-
-      .label-detail {
-        color: #000000;
-      }
     }
   }
 }

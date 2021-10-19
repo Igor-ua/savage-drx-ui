@@ -100,7 +100,7 @@ export const GamesHistory = () => {
                                             primary
                                             size={"small"}
                                             as={Link}
-                                            to={'/history/' + gr?.timestamp}>
+                                            to={'/history/' + gr?.timestamp + '/stats'}>
                                             <Icon name='bars' size={"small"}/>
                                             open
                                         </Button>

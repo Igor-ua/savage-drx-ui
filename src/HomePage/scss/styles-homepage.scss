@@ -1,21 +1,17 @@
 .home-page {
+
   .grid-wrapper {
     margin: 50px 10px 15px;
     width: 100%;
 
-    .news-grid {
-
-    }
-
-    .base {
-      //background-color: rgba(255, 255, 255, 0.0);
-      //border: 1px solid red;
-      //color: white;
-
+    .base-container {
 
       .base-segment {
         background-color: #2d2e30;
+        border: 2px solid #155b80;
         color: #8a8e94;
+        margin-bottom: 25px;
+
         .header {
           color: #8a8e94;
         }
@@ -23,7 +19,6 @@
     }
 
     .base-align-right {
-      //border: 1px solid red;
       color: white;
       > div {
         display: flex;
@@ -31,8 +26,10 @@
       }
     }
 
-    .pagination {
-      //background-color: rgba(255, 255, 255, 0.0);
+    .base-pagination {
+      .pagination {
+        background-color: #2d2e30 !important;
+      }
     }
   }
 }
