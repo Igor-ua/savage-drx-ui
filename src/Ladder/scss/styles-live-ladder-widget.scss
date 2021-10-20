@@ -6,17 +6,35 @@
 
     .live-ladder-widget-segment-top{
       background-color: #155b80;
+      padding-top: 5px;
+      padding-bottom: 5px;
 
       img {
         width: 44px !important;
         height: 44px !important;
         border-radius: 8px;
       }
+
+      .current-week-header {
+        color: #6dbf2f;
+      }
     }
 
     .live-ladder-widget-segment-middle{
       background-color: #202225;
       color: #8a8e94;
+
+      .live-button {
+        margin-top: 15px;
+      }
+
+      .span-widget-live {
+        color: red;
+      }
+
+      .live-formatted-weeks{
+        margin-top: 10px;
+      }
     }
   }
 }

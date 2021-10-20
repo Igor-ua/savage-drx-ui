@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLocation, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {Container, Grid, Icon, Menu} from "semantic-ui-react";
 
 import {getGameResultByTimestamp} from "../requests";
 import {StatsInfoTable} from "./GameHistoryStatsInfo";
 import {GameHistoryStatsResult} from "./GameHistoryStatsResult";
-import {getWeaponStatsTable} from "./GameHistoryStatsWeapons";
 import {getCurrentTimeSeconds, isCacheOutdated} from "../utils";
 import {GAME_HISTORY_TTL_SECONDS} from "../utils/constants";
 import {EGRAccuracy, ExtendedGameResult} from "../types";

@@ -18,6 +18,8 @@ export const Ladder = () => {
     const [activeMenu, setActiveMenu] = useState(params?.tab);
     const [weeklyLadder, setWeeklyLadder] = useState<WeeklyLadder>();
     const [sortedWeeklyLadder, setSortedWeeklyLadder] = useState<SortedWeeklyLadder>();
+    const linkTop = isLive ? '/ladder/live/top' : '/ladder/week/' + weekName + '/top'
+    const linkExtended = isLive ? '/ladder/live/extended' : '/ladder/week/' + weekName + '/extended'
 
     useEffect(() => {
         if (isLive) {
@@ -50,7 +52,7 @@ export const Ladder = () => {
                     className={'menu-item-top'}
                     name='Top'
                     as={Link}
-                    to={'/ladder/week/' + weekName + '/top'}
+                    to={linkTop}
                     active={activeMenu === 'top'}
                     onClick={() => {
                         setActiveMenu('top')
@@ -64,7 +66,7 @@ export const Ladder = () => {
                     className={'menu-item-extended'}
                     name='Extended'
                     as={Link}
-                    to={'/ladder/week/' + weekName + '/extended'}
+                    to={linkExtended}
                     active={activeMenu === 'extended'}
                     onClick={() => {
                         setActiveMenu('extended')

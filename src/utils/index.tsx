@@ -88,6 +88,11 @@ export const getFormattedDate = (d: Date) => {
     return d.toLocaleDateString("en-US", options)
 }
 
+export const getShortFormattedDate = (d: Date) => {
+    const options: any = {year: 'numeric', month: 'short', day: 'numeric'};
+    return d.toLocaleDateString("en-US", options)
+}
+
 export function getCurrentWeekCode() {
     const now = new Date()
     const current_year = now.getFullYear()

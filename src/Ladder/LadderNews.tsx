@@ -3,6 +3,7 @@ import {Button, Grid, Header, Icon, Image, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 import {LadderProps} from "../types";
+import {formatNumber} from "../utils";
 import {CLAN_ICON_URL} from "../utils/constants";
 
 import './scss/styles-ladder-news.scss';
@@ -28,162 +29,16 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
 
         <Grid columns="equal" textAlign={"center"}>
             <Grid.Column textAlign={"center"}>
-                <Table celled singleLine fixed inverted compact size={"small"}
-                       className={"top-weekly"}
-                       textAlign={"center"}>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell colSpan="3">Commanders (points)</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {body.comm_points.map((c: any, index: any) => (
-                            <Table.Row key={index}>
-                                <Table.Cell colSpan="2" textAlign={"left"}>
-                                    {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                        size={"small"}
-                                                        inline
-                                                        className={'info-clan-icon'}/>
-                                        : null}
-                                    <span>{c.name}</span>
-                                </Table.Cell>
-                                <Table.Cell collapsing>{c.value}</Table.Cell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
-                <div>
-                    <Table celled singleLine fixed inverted compact size={"small"}
-                           className={"top-weekly"}
-                           textAlign={"center"}>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell colSpan="3">Auto buffs</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {body.auto_buff.map((c: any, index: any) => (
-                                <Table.Row key={index}>
-                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
-                                        {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                            size={"small"}
-                                                            inline
-                                                            className={'info-clan-icon'}/>
-                                            : null}
-                                        <span>{c.name}</span>
-                                    </Table.Cell>
-                                    <Table.Cell collapsing>{c.value}</Table.Cell>
-                                </Table.Row>
-                            ))}
-                        </Table.Body>
-                    </Table>
-                </div>
+                {getTable(body.comm_points, 'Commanders (points)')}
+                <div>{getTable(body.auto_buff, 'Auto buffs')}</div>
             </Grid.Column>
-
             <Grid.Column textAlign={"center"}>
-                <Table celled singleLine fixed inverted compact size={"small"}
-                       className={"top-weekly"}
-                       textAlign={"center"}>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell colSpan="3">Kills</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {body.kills.map((c: any, index: any) => (
-                            <Table.Row key={index}>
-                                <Table.Cell colSpan="2" collapsing textAlign={"left"}>
-                                    {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                        size={"small"}
-                                                        inline
-                                                        className={'info-clan-icon'}/>
-                                        : null}
-                                    <span>{c.name}</span>
-                                </Table.Cell>
-                                <Table.Cell collapsing>{c.value}</Table.Cell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
-                <div>
-                    <Table celled singleLine fixed inverted compact size={"small"}
-                           className={"top-weekly"}
-                           textAlign={"center"}>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell colSpan="3">Deaths</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {body.deaths.map((c: any, index: any) => (
-                                <Table.Row key={index}>
-                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
-                                        {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                            size={"small"}
-                                                            inline
-                                                            className={'info-clan-icon'}/>
-                                            : null}
-                                        <span>{c.name}</span>
-                                    </Table.Cell>
-                                    <Table.Cell collapsing>{c.value}</Table.Cell>
-                                </Table.Row>
-                            ))}
-                        </Table.Body>
-                    </Table>
-                </div>
+                {getTable(body.kills, 'Kills')}
+                <div>{getTable(body.deaths, 'Deaths')}</div>
             </Grid.Column>
-
             <Grid.Column textAlign={"center"}>
-                <Table celled singleLine fixed inverted compact size={"small"}
-                       className={"top-weekly"}
-                       textAlign={"center"}>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell colSpan="3">Damage on players</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {body.client_damage.map((c: any, index: any) => (
-                            <Table.Row key={index}>
-                                <Table.Cell colSpan="2" collapsing textAlign={"left"}>
-                                    {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                        size={"small"}
-                                                        inline
-                                                        className={'info-clan-icon'}/>
-                                        : null}
-                                    <span>{c.name}</span>
-                                </Table.Cell>
-                                <Table.Cell collapsing>{c.value}</Table.Cell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
-                <div>
-                    <Table celled singleLine fixed inverted compact size={"small"}
-                           className={"top-weekly"}
-                           textAlign={"center"}>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell collapsing colSpan="3">Damage on buildings</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {body.build_damage.map((c: any, index: any) => (
-                                <Table.Row key={index}>
-                                    <Table.Cell colSpan="2" collapsing textAlign={"left"}>
-                                        {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
-                                                            size={"small"}
-                                                            inline
-                                                            className={'info-clan-icon'}/>
-                                            : null}
-                                        <span>{c.name}</span>
-                                    </Table.Cell>
-                                    <Table.Cell collapsing>{c.value}</Table.Cell>
-                                </Table.Row>
-                            ))}
-                        </Table.Body>
-                    </Table>
-                </div>
+                {getTable(body.client_damage, 'Damage on players')}
+                <div>{getTable(body.build_damage, 'Damage on buildings')}</div>
             </Grid.Column>
         </Grid>
 
@@ -197,4 +52,31 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
             All Results
         </Button>
     </div>
+}
+
+const getTable = (arr: Array<any>, title: string) => {
+    return <Table celled singleLine fixed inverted compact size={"small"}
+                  className={"top-weekly"}
+                  textAlign={"center"}>
+        <Table.Header>
+            <Table.Row>
+                <Table.HeaderCell colSpan="3">{title}</Table.HeaderCell>
+            </Table.Row>
+        </Table.Header>
+        <Table.Body>
+            {arr.map((c: any, index: any) => (
+                <Table.Row key={index}>
+                    <Table.Cell colSpan="2" textAlign={"left"}>
+                        {c.clan_id ? <Image src={CLAN_ICON_URL + c.clan_id + '.png'}
+                                            size={"small"}
+                                            inline
+                                            className={'info-clan-icon'}/>
+                            : null}
+                        <span>{c.name}</span>
+                    </Table.Cell>
+                    <Table.Cell collapsing>{formatNumber(c.value)}</Table.Cell>
+                </Table.Row>
+            ))}
+        </Table.Body>
+    </Table>
 }

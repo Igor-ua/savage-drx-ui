@@ -10,6 +10,7 @@ import {LadderNews, LiveLadderWidget} from "../Ladder";
 import {ROUTES} from "../utils/constants";
 
 import './scss/styles-homepage.scss';
+import Footer from "../Footer";
 
 
 export default () => {
@@ -86,5 +87,6 @@ export default () => {
                 </Grid.Column>
             </Grid>
         </div>
+        <Footer/>
     </div>
 }
