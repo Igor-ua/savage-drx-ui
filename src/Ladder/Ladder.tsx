@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {Container, Icon, Menu, Segment} from "semantic-ui-react";
+import {Container, Header, Icon, Menu, Segment} from "semantic-ui-react";
 import {Link, useParams, useRouteMatch} from "react-router-dom";
 
 import {LadderTop} from "./LadderTop";
 import {LadderExtended} from "./LadderExtended";
 import {getLiveWeeklyLadder, getWeeklyLadder} from "../requests";
+import {getCurrentWeekCode} from "../utils";
 import {SortedWeeklyLadder, WeeklyLadder} from "../types";
 import {INFO_FIELDS, ROUTES} from "../utils/constants";
 
@@ -15,6 +16,10 @@ export const Ladder = () => {
     const isLive = useRouteMatch(ROUTES.ladderLiveTab);
     const params: any = useParams();
     const weekName = params?.weekName;
+    const current_year = getCurrentWeekCode().split('_')[0]
+    const current_week = getCurrentWeekCode().split('_')[1]
+    const historicalWeek = weekName?.split('_')[1]
+    const historicalYear = weekName?.split('_')[0]
     const [activeMenu, setActiveMenu] = useState(params?.tab);
     const [weeklyLadder, setWeeklyLadder] = useState<WeeklyLadder>();
     const [sortedWeeklyLadder, setSortedWeeklyLadder] = useState<SortedWeeklyLadder>();
@@ -42,8 +47,18 @@ export const Ladder = () => {
 
     return <div className={'ladder-wrapper'}>
 
-        <Segment textAlign={"center"}>
-            Week #{weeklyLadder?.week_name}
+        <Segment textAlign={"center"} className={'ladder-segment'}>
+            <Header as={'h4'} inverted className={'ladder-header'}>
+                {isLive
+                    ? <span><span>Week </span><span
+                        className={'week-number'}>#{current_week}</span><span>/{current_year}</span></span>
+                    : <span><span>Week </span><span
+                        className={'week-number'}>#{historicalWeek}</span><span>/{historicalYear}</span></span>}
+                {isLive
+                    ? <Header.Subheader className={'sub-live'}>Live!</Header.Subheader>
+                    : <Header.Subheader className={'sub-finished'}>Finished</Header.Subheader>
+                }
+            </Header>
         </Segment>
 
         <Container className={'ladder-menu-container'}>

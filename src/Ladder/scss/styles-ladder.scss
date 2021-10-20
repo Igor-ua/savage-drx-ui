@@ -3,6 +3,24 @@
   margin: 50px 2% 15px;
   //border: 1px solid red;
 
+  .ladder-segment {
+    background-color: #2d2e30 !important;
+
+    .ladder-header {
+      .sub-finished {
+        color: #8a8e94 !important;
+      }
+
+      .sub-live {
+        color: #c6450a !important;
+      }
+
+      .week-number {
+        color: #6dbf2f;
+      }
+    }
+  }
+
   .ladder-menu-container {
     width: 800px !important;
     margin-top: 10px;

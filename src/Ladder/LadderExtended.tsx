@@ -140,7 +140,7 @@ const getChart = (data: Array<any>, title: string, key: string) => {
         chart: {
             type: 'bar',
             zoomType: 'x',
-            height: chartData.length * 18 + 'px',
+            height: chartData.length * 20 + 'px',
             backgroundColor: '#D5D0CF'
         },
         tooltip: {

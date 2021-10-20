@@ -25,19 +25,23 @@
             color: #b45d34;
           }
         }
+
+        .th-select {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
       }
     }
 
     .weekly-segment {
       background-color: #2d2e30;
-      color: #8a8e94;
 
-      .weekly-dropdown-1 {
-        background-color: #47494e;
+      .weekly-dropdown {
+        //background-color: #47494e;
         //color: white;
 
         div {
-          background-color: #47494e;
+          //background-color: #47494e;
         }
 
         .active {
@@ -48,6 +52,18 @@
           //color: white !important;
         }
       }
+
+      .weekly-ladder-header {
+        //color: #8a8e94 !important;
+      }
+    }
+
+    .header-live {
+      color: #c6450a !important;
+    }
+
+    .header-history {
+      //color: #8a8e94 !important;
     }
   }
 
