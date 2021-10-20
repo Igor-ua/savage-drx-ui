@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, Table} from "semantic-ui-react";
 
-import {formatGameTime} from "../utils";
+import {formatGameTime, formatPlayer} from "../utils";
 import {CLAN_ICON_URL} from "../utils/constants";
 import {GRTeam} from "../types";
 
@@ -43,14 +43,7 @@ export const StatsInfoTable = (team: GRTeam) => {
         <Table.Body>
             {team.players.map((grPlayer, index) => {
                 return grPlayer.p?.info ? <Table.Row key={index}>
-                        <Table.Cell collapsing textAlign={"left"}>
-                            {grPlayer.clan_id ? <Image src={CLAN_ICON_URL + grPlayer.clan_id + '.png'}
-                                                       size={"small"}
-                                                       inline
-                                                       className={'info-clan-icon'}/>
-                                : null}
-                            <span>{grPlayer.name}</span>
-                        </Table.Cell>
+                        <Table.Cell collapsing textAlign={"left"} content={formatPlayer(grPlayer)}/>
                         <Table.Cell collapsing>{formatGameTime(grPlayer.p.info.on_team_time)}</Table.Cell>
                         <Table.Cell collapsing>{grPlayer.p.info.experience}</Table.Cell>
                         <Table.Cell collapsing>{grPlayer.p.info.kills}</Table.Cell>

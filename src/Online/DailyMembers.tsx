@@ -6,6 +6,7 @@ import {DailyChartInfo, DailySnapshot, DPlayer} from "../types";
 import {CLAN_ICON_URL} from "../utils/constants";
 
 import './scss/styles-daily-members.scss';
+import {Link} from "react-router-dom";
 
 
 const removeDuplicates = (arr: Array<DPlayer>) =>
@@ -64,7 +65,12 @@ export const DailyMembers = ({server}: DailyChartInfo) => {
                                                     inline
                                                     className={'online-clan-icon'}/>
                                     : null}
-                                <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                {p.uid
+                                    ? <Link to={'/player/' + p.uid} className={'online-link-name'}>
+                                        <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                    </Link>
+                                    : <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                }
                             </List.Item>
                         ))}
                         </List>
@@ -74,10 +80,14 @@ export const DailyMembers = ({server}: DailyChartInfo) => {
                             <List.Item key={index}>
                                 {p.clan_id ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
                                                     size={"small"}
-                                                    inline
-                                                    className={'online-clan-icon'}/>
+                                                    inline/>
                                     : null}
-                                <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                {p.uid
+                                    ? <Link to={'/player/' + p.uid} className={'online-link-name'}>
+                                        <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                    </Link>
+                                    : <span className={p.clan_id ? '' : 'name-without-icon'}>{p.name}</span>
+                                }
                             </List.Item>
                         ))}
                         </List>

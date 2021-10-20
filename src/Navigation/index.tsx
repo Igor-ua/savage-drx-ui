@@ -21,6 +21,14 @@ const Navigation = () => {
     const routeLadderLive = useRouteMatch(ROUTES.ladderLiveTab);
     const isLadderPath = Boolean(location.pathname === ROUTES.ladder || routeLadderHistorical || routeLadderLive)
 
+    const routePlayer = useRouteMatch(ROUTES.player);
+    const routePlayerWeekly = useRouteMatch(ROUTES.playerWeekly);
+    const isPlayerPath = Boolean(routePlayer || routePlayerWeekly)
+
+    const routeStatsUid = useRouteMatch(ROUTES.searchStatsUid);
+    const routeStatsName = useRouteMatch(ROUTES.searchStatsName);
+    const isStatsPath = Boolean(location.pathname === ROUTES.stats || routeStatsUid || routeStatsName)
+
     const isOnlinePath = Boolean(location.pathname === ROUTES.online)
 
     const activeColor = 'orange'
@@ -60,11 +68,20 @@ const Navigation = () => {
                 name='ladder'
                 as={Link}
                 to={ROUTES.ladder}
-                position={"left"}
                 color={isLadderPath ? activeColor : inactiveColor}
                 active={isLadderPath}>
                 <Icon name='signal'/>
                 Ladder
+            </Menu.Item>
+            <Menu.Item
+                name='stats'
+                as={Link}
+                to={ROUTES.stats}
+                position={"left"}
+                color={isStatsPath ? activeColor : inactiveColor}
+                active={isStatsPath}>
+                <Icon name='user'/>
+                Stats
             </Menu.Item>
         </Menu>
     </Sticky>

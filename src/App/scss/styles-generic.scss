@@ -6,3 +6,16 @@
     color: black !important;
   }
 }
+
+.player-with-clan-icon {
+  img {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 8px;
+  }
+
+  a.link-name {
+    padding-left: 5px;
+    color: #8a8e94;
+  }
+}

@@ -130,6 +130,7 @@ export interface ExtendedGameResult extends GameResult {
 export interface ACRPlayer {
     name: string;
     clan_id: number;
+    uid: number;
     accuracies: Array<AAccuracy>;
     generalDamage: number;
 }
@@ -387,4 +388,11 @@ export interface LDamage {
 
 export interface LadderTopProps {
     sortedWeeklyLadder: SortedWeeklyLadder
+}
+
+export interface SearchableSSFPlayer {
+    uid: number,
+    clan_id: number,
+    clan_tag_name: string,
+    name: string
 }

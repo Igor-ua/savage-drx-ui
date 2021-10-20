@@ -6,7 +6,12 @@ export const ROUTES = {
     historyTimestampTab: "/history/:timestamp/:tab",
     ladder: "/ladder",
     ladderWeekTab: "/ladder/week/:weekName/:tab",
-    ladderLiveTab: "/ladder/live/:tab"
+    ladderLiveTab: "/ladder/live/:tab",
+    stats: "/stats",
+    searchStatsUid: "/stats/search/uid/:uid",
+    searchStatsName: "/stats/search/name/:name",
+    player: "/player/:id",
+    playerWeekly: "/player/:weekName/:id"
 }
 
 export const CLAN_ICON_URL = '/public/cached/icondir/';

@@ -6,6 +6,7 @@ import {drawableItems} from "./items";
 import {ACRPlayer, EGRAccuracy} from "../types";
 
 import './scss/styles-game-history-stats-weapons.scss';
+import {formatPlayer} from "../utils";
 
 
 export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {
@@ -34,14 +35,7 @@ export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {
             <Table.Body>
                 {players.map((p, index) => (
                     <Table.Row key={index}>
-                        <Table.Cell textAlign={"left"}>
-                            {p.clan_id ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
-                                                size={"small"}
-                                                inline
-                                                className={'info-clan-icon'}/>
-                                : null}
-                            <span>{p.name}</span>
-                        </Table.Cell>
+                        <Table.Cell textAlign={"left"} content={formatPlayer(p)}/>
                         {p.accuracies.map((acr, index) => (
                             <Table.Cell key={index}>
                                 {getAccuracyByValue(acr.value)}

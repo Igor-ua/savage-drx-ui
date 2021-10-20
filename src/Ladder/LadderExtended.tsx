@@ -1,20 +1,20 @@
 import React, {useState} from 'react'
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import {Container, Grid, Icon, Image, List, Menu, Table} from "semantic-ui-react";
+import {Container, Grid, Icon, List, Menu, Table} from "semantic-ui-react";
 
-import {CLAN_ICON_URL, INFO_FIELDS} from "../utils/constants";
+import {INFO_FIELDS} from "../utils/constants";
 import {LadderTopProps} from "../types";
-import {formatInfoValue, formatNumber} from "../utils";
+import {formatInfoValue, formatNumber, formatWeeklyPlayer} from "../utils";
 
 import './scss/styles-ladder-extended.scss';
 
 
 export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
-
     const [activeMenu, setActiveMenu] = useState('stats');
     const [item, setItem] = useState(INFO_FIELDS.COMM_POINTS);
     const [damageItem, setDamageItem] = useState('Hatchet');
+    const weekName = sortedWeeklyLadder.week_name.split('_')[1]
 
     return <div className={'ladder-extended-wrapper'}>
 
@@ -43,7 +43,7 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
                             }}
                             color={"orange"}
                             position={"left"}>
-                            <Icon name='certificate'/>
+                            <Icon name='sun'/>
                             Damage
                         </Menu.Item>
                     </Menu>
@@ -74,8 +74,8 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
             <Grid.Column textAlign={"center"} width={4}>
                 <Container className={"ladder-extended-table-container"}>
                     {activeMenu === 'stats'
-                        ? getTable(sortedWeeklyLadder.ladder.info[item.key], item.title, item.key)
-                        : getTable(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, item.key)}
+                        ? getTable(sortedWeeklyLadder.ladder.info[item.key], item.title, item.key, weekName)
+                        : getTable(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, item.key, weekName)}
                 </Container>
             </Grid.Column>
 
@@ -91,7 +91,7 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
     </div>
 }
 
-const getTable = (data: Array<any>, title: string, key: string) => {
+const getTable = (data: Array<any>, title: string, key: string, weekName: string) => {
     data = data.filter(key => key.item_value || key.a_item_damage)
     return <Table celled inverted compact
                   size={"small"}
@@ -109,13 +109,7 @@ const getTable = (data: Array<any>, title: string, key: string) => {
                         {index + 1}
                     </Table.Cell>
                     <Table.Cell textAlign={"left"}>
-                        {d.clan_id
-                            ? <Image src={CLAN_ICON_URL + d.clan_id + '.png'}
-                                     size={"small"}
-                                     inline
-                                     className={'info-clan-icon'}/>
-                            : null}
-                        <span>{d.name}</span>
+                        {formatWeeklyPlayer(d, weekName)}
                     </Table.Cell>
                     <Table.Cell
                         content={d.item_value ? formatInfoValue(key, d.item_value) : formatNumber(d.a_item_damage)}

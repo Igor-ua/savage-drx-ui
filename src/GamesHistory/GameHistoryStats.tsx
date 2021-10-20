@@ -5,13 +5,13 @@ import {Container, Grid, Icon, Menu} from "semantic-ui-react";
 
 import {getGameResultByTimestamp} from "../requests";
 import {StatsInfoTable} from "./GameHistoryStatsInfo";
+import {WeaponStats} from "./WeaponStats";
 import {GameHistoryStatsResult} from "./GameHistoryStatsResult";
 import {getCurrentTimeSeconds, isCacheOutdated} from "../utils";
 import {GAME_HISTORY_TTL_SECONDS} from "../utils/constants";
 import {EGRAccuracy, ExtendedGameResult} from "../types";
 
 import './scss/styles-game-history-stats.scss';
-import {WeaponStats} from "./WeaponStats";
 
 
 export const GameHistoryStats = () => {
@@ -57,6 +57,7 @@ export const GameHistoryStats = () => {
                         const acPlayer: any = {
                             name: p.name,
                             clan_id: p.clan_id,
+                            uid: p.uid,
                             accuracies: []
                         };
 
@@ -148,6 +149,6 @@ const drawInfo = (gameResult: ExtendedGameResult) => {
 
 const drawAccuracy = (gameResult: ExtendedGameResult) => {
     return <div>
-        <WeaponStats players={gameResult.p_accuracies} />
+        <WeaponStats players={gameResult.p_accuracies}/>
     </div>
 }

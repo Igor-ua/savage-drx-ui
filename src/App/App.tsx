@@ -3,6 +3,8 @@ import {Route, Switch} from "react-router-dom";
 
 import HomePage from "../HomePage";
 import Navigation from "../Navigation";
+import Player from "../Player";
+import Stats from "../Stats";
 import {HistoricalOnline} from "../Online";
 import {GameHistoryStats, GamesHistory} from "../GamesHistory";
 import {Ladder, LadderHomePage} from "../Ladder";
@@ -26,6 +28,11 @@ export default () => {
             <Route exact path={ROUTES.ladder} component={LadderHomePage}/>
             <Route exact path={ROUTES.ladderWeekTab} component={Ladder}/>
             <Route exact path={ROUTES.ladderLiveTab} component={Ladder}/>
+            <Route exact path={ROUTES.stats} component={Stats}/>
+            <Route exact path={ROUTES.searchStatsUid} component={Stats}/>
+            <Route exact path={ROUTES.searchStatsName} component={Stats}/>
+            <Route exact path={ROUTES.player} component={Player}/>
+            <Route exact path={ROUTES.playerWeekly} component={Player}/>
         </Switch>
     </div>
 };

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {drawableItems} from "./items";
+
 import {getWeaponStatsTable} from "./GameHistoryStatsWeapons";
 import {getGeneralDamageChart} from "./GeneralDamageChart";
+import {drawableItems} from "./items";
 import {ACRPlayer, WSProps} from "../types";
 
 import './scss/styles-game-history-stats-weapons.scss';

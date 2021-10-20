@@ -42,6 +42,14 @@ export const getSSF = (uid: number) => {
     return axios.get(`${SERVER_URL}/stats/ssf/${uid}`)
 }
 
+export const searchSSFByUid = (uid: number) => {
+    return axios.get(`${SERVER_URL}/stats/ssf/search/uid/${uid}`)
+}
+
+export const searchSSFByName = (nick: string) => {
+    return axios.get(`${SERVER_URL}/stats/ssf/search/name/${nick}`)
+}
+
 export const getLadderWeeks = (year: number) => {
     return axios.get(`${SERVER_URL}/stats/ladder/weeks/${year}`)
 }

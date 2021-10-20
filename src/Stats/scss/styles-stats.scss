@@ -1,0 +1,50 @@
+.csp-stats-wrapper {
+  width: 100%;
+  margin: 50px 20% 15px;
+
+  .stats-header-segment {
+    background-color: #2d2e30 !important;
+
+    .stats-header {
+    }
+  }
+
+  .stats-form-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+    max-height: 185px;
+    min-height: 185px;
+
+    form {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      color: #8a8e94 !important;
+    }
+
+    .reset-button {
+      margin-left: 10px;
+    }
+  }
+
+  .stats-results-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+    min-height: 185px;
+
+    .table-ssf-searchable {
+      margin-top: 15px !important;
+
+      th {
+        background-color: #155b80 !important;
+      }
+
+      tr {
+        background-color: #202225;
+        color: #8a8e94;
+      }
+    }
+  }
+}

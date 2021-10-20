@@ -1,6 +1,9 @@
 import {GameResult} from "../types";
 import {weekNumber} from 'weeknumber'
-import {INFO_FIELDS} from "./constants";
+import {CLAN_ICON_URL, INFO_FIELDS} from "./constants";
+import {Image, Table} from "semantic-ui-react";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -146,4 +149,34 @@ export const formatInfoValue = (key: string, value: number) => {
         result = formatNumber(value)
     }
     return result
+}
+
+export const formatPlayer = (p: any) => {
+    return <span className={'player-with-clan-icon'}>
+        {
+            p.clan_id
+                ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
+                         size={"small"}
+                         inline/>
+                : null
+        }
+        <Link to={'/player/' + p.uid} className={'link-name'}>
+            <span>{p.name}</span>
+        </Link>
+    </span>
+}
+
+export const formatWeeklyPlayer = (p: any, weekName: string) => {
+    return <span className={'player-with-clan-icon'}>
+        {
+            p.clan_id
+                ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
+                         size={"small"}
+                         inline/>
+                : null
+        }
+        <Link to={'/player/' + weekName + '/' + p.uid} className={'link-name'}>
+            <span>{p.name}</span>
+        </Link>
+    </span>
 }
