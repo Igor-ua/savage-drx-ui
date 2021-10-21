@@ -31,16 +31,16 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
 
         <Grid columns="equal" textAlign={"center"}>
             <Grid.Column textAlign={"center"}>
-                {getTable(body.comm_points, 'Commanders (points)', weekName)}
-                <div>{getTable(body.auto_buff, 'Auto buffs', weekName)}</div>
+                {getTable(body.comm_points, 'Commanders (points)', week_name)}
+                <div>{getTable(body.auto_buff, 'Auto buffs', week_name)}</div>
             </Grid.Column>
             <Grid.Column textAlign={"center"}>
-                {getTable(body.kills, 'Kills', weekName)}
-                <div>{getTable(body.deaths, 'Deaths', weekName)}</div>
+                {getTable(body.kills, 'Kills', week_name)}
+                <div>{getTable(body.deaths, 'Deaths', week_name)}</div>
             </Grid.Column>
             <Grid.Column textAlign={"center"}>
-                {getTable(body.client_damage, 'Damage on players', weekName)}
-                <div>{getTable(body.build_damage, 'Damage on buildings', weekName)}</div>
+                {getTable(body.client_damage, 'Damage on players', week_name)}
+                <div>{getTable(body.build_damage, 'Damage on buildings', week_name)}</div>
             </Grid.Column>
         </Grid>
 

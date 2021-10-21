@@ -1,9 +1,9 @@
+import React from "react";
 import {GameResult} from "../types";
 import {weekNumber} from 'weeknumber'
 import {CLAN_ICON_URL, INFO_FIELDS} from "./constants";
-import {Image, Table} from "semantic-ui-react";
+import {Image} from "semantic-ui-react";
 import {Link} from "react-router-dom";
-import React from "react";
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -56,15 +56,11 @@ export const isCacheOutdated = (ttl: number, timestamp: number) => {
     return currentTime > ttl + timestamp;
 }
 
-export const getTeamName = (teamId: number, teamName: string, race: string) => {
-    if (teamId === 0) {
+export const getExpectedTeamName = (teamNumber: number) => {
+    if (teamNumber === 0) {
         return `Spectators`
     }
-    return `${teamName} ${capitalizeFirstLetter(race)}`
-}
-
-export function capitalizeFirstLetter(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return teamNumber % 2 === 0 ? `Team-${teamNumber} (Beast)` : `Team-${teamNumber} (Human)`
 }
 
 export const getStartDateOfISOWeek = (week: number, year: number) => {

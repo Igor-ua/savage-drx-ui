@@ -1,4 +1,64 @@
-.csp-player-wrapper {
+.csp-stats-player {
   width: 100%;
-  margin: 50px 2% 15px;
+  margin: 50px 5% 15px;
+  //border: 1px solid red;
+
+  .segment {
+    background-color: #2d2e30 !important;
+    color: white;
+  }
+
+  .player-header-segment {
+
+    .player-header {
+
+    }
+  }
+
+  table {
+    th {
+      background-color: #155b80 !important;
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+    }
+
+    tr {
+      background-color: #202225;
+      color: #8a8e94;
+    }
+  }
+
+  .ssf-team-stats {
+    th {
+      //padding-top: 5px !important;
+      //padding-bottom: 5px !important;
+    }
+
+    tr {
+    }
+  }
+
+  .ssf-names {
+    th {
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+    }
+
+    tr {
+    }
+  }
+
+  .ssf-accuracy {
+    .ssf-item-image {
+      width: 30px !important;
+      height: 30px !important;
+      border-radius: 8px;
+    }
+
+    .with-image {
+      width: 50px !important;
+      padding-top: 3px !important;
+      padding-bottom: 3px !important;
+    }
+  }
 }

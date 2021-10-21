@@ -48,10 +48,11 @@ export default () => {
         <Grid columns="equal" textAlign={"center"}>
             <Grid.Column textAlign={"left"} width={"5"}>
                 <Segment textAlign={"center"} className={'stats-form-segment'}>
-                    Search
+                    <Header as={'h4'} content={'Search'}/>
                     <Form size={'tiny'}>
                         <Form.Field>
                             <Form.Input
+                                className={'nick-input'}
                                 placeholder='Nick'
                                 name='nick'
                                 value={name}
@@ -60,6 +61,7 @@ export default () => {
                                     setName(value)
                                 }}
                             />
+                            OR
                             <Form.Input
                                 placeholder='UID'
                                 name='uid'
@@ -107,7 +109,9 @@ export default () => {
             </Grid.Column>
             <Grid.Column textAlign={"left"}>
                 <Segment textAlign={"center"} className={'stats-results-segment'}>
-                    Search results{players?.length ? ': ' + players?.length : null}
+                    <Header as={'h4'}>
+                        Search results{players?.length ? ': ' + players?.length : null}
+                    </Header>
                     {players?.length ? getTable(players) : null}
                 </Segment>
             </Grid.Column>

@@ -1,12 +1,11 @@
 import React from "react";
 import {Image, Label, Table} from "semantic-ui-react";
 
-import {CLAN_ICON_URL} from "../utils/constants";
-import {drawableItems} from "./items";
 import {ACRPlayer, EGRAccuracy} from "../types";
+import {formatPlayer} from "../utils";
+import {drawableItems} from "./items";
 
 import './scss/styles-game-history-stats-weapons.scss';
-import {formatPlayer} from "../utils";
 
 
 export const getWeaponStatsTable = (players: Array<ACRPlayer>) => {

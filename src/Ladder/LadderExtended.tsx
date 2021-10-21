@@ -74,8 +74,8 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
             <Grid.Column textAlign={"center"} width={4}>
                 <Container className={"ladder-extended-table-container"}>
                     {activeMenu === 'stats'
-                        ? getTable(sortedWeeklyLadder.ladder.info[item.key], item.title, item.key, weekName)
-                        : getTable(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, item.key, weekName)}
+                        ? getTable(sortedWeeklyLadder.ladder.info[item.key], item.title, item.key, sortedWeeklyLadder.week_name)
+                        : getTable(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, item.key, sortedWeeklyLadder.week_name)}
                 </Container>
             </Grid.Column>
 

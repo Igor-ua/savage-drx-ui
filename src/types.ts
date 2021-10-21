@@ -256,42 +256,7 @@ export interface WeeklyLadder {
 
 export interface WPlayer {
     acc_damage: number
-    accuracy: {
-        'Hatchet': WPlayerAccuracy
-        'Saber': WPlayerAccuracy
-        'Battle axe': WPlayerAccuracy
-        'Hunting Bow': WPlayerAccuracy
-        'Marksman\'s Bow': WPlayerAccuracy
-        'Crossbow': WPlayerAccuracy
-        'Scattergun': WPlayerAccuracy
-        'Repeater': WPlayerAccuracy
-        'Coil Rifle': WPlayerAccuracy
-        'Discharger': WPlayerAccuracy
-        'Flux Gun': WPlayerAccuracy
-        'Pulse Cannon': WPlayerAccuracy
-        'Incinerator': WPlayerAccuracy
-        'Mortar': WPlayerAccuracy
-        'Launcher': WPlayerAccuracy
-        'Ballista Weapon': WPlayerAccuracy
-        'Catapult Weapon': WPlayerAccuracy
-        'Bone sword': WPlayerAccuracy
-        'Stalker claws': WPlayerAccuracy
-        'Predator claws': WPlayerAccuracy
-        'Venomous': WPlayerAccuracy
-        'Rabid': WPlayerAccuracy
-        'Carnivorous': WPlayerAccuracy
-        'Ember': WPlayerAccuracy
-        'Blaze': WPlayerAccuracy
-        'Fireball': WPlayerAccuracy
-        'Frost Bolts': WPlayerAccuracy
-        'Tempest': WPlayerAccuracy
-        'Lightning': WPlayerAccuracy
-        'Chaos Bolt': WPlayerAccuracy
-        'Surge': WPlayerAccuracy
-        'Rupture': WPlayerAccuracy
-        'Summoner strike': WPlayerAccuracy
-        'Uprooted Tree': WPlayerAccuracy
-    }
+    accuracy: WPlayerAccuracy
     clan_id: number
     clan_tag_name: string
     comm_stats: {
@@ -309,6 +274,43 @@ export interface WPlayer {
         }
     }
     uid: number
+}
+
+export interface WPlayerAccuracy {
+    'Hatchet': WPlayerAccuracy
+    'Saber': WPlayerAccuracy
+    'Battle axe': WPlayerAccuracy
+    'Hunting Bow': WPlayerAccuracy
+    'Marksman\'s Bow': WPlayerAccuracy
+    'Crossbow': WPlayerAccuracy
+    'Scattergun': WPlayerAccuracy
+    'Repeater': WPlayerAccuracy
+    'Coil Rifle': WPlayerAccuracy
+    'Discharger': WPlayerAccuracy
+    'Flux Gun': WPlayerAccuracy
+    'Pulse Cannon': WPlayerAccuracy
+    'Incinerator': WPlayerAccuracy
+    'Mortar': WPlayerAccuracy
+    'Launcher': WPlayerAccuracy
+    'Ballista Weapon': WPlayerAccuracy
+    'Catapult Weapon': WPlayerAccuracy
+    'Bone sword': WPlayerAccuracy
+    'Stalker claws': WPlayerAccuracy
+    'Predator claws': WPlayerAccuracy
+    'Venomous': WPlayerAccuracy
+    'Rabid': WPlayerAccuracy
+    'Carnivorous': WPlayerAccuracy
+    'Ember': WPlayerAccuracy
+    'Blaze': WPlayerAccuracy
+    'Fireball': WPlayerAccuracy
+    'Frost Bolts': WPlayerAccuracy
+    'Tempest': WPlayerAccuracy
+    'Lightning': WPlayerAccuracy
+    'Chaos Bolt': WPlayerAccuracy
+    'Surge': WPlayerAccuracy
+    'Rupture': WPlayerAccuracy
+    'Summoner strike': WPlayerAccuracy
+    'Uprooted Tree': WPlayerAccuracy
 }
 
 export interface TeamStats {

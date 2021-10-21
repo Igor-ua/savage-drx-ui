@@ -65,3 +65,45 @@ export const INFO_FIELDS = {
     MONEY_GAINED: {key: 'money_gained', title: 'Money Gained'},
     MONEY_SPENT: {key: 'money_spent', title: 'Money Spent'}
 }
+
+const SSF_INFO_FIELDS = {
+    comm_points: 'Points (Commanders)',
+    comm_wins: 'Victories (Commanders)',
+    comm_lose: 'Defeats (Commanders)',
+    comm_draw: 'Draws (Commanders)',
+    kills: 'Kills',
+    melee_kill: 'Melee Kills',
+    ranged_kill: 'Ranged Kills',
+    deaths: 'Deaths',
+    siege_kill: 'Siege Kills',
+    npc_kill: 'NPC Killed',
+    peon_kill: 'Workers Killed',
+    build_kill: 'Buildings Killed',
+    sacrifice: 'Sacrificed',
+    npc_damage: 'Damage on NPC',
+    client_damage: 'Damage on Players',
+    build_damage: 'Damage on Buildings',
+    outpost_damage: 'Damage on Outpost',
+    peon_damage: 'Damage on Workers',
+    money_delta: 'Money Delta',
+    experience: 'Experience',
+    mine: 'Mined',
+    build: 'Built',
+    on_team_time: 'Game Time',
+    auto_buff: 'Self Buffs',
+    flag_capture: 'Flags Captured',
+    heal: 'Heal',
+    jumps: 'Jumps',
+    blocks: 'Blocks',
+    order_give: 'Orders Given',
+    order_obeyed: 'Orders Obeyed',
+    carn_hp: 'Carnivorous',
+    kill_streak: 'Kill Streak',
+    money_gained: 'Money Gained',
+    money_spent: 'Money Spent'
+}
+
+export const getSsfInfoField = (field: string) => {
+    // @ts-ignore
+    return SSF_INFO_FIELDS[field]
+}

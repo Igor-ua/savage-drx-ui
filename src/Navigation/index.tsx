@@ -27,7 +27,7 @@ const Navigation = () => {
 
     const routeStatsUid = useRouteMatch(ROUTES.searchStatsUid);
     const routeStatsName = useRouteMatch(ROUTES.searchStatsName);
-    const isStatsPath = Boolean(location.pathname === ROUTES.stats || routeStatsUid || routeStatsName)
+    const isStatsPath = Boolean(location.pathname === ROUTES.stats || routeStatsUid || routeStatsName || isPlayerPath)
 
     const isOnlinePath = Boolean(location.pathname === ROUTES.online)
 

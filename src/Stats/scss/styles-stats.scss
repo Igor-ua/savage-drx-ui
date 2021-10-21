@@ -24,8 +24,16 @@
       color: #8a8e94 !important;
     }
 
+    .nick-input {
+      margin-bottom: 0 !important;
+    }
+
     .reset-button {
       margin-left: 10px;
+    }
+
+    .header {
+      color: #8a8e94 !important;
     }
   }
 
@@ -45,6 +53,10 @@
         background-color: #202225;
         color: #8a8e94;
       }
+    }
+
+    .header {
+      color: #8a8e94 !important;
     }
   }
 }
