@@ -1,0 +1,42 @@
+.patreon-widget {
+
+  .patreon-widget-segment {
+    max-width: 270px;
+    min-width: 270px;
+
+    .patreon-widget-segment-top {
+      background-color: #155b80;
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      img {
+        width: 65% !important;
+        height: 65% !important;
+        margin-left: 40px;
+        filter: brightness(76%) sepia(94) saturate(100) hue-rotate(-15deg);
+      }
+
+      .current-week-header {
+        color: #6dbf2f;
+      }
+    }
+
+    .patreon-widget-segment-middle {
+      padding-top: 5px;
+      background-color: #202225;
+      color: #8a8e94;
+
+      .body-text {
+        margin-bottom: 5px;
+      }
+
+      .patreon-join-button {
+        margin-top: 15px;
+      }
+
+      .sav-img {
+        border-radius: 8px;
+      }
+    }
+  }
+}

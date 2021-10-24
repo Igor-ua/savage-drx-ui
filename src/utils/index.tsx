@@ -115,9 +115,9 @@ export const secondsToDhms = (seconds: number) => {
     const s = Math.floor(seconds % 60);
 
     const dDisplay = d > 0 ? d + "d " : "";
-    const hDisplay = h > 0 ? h + ":" : "";
-    const mDisplay = m > 0 ? m + ":" : "";
-    const sDisplay = s > 0 ? s : "";
+    const hDisplay = h > 0 ? h + "h " : "";
+    const mDisplay = m > 0 ? m + "m " : "";
+    const sDisplay = s > 0 ? s + "s" : "";
     return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 

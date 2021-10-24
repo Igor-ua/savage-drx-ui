@@ -4,13 +4,14 @@ import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
 
 import Discord from "../Discord";
 import Live from "../Live";
+import Footer from "../Footer";
+import Patreon from '../Patreon';
 import {getNewsByPage} from "../requests";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {LadderNews, LiveLadderWidget} from "../Ladder";
 import {ROUTES} from "../utils/constants";
 
 import './scss/styles-homepage.scss';
-import Footer from "../Footer";
 
 
 export default () => {
@@ -52,6 +53,8 @@ export default () => {
                         <Discord/>
                         <br/>
                         <LiveLadderWidget/>
+                        <br/>
+                        <Patreon/>
                     </Container>
                 </Grid.Column>
                 <Grid.Column width={7}>

@@ -4,9 +4,16 @@ import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
 
 import {TeamStats, WLInfo, WLNames, WPlayer, WPlayerAccuracy} from "../types";
 import {getSSF, getWeeklyLadder} from "../requests";
-import {getExpectedTeamName} from "../utils";
+import {
+    formatInfoValue,
+    formatNumber,
+    getEndDateOfISOWeek,
+    getExpectedTeamName,
+    getFormattedDate,
+    getStartDateOfISOWeek
+} from "../utils";
 import {drawableItems} from "../GamesHistory/items";
-import {getSsfInfoField} from "../utils/constants";
+import {CLAN_ICON_URL, getSsfInfoField, INFO_FIELDS} from "../utils/constants";
 
 import './scss/styles-player.scss'
 
@@ -32,7 +39,20 @@ export default () => {
     return <div className={'csp-stats-player'}>
         <Segment textAlign={"center"} className={'player-header-segment'}>
             <Header as={'h4'} inverted className={'player-header'}>
-                {ssf?.name}
+                {ssf
+                    ? <span>
+                        {ssf.clan_id ? <Image src={CLAN_ICON_URL + ssf.clan_id + '.png'} size={"small"} inline/> : null}
+                        <span className={ssf.clan_id ? 'span-name' : ''}>{ssf.name}</span>
+                    </span>
+                    : null
+                }
+                {
+                    weekParam
+                        ? <Header.Subheader>
+                            {getWeekHeader(weekParam)}
+                        </Header.Subheader>
+                        : null
+                }
             </Header>
         </Segment>
         {ssf
@@ -86,19 +106,19 @@ const getTeamGamesTable = (teamName: string, stats: TeamStats) => {
         <Table.Body>
             <Table.Row>
                 <Table.Cell content={'Victories'}/>
-                <Table.Cell content={stats.wins}/>
+                <Table.Cell content={formatNumber(stats.wins)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Defeats'}/>
-                <Table.Cell content={stats.lose}/>
+                <Table.Cell content={formatNumber(stats.lose)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Draws'}/>
-                <Table.Cell content={stats.draw}/>
+                <Table.Cell content={formatNumber(stats.draw)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Games'}/>
-                <Table.Cell content={stats.games}/>
+                <Table.Cell content={formatNumber(stats.games)}/>
             </Table.Row>
         </Table.Body>
     </Table>
@@ -116,19 +136,19 @@ const getCommGamesTable = (stats: any) => {
         <Table.Body>
             <Table.Row>
                 <Table.Cell content={'Points'}/>
-                <Table.Cell content={stats.comm_points}/>
+                <Table.Cell content={formatNumber(stats.comm_points)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Victories'}/>
-                <Table.Cell content={stats.comm_wins}/>
+                <Table.Cell content={formatNumber(stats.comm_wins)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Defeats'}/>
-                <Table.Cell content={stats.comm_lose}/>
+                <Table.Cell content={formatNumber(stats.comm_lose)}/>
             </Table.Row>
             <Table.Row>
                 <Table.Cell content={'Draws'}/>
-                <Table.Cell content={stats.comm_draw}/>
+                <Table.Cell content={formatNumber(stats.comm_draw)}/>
             </Table.Row>
         </Table.Body>
     </Table>
@@ -149,7 +169,7 @@ const getNamesTable = (names: Array<WLNames>) => {
             {names.map((n, index) => (
                 <Table.Row key={index} textAlign={"left"}>
                     <Table.Cell content={n.name}/>
-                    <Table.Cell content={n.usages}/>
+                    <Table.Cell content={formatNumber(n.usages)}/>
                 </Table.Row>
             ))}
         </Table.Body>
@@ -181,15 +201,15 @@ const getAccuracyTable = (accuracy: WPlayerAccuracy) => {
                                inline
                                className={'ssf-item-image'}/>
                     </Table.Cell>
-                    <Table.Cell content={acc[1].shots}/>
-                    <Table.Cell content={acc[1].hits}/>
+                    <Table.Cell content={formatNumber(acc[1].shots)}/>
+                    <Table.Cell content={formatNumber(acc[1].hits)}/>
                     <Table.Cell>
                         {getAccuracyByValue(acc[1].shots, acc[1].hits)}
                     </Table.Cell>
-                    <Table.Cell content={acc[1].damage}/>
-                    <Table.Cell content={acc[1].kills}/>
-                    <Table.Cell content={acc[1].deaths}/>
-                    <Table.Cell content={acc[1].siege_hits}/>
+                    <Table.Cell content={formatNumber(acc[1].damage)}/>
+                    <Table.Cell content={formatNumber(acc[1].kills)}/>
+                    <Table.Cell content={formatNumber(acc[1].deaths)}/>
+                    <Table.Cell content={formatNumber(acc[1].siege_hits)}/>
                 </Table.Row>
             })}
         </Table.Body>
@@ -208,9 +228,12 @@ const getGeneralInfoTable = (info: WLInfo) => {
         </Table.Header>
         <Table.Body>
             {Object.entries(info).map((inf, index) => {
+                console.log(inf[0])
                 return <Table.Row key={index} textAlign={"left"}>
                     <Table.Cell content={getSsfInfoField(inf[0])}/>
-                    <Table.Cell content={inf[1]}/>
+                    <Table.Cell>
+                        {formatInfoValue(inf[0], inf[1])}
+                    </Table.Cell>
                 </Table.Row>
             })}
         </Table.Body>
@@ -219,4 +242,14 @@ const getGeneralInfoTable = (info: WLInfo) => {
 
 const getAccuracyByValue = (shots: number, hits: number) => {
     return shots ? Math.round(hits / shots * 100) + '%' : null;
+}
+
+const getWeekHeader = (weekParam: string) => {
+    const requestedYear = Number(weekParam.split('_')[0])
+    const requestedWeek = Number(weekParam.split('_')[1])
+    return <span>
+        Week <span className={'week-number'}>#{requestedWeek}</span>/{requestedYear} (
+        {getFormattedDate(getStartDateOfISOWeek(requestedWeek, requestedYear))} - {
+        getFormattedDate(getEndDateOfISOWeek(requestedWeek, requestedYear))})
+    </span>
 }

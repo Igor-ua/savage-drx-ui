@@ -5,7 +5,7 @@ import {Link, useParams, useRouteMatch} from "react-router-dom";
 import {LadderTop} from "./LadderTop";
 import {LadderExtended} from "./LadderExtended";
 import {getLiveWeeklyLadder, getWeeklyLadder} from "../requests";
-import {getCurrentWeekCode} from "../utils";
+import {getCurrentWeekCode, getEndDateOfISOWeek, getFormattedDate, getStartDateOfISOWeek} from "../utils";
 import {SortedWeeklyLadder, WeeklyLadder} from "../types";
 import {INFO_FIELDS, ROUTES} from "../utils/constants";
 
@@ -56,7 +56,9 @@ export const Ladder = () => {
                         className={'week-number'}>#{historicalWeek}</span><span>/{historicalYear}</span></span>}
                 {isLive
                     ? <Header.Subheader className={'sub-live'}>Live!</Header.Subheader>
-                    : <Header.Subheader className={'sub-finished'}>Finished</Header.Subheader>
+                    : <Header.Subheader className={'sub-finished'}>Finished
+                        ({getFormattedDate(getStartDateOfISOWeek(historicalWeek, historicalYear))} -
+                        {getFormattedDate(getEndDateOfISOWeek(historicalWeek, historicalYear))})</Header.Subheader>
                 }
             </Header>
         </Segment>

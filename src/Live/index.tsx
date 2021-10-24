@@ -120,6 +120,7 @@ export default ({server, name, background}: LiveProps) => {
                 <Button icon
                         loading={isLoading}
                         primary
+                        fluid
                         size={"small"}
                         onClick={() => {
                             disableWithTimeout();

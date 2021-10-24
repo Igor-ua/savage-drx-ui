@@ -11,7 +11,19 @@
   .player-header-segment {
 
     .player-header {
+      .week-number {
+        color: #6dbf2f;
+      }
 
+      span img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+      }
+
+      .span-name {
+        padding-left: 5px;
+      }
     }
   }
 
