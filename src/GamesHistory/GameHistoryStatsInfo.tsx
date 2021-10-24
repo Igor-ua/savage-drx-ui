@@ -1,14 +1,14 @@
 import React from "react";
-import {Image, Table} from "semantic-ui-react";
+import {Table} from "semantic-ui-react";
 
 import {formatGameTime, formatPlayer} from "../utils";
-import {CLAN_ICON_URL} from "../utils/constants";
 import {GRTeam} from "../types";
 
 import './scss/styles-game-history-stats-info.scss';
 
 
 export const StatsInfoTable = (team: GRTeam) => {
+    // console.log(team)
     return <Table celled inverted compact selectable size={"small"} className={'game-history-stats-info'}
                   textAlign={"center"}>
         <Table.Header>
@@ -43,7 +43,8 @@ export const StatsInfoTable = (team: GRTeam) => {
         <Table.Body>
             {team.players.map((grPlayer, index) => {
                 return grPlayer.p?.info ? <Table.Row key={index}>
-                        <Table.Cell collapsing textAlign={"left"} content={formatPlayer(grPlayer)}/>
+                        <Table.Cell collapsing textAlign={"left"} content={formatPlayer(grPlayer)}
+                                    className={grPlayer.is_commander ? 'commander' : ''}/>
                         <Table.Cell collapsing>{formatGameTime(grPlayer.p.info.on_team_time)}</Table.Cell>
                         <Table.Cell collapsing>{grPlayer.p.info.experience}</Table.Cell>
                         <Table.Cell collapsing>{grPlayer.p.info.kills}</Table.Cell>

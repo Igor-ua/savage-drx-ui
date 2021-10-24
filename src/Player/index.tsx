@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
 
-import {EGRAccuracy, TeamStats, WLInfo, WLNames, WPlayer, WPlayerAccuracy} from "../types";
+import {TeamStats, WLInfo, WLNames, WPlayer, WPlayerAccuracy} from "../types";
 import {getSSF, getWeeklyLadder} from "../requests";
 import {getExpectedTeamName} from "../utils";
 import {drawableItems} from "../GamesHistory/items";
@@ -16,8 +16,6 @@ export default () => {
     const weekParam = params?.weekName;
     const idParam = params?.id;
     const [ssf, setSSF] = useState<WPlayer>()
-
-    console.log(ssf)
 
     useEffect(() => {
         if (weekParam?.length > 5) {

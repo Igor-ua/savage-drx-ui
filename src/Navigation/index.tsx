@@ -52,7 +52,7 @@ const Navigation = () => {
                 to={ROUTES.online}
                 color={isOnlinePath ? activeColor : inactiveColor}
                 active={isOnlinePath}>
-                <Icon name='user'/>
+                <Icon name='signal'/>
                 Online
             </Menu.Item>
             <Menu.Item
@@ -70,7 +70,7 @@ const Navigation = () => {
                 to={ROUTES.ladder}
                 color={isLadderPath ? activeColor : inactiveColor}
                 active={isLadderPath}>
-                <Icon name='signal'/>
+                <Icon name='trophy'/>
                 Ladder
             </Menu.Item>
             <Menu.Item

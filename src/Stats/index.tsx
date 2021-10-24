@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react";
 import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Form, Grid, Header, Icon, Segment, Table} from "semantic-ui-react";
 
+import {formatPlayer} from "../utils";
 import {searchSSFByName, searchSSFByUid} from "../requests";
 import {SearchableSSFPlayer} from "../types";
+import {ROUTES} from "../utils/constants";
 
 import './scss/styles-stats.scss'
-import {formatPlayer} from "../utils";
-import {ROUTES} from "../utils/constants";
 
 
 export default () => {
@@ -120,7 +120,7 @@ export default () => {
 }
 
 const getTable = (data: Array<SearchableSSFPlayer>) => {
-    return <Table celled inverted compact
+    return <Table celled inverted compact selectable
                   size={"small"}
                   className={"table-ssf-searchable"}
                   textAlign={"center"}>
@@ -135,7 +135,11 @@ const getTable = (data: Array<SearchableSSFPlayer>) => {
             {data.map((p: SearchableSSFPlayer, index: any) => (
                 <Table.Row key={index}>
                     <Table.Cell collapsing textAlign={"center"} content={index + 1}/>
-                    <Table.Cell textAlign={"left"} content={p.uid}/>
+                    <Table.Cell textAlign={"left"}>
+                        <Link to={'/player/' + p.uid} className={'link-color'}>
+                            {p.uid}
+                        </Link>
+                    </Table.Cell>
                     <Table.Cell textAlign={"left"}>
                         {formatPlayer(p)}
                     </Table.Cell>

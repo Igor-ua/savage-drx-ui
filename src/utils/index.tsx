@@ -2,7 +2,7 @@ import React from "react";
 import {GameResult} from "../types";
 import {weekNumber} from 'weeknumber'
 import {CLAN_ICON_URL, INFO_FIELDS} from "./constants";
-import {Image} from "semantic-ui-react";
+import {Icon, Image} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 export const formatGameTime = (gameTime: number) => {
@@ -148,31 +148,41 @@ export const formatInfoValue = (key: string, value: number) => {
 }
 
 export const formatPlayer = (p: any) => {
-    return <span className={'player-with-clan-icon'}>
-        {
-            p.clan_id
-                ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
-                         size={"small"}
-                         inline/>
-                : null
-        }
-        <Link to={'/player/' + p.uid} className={'link-name'}>
-            <span>{p.name}</span>
-        </Link>
-    </span>
+    return _formatPlayer(p, null)
 }
 
 export const formatWeeklyPlayer = (p: any, weekName: string) => {
-    return <span className={'player-with-clan-icon'}>
-        {
-            p.clan_id
-                ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
-                         size={"small"}
-                         inline/>
+    return _formatPlayer(p, weekName)
+}
+
+const _formatPlayer = (p: any, weekName: any) => {
+    return Number(p.uid)
+        ? <Link to={'/player/' + (weekName ? weekName + '/' : '') + p.uid} className={'link-color'}>
+            {p.is_commander
+                ? <Icon name={'copyright'} size={"large"}/>
                 : null
-        }
-        <Link to={'/player/' + weekName + '/' + p.uid} className={'link-name'}>
-            <span>{p.name}</span>
+            }
+            {
+                p.clan_id
+                    ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
+                             size={"small"}
+                             inline/>
+                    : null
+            }
+            <span className={p.clan_id ? 'span-name' : ''}>{p.name}</span>
         </Link>
-    </span>
+        : <span>
+            {p.is_commander
+                ? <Icon name={'copyright'} size={"large"}/>
+                : null
+            }
+            {
+                p.clan_id
+                    ? <Image src={CLAN_ICON_URL + p.clan_id + '.png'}
+                             size={"small"}
+                             inline/>
+                    : null
+            }
+            <span className={p.clan_id ? 'span-name' : ''}>{p.name}</span>
+        </span>
 }

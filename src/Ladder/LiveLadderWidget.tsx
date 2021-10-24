@@ -1,10 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import {getCurrentWeekCode, getEndDateOfISOWeek, getShortFormattedDate, getStartDateOfISOWeek} from "../utils";
 import {Button, Header, Image, Segment} from "semantic-ui-react";
 
 import './scss/styles-live-ladder-widget.scss';
-import {Link} from "react-router-dom";
 
 
 export const LiveLadderWidget = () => {

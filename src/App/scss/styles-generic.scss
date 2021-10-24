@@ -7,15 +7,16 @@
   }
 }
 
-.player-with-clan-icon {
-  img {
-    width: 16px !important;
-    height: 16px !important;
-    border-radius: 8px;
-  }
+a.link-color {
+  color: #8a8e94;
+}
 
-  a.link-name {
-    padding-left: 5px;
-    color: #8a8e94;
-  }
+a img {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 8px;
+}
+
+a span.span-name {
+  padding-left: 5px;
 }
