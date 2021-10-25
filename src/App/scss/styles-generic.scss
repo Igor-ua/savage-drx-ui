@@ -20,3 +20,26 @@ a img {
 a span.span-name {
   padding-left: 5px;
 }
+
+@media only screen and (min-width: 1200px) {
+  .app-container {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .app-container {
+    padding-top: 10px;
+  }
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}

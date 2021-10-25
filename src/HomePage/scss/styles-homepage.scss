@@ -1,33 +1,61 @@
 .home-page {
+  width: 100%;
 
-  .grid-wrapper {
-    margin: 50px 10px 15px;
+  @media only screen and (min-width: 1200px) {
+    .media-large-screen {
+      margin-bottom: 15px;
 
-    .base-container {
+      .base-container {
 
-      .base-segment {
-        background-color: #2d2e30;
-        border: 2px solid #155b80;
-        color: #8a8e94;
-        margin-bottom: 25px;
-
-        .header {
+        .base-segment {
+          background-color: #2d2e30;
+          border: 2px solid #155b80;
           color: #8a8e94;
+          margin-bottom: 25px;
+
+          .header {
+            color: #8a8e94;
+          }
+        }
+      }
+
+      .base-align-right {
+        color: white;
+
+        > div {
+          display: flex;
+          justify-content: flex-end
+        }
+      }
+
+      .base-pagination {
+        .pagination {
+          background-color: #2d2e30 !important;
         }
       }
     }
 
-    .base-align-right {
-      color: white;
-      > div {
-        display: flex;
-        justify-content: flex-end
-      }
+    .media-small-screen {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    .media-large-screen {
+      display: none;
+    }
+    .csp-footer {
+      display: none;
     }
 
-    .base-pagination {
-      .pagination {
-        background-color: #2d2e30 !important;
+    .media-small-screen {
+      width: 100%;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      .csp-online-wrapper, .csp-discord-wrapper {
+        align-self: center;
       }
     }
   }

@@ -12,7 +12,6 @@ import {GameHistoryStats, GamesHistory} from "../GamesHistory";
 import {Ladder, LadderHomePage} from "../Ladder";
 import {ROUTES} from "../utils/constants";
 
-import './scss/styles-app.scss';
 import './scss/styles-generic.scss';
 
 

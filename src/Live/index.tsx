@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Header, Icon, Image, Label, List, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Header, Icon, Image, Label, List, Segment, Table} from "semantic-ui-react";
 
 import {CLAN_ICON_URL} from "../utils/constants";
 import {getLiveServerInfo} from "../requests";
@@ -76,30 +76,58 @@ export default ({server, name, background}: LiveProps) => {
                 </Header>
             </Segment>
             <Segment className={'segment-world-info'}>
-                <Table className={'world-info-table'} compact={"very"}>
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell rowSpan={4}>
-                                {liveServerInfo ?
-                                    <Image
-                                        className={'world-image'}
-                                        src={process.env.REACT_APP_WORLD_LOCATION + liveServerInfo?.data?.world + '_overhead.jpg'}
-                                        size={"tiny"}
-                                        rounded
-                                        inline
-                                    /> : null}
-                            </Table.Cell>
-                            <Table.Cell>{liveServerInfo?.data?.world}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>{getGameTime()}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>{getRaces()}</Table.Cell>
-                        </Table.Row>
-                    </Table.Body>
-                </Table>
+                <Grid columns={"equal"}>
+                    <Grid.Column width={"6"} className={'world-img-column'}>
+                        {liveServerInfo
+                            ? <Image
+                                className={'world-image'}
+                                src={process.env.REACT_APP_WORLD_LOCATION + liveServerInfo?.data?.world + '_overhead.jpg'}
+                                size={"tiny"}
+                                rounded
+                                inline/>
+                            : null
+                        }
+                    </Grid.Column>
+                    <Grid.Column textAlign={"right"} verticalAlign={"middle"}>
+                        <List>
+                            <List.Item>
+                                {liveServerInfo?.data?.world}
+                            </List.Item>
+                            <List.Item>
+                                {getGameTime()}
+                            </List.Item>
+                            <List.Item>
+                                {getRaces()}
+                            </List.Item>
+                        </List>
+                    </Grid.Column>
+                </Grid>
             </Segment>
+            {/*<Segment className={'segment-world-info'}>*/}
+            {/*    <Table className={'world-info-table'}>*/}
+            {/*        <Table.Body>*/}
+            {/*            <Table.Row>*/}
+            {/*                <Table.Cell rowSpan={4}>*/}
+            {/*                    {liveServerInfo ?*/}
+            {/*                        <Image*/}
+            {/*                            className={'world-image'}*/}
+            {/*                            src={process.env.REACT_APP_WORLD_LOCATION + liveServerInfo?.data?.world + '_overhead.jpg'}*/}
+            {/*                            size={"tiny"}*/}
+            {/*                            rounded*/}
+            {/*                            inline*/}
+            {/*                        /> : null}*/}
+            {/*                </Table.Cell>*/}
+            {/*                <Table.Cell>{liveServerInfo?.data?.world}</Table.Cell>*/}
+            {/*            </Table.Row>*/}
+            {/*            <Table.Row>*/}
+            {/*                <Table.Cell>{getGameTime()}</Table.Cell>*/}
+            {/*            </Table.Row>*/}
+            {/*            <Table.Row>*/}
+            {/*                <Table.Cell>{getRaces()}</Table.Cell>*/}
+            {/*            </Table.Row>*/}
+            {/*        </Table.Body>*/}
+            {/*    </Table>*/}
+            {/*</Segment>*/}
             <Segment inverted className={'online-users-list customized-scrollbar'} style={{
                 backgroundImage: `url(${process.env.PUBLIC_URL + background})`
             }}>

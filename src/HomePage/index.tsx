@@ -46,7 +46,7 @@ export default () => {
     }, [page]);
 
     return <div className={'home-page'}>
-        <div className={'grid-wrapper'}>
+        <div className={'media-large-screen'}>
             <Grid columns='equal'>
                 <Grid.Column>
                     <Container className={'base-align-right'}>
@@ -91,5 +91,13 @@ export default () => {
             </Grid>
         </div>
         <Footer/>
+
+        <div className={'media-small-screen'}>
+            <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
+            <br/>
+            <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
+            <br/>
+            <Discord/>
+        </div>
     </div>
 }

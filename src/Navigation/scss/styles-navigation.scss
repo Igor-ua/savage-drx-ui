@@ -1,14 +1,22 @@
-.csp-navigation {
-  width: 100%;
-  position: fixed;
-  border-bottom: 1px solid black;
-  z-index: 999;
+@media only screen and (min-width: 1200px) {
+  .csp-navigation {
+    width: 100%;
+    position: fixed;
+    //border-bottom: 1px solid black;
+    z-index: 999;
 
-  .csp-menu {
-    background-color: rgba(42, 39, 39, 0.85) !important;
+    .csp-menu {
+      background-color: rgba(42, 39, 39, 0.85) !important;
 
-    .active {
-      background-color: #973716 !important;
+      .active {
+        background-color: #973716 !important;
+      }
     }
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .csp-navigation {
+    display: none;
   }
 }

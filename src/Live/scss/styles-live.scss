@@ -2,8 +2,7 @@
 
   .online-widget {
 
-    max-width: 270px;
-    min-width: 270px;
+    width: 270px;
 
     .online-users-list {
       overflow: auto;
@@ -46,10 +45,6 @@
       margin-left: 45px !important;
     }
 
-    .online-clan-icon {
-
-    }
-
     .name-without-icon {
       margin-left: 16px;
     }
@@ -59,19 +54,15 @@
     }
 
     .segment-world-info {
-      .world-image {
-        margin-right: 5px;
+      .world-img-column {
+        //border: 1px solid red;
+        padding-left: 12px !important;
+        padding-top: 22px !important;
+        padding-bottom: 20px !important;
       }
 
-      .world-info-table {
-        background-color: #202225;
-        color: #dfe1e3;
-        td {
-          padding: 5px 0 0 0;
-        }
-        td:last-child  {
-          text-align: right;
-        }
+      .world-image {
+        //border: 1px solid red;
       }
 
       padding-top: 2px;
