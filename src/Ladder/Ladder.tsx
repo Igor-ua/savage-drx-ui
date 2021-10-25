@@ -39,7 +39,7 @@ export const Ladder = () => {
     }, []);
 
     useEffect(() => {
-        if (weeklyLadder) {
+        if (weeklyLadder && Object.keys(weeklyLadder).length) {
             const sortedWeeklyLadder = getSortedWeeklyLadder(weeklyLadder)
             setSortedWeeklyLadder(sortedWeeklyLadder)
         }

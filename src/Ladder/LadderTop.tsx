@@ -1,9 +1,9 @@
 import React from 'react'
-import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
+import {Grid, Header, Segment, Table} from "semantic-ui-react";
 
 import {formatInfoValue, formatWeeklyPlayer} from "../utils";
 import {LadderTopProps, SortedWLadder} from "../types";
-import {CLAN_ICON_URL, INFO_FIELDS} from "../utils/constants";
+import {INFO_FIELDS} from "../utils/constants";
 
 import './scss/styles-ladder-top.scss';
 
