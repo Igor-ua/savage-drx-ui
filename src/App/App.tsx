@@ -5,6 +5,7 @@ import HomePage from "../HomePage";
 import Navigation from "../Navigation";
 import Player from "../Player";
 import Stats from "../Stats";
+import Server from '../Server';
 import {HistoricalOnline} from "../Online";
 import {GameHistoryStats, GamesHistory} from "../GamesHistory";
 import {Ladder, LadderHomePage} from "../Ladder";
@@ -33,6 +34,7 @@ export default () => {
             <Route exact path={ROUTES.searchStatsName} component={Stats}/>
             <Route exact path={ROUTES.player} component={Player}/>
             <Route exact path={ROUTES.playerWeekly} component={Player}/>
+            <Route exact path={ROUTES.servers} component={Server}/>
         </Switch>
     </div>
 };

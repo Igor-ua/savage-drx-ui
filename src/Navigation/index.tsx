@@ -30,6 +30,8 @@ const Navigation = () => {
     const isStatsPath = Boolean(location.pathname === ROUTES.stats || routeStatsUid || routeStatsName || isPlayerPath)
 
     const isOnlinePath = Boolean(location.pathname === ROUTES.online)
+    const isServerPath = Boolean(location.pathname === ROUTES.servers)
+    const isAboutPath = Boolean(location.pathname === ROUTES.about)
 
     const activeColor = 'orange'
     const inactiveColor = 'grey'
@@ -77,11 +79,29 @@ const Navigation = () => {
                 name='stats'
                 as={Link}
                 to={ROUTES.stats}
-                position={"left"}
                 color={isStatsPath ? activeColor : inactiveColor}
                 active={isStatsPath}>
                 <Icon name='user'/>
                 Stats
+            </Menu.Item>
+            <Menu.Item
+                name='server'
+                as={Link}
+                to={ROUTES.servers}
+                color={null ? activeColor : inactiveColor}
+                active={isServerPath}>
+                <Icon name='server'/>
+                Servers
+            </Menu.Item>
+            <Menu.Item
+                name='about'
+                as={Link}
+                to={ROUTES.about}
+                position={"left"}
+                color={null ? activeColor : inactiveColor}
+                active={isAboutPath}>
+                <Icon name='hashtag'/>
+                About
             </Menu.Item>
         </Menu>
     </Sticky>

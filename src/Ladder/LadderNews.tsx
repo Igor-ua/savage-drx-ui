@@ -3,14 +3,14 @@ import {Button, Grid, Header, Icon, Image, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 import {LadderProps} from "../types";
-import {formatNumber, formatWeeklyPlayer} from "../utils";
+import {formatNumber, formatWeeklyPlayer, getEndDateOfISOWeek, getFormattedDate, getStartDateOfISOWeek} from "../utils";
 
 import './scss/styles-ladder-news.scss';
 
 
 export const LadderNews = ({body, week_name}: LadderProps) => {
-    const yearName = week_name.split('_')[0]
-    const weekName = week_name.split('_')[1]
+    const yearName = Number(week_name.split('_')[0])
+    const weekName = Number(week_name.split('_')[1])
 
     return <div className={'ladder-weekly-news'}>
         <Image className={"weekly-header-image"}
@@ -21,10 +21,11 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
         />
         <div className={'div-header'}>
             <Header as="h3">
-                Weekly ladder results
+                Weekly ladder results<span className={'week-name'}> #{weekName}</span>
                 <Header.Subheader>
-                    <span className={'week-name'}>{yearName} </span>/
-                    <span className={'year-name'}> {weekName}</span>
+                    <span>
+                        {getFormattedDate(getStartDateOfISOWeek(weekName, yearName))} - {getFormattedDate(getEndDateOfISOWeek(weekName, yearName))}
+                    </span>
                 </Header.Subheader>
             </Header>
         </div>

@@ -1,0 +1,49 @@
+.csp-server-wrapper {
+  width: 100%;
+  margin: 50px 20% 15px;
+
+  .server-header-segment {
+    background-color: #2d2e30 !important;
+    color: white !important;
+  }
+
+  .server-traffic-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+
+    .server-traffic-div {
+      margin-bottom: 10px;
+    }
+  }
+
+  .nl-info-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+  }
+
+  .us-info-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+  }
+
+  .header {
+    color: #8a8e94;
+  }
+
+  .server-location-image {
+    margin-top: 10px;
+  }
+
+  .server-info-table {
+    margin-top: 10px;
+
+    th {
+      background-color: #155b80 !important;
+    }
+
+    tr {
+      background-color: #202225;
+      color: #8a8e94;
+    }
+  }
+}

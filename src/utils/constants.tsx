@@ -11,7 +11,9 @@ export const ROUTES = {
     searchStatsUid: "/stats/search/uid/:uid",
     searchStatsName: "/stats/search/name/:name",
     player: "/player/:id",
-    playerWeekly: "/player/:weekName/:id"
+    playerWeekly: "/player/:weekName/:id",
+    servers: "/servers",
+    about: "/about"
 }
 
 export const CLAN_ICON_URL = '/public/cached/icondir/';

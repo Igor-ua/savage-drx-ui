@@ -15,7 +15,7 @@ export default () => {
                     Support us on:
                     patreon.com/community_server
                 </div>
-                <Image src={process.env.PUBLIC_URL + '/images/patreon-sav.jpg'} className={'sav-img'}/>
+                <Image src={process.env.PUBLIC_URL + '/images/patreon-sav.jpg'} className={'sav-img'} centered/>
                 <Button
                     primary
                     className={'patreon-join-button'}
