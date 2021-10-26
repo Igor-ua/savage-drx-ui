@@ -7,8 +7,10 @@ import './scss/styles-about.scss'
 export default () => {
 
     return <div className={'csp-about-wrapper'}>
-        <Segment textAlign={"left"} className={'about-segment'}>
-            <div>
+        <Segment textAlign={"left"} className={'about-segment'} style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/weapons/human_unit_medic.jpg'})`
+        }}>
+            <div className={'div-contacts'}>
                 Contacts:
             </div>
             <List verticalAlign={"middle"} className={'contacts-list'}>
