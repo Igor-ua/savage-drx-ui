@@ -33,7 +33,7 @@ export const LadderNews = ({body, week_name}: LadderProps) => {
         <Grid columns="equal" textAlign={"center"}>
             <Grid.Column textAlign={"center"}>
                 {getTable(body.comm_points, 'Commanders (points)', week_name)}
-                <div>{getTable(body.auto_buff, 'Auto buffs', week_name)}</div>
+                <div>{getTable(body.auto_buff, 'Self-buffs', week_name)}</div>
             </Grid.Column>
             <Grid.Column textAlign={"center"}>
                 {getTable(body.kills, 'Kills', week_name)}

@@ -1,9 +1,16 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {useState, useEffect} from 'react';
+import {Icon, Image} from "semantic-ui-react";
+
 import {GameResult} from "../types";
 import {weekNumber} from 'weeknumber'
-import {CLAN_ICON_URL, INFO_FIELDS} from "./constants";
-import {Icon, Image} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import {
+    CLAN_ICON_URL,
+    FINISHED_WEEKLY_LADDER_TTL_SECONDS,
+    INFO_FIELDS,
+    LIVE_WEEKLY_LADDER_TTL_SECONDS
+} from "./constants";
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -54,6 +61,13 @@ export const isCacheOutdated = (ttl: number, timestamp: number) => {
     }
     const currentTime = getCurrentTimeSeconds();
     return currentTime > ttl + timestamp;
+}
+
+export const isWeekLadderCacheOutdated = (timestamp: number, weekCode: string) => {
+    const weekNumber = getCurrentWeekCode()
+    return weekCode === weekNumber
+        ? isCacheOutdated(LIVE_WEEKLY_LADDER_TTL_SECONDS, timestamp)
+        : isCacheOutdated(FINISHED_WEEKLY_LADDER_TTL_SECONDS, timestamp);
 }
 
 export const getExpectedTeamName = (teamNumber: number) => {
@@ -185,4 +199,28 @@ const _formatPlayer = (p: any, weekName: any) => {
             }
             <span className={p.clan_id ? 'span-name' : ''}>{p.name}</span>
         </span>
+}
+
+
+function getWindowDimensions() {
+    const {innerWidth: width, innerHeight: height} = window;
+    return {
+        width,
+        height
+    };
+}
+
+export default function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowDimensions;
 }

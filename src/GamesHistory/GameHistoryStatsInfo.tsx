@@ -8,7 +8,6 @@ import './scss/styles-game-history-stats-info.scss';
 
 
 export const StatsInfoTable = (team: GRTeam) => {
-    // console.log(team)
     return <Table celled inverted compact selectable size={"small"} className={'game-history-stats-info'}
                   textAlign={"center"}>
         <Table.Header>

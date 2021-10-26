@@ -1,11 +1,19 @@
 import React, {useEffect, useState} from 'react'
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {Container, Header, Icon, Menu, Segment} from "semantic-ui-react";
 import {Link, useParams, useRouteMatch} from "react-router-dom";
 
 import {LadderTop} from "./LadderTop";
 import {LadderExtended} from "./LadderExtended";
 import {getLiveWeeklyLadder, getWeeklyLadder} from "../requests";
-import {getCurrentWeekCode, getEndDateOfISOWeek, getFormattedDate, getStartDateOfISOWeek} from "../utils";
+import {
+    getCurrentTimeSeconds,
+    getCurrentWeekCode,
+    getEndDateOfISOWeek,
+    getFormattedDate,
+    getStartDateOfISOWeek,
+    isWeekLadderCacheOutdated
+} from "../utils";
 import {SortedWeeklyLadder, WeeklyLadder} from "../types";
 import {INFO_FIELDS, ROUTES} from "../utils/constants";
 
@@ -13,13 +21,15 @@ import './scss/styles-ladder.scss';
 
 
 export const Ladder = () => {
+    const dispatch = useDispatch()
+    const weeklyLadderCache = useSelector((state: any) => state.weeklyLadderReducer, shallowEqual);
     const isLive = useRouteMatch(ROUTES.ladderLiveTab);
     const params: any = useParams();
-    const weekName = params?.weekName;
     const current_year = getCurrentWeekCode().split('_')[0]
     const current_week = getCurrentWeekCode().split('_')[1]
-    const historicalWeek = weekName?.split('_')[1]
-    const historicalYear = weekName?.split('_')[0]
+    const weekName = params?.weekName || getCurrentWeekCode();
+    const historicalWeek = weekName.split('_')[1]
+    const historicalYear = weekName.split('_')[0]
     const [activeMenu, setActiveMenu] = useState(params?.tab);
     const [weeklyLadder, setWeeklyLadder] = useState<WeeklyLadder>();
     const [sortedWeeklyLadder, setSortedWeeklyLadder] = useState<SortedWeeklyLadder>();
@@ -28,13 +38,37 @@ export const Ladder = () => {
 
     useEffect(() => {
         if (isLive) {
-            getLiveWeeklyLadder().then(res => {
-                setWeeklyLadder(res.data)
-            })
+            if (isWeekLadderCacheOutdated(weeklyLadderCache?.timestamp, weekName) || !weeklyLadderCache[weekName]) {
+                getLiveWeeklyLadder().then(res => {
+                    setWeeklyLadder(res.data);
+                    dispatch({
+                        type: 'SET_WEEKLY_LADDER',
+                        payload:
+                            {
+                                timestamp: getCurrentTimeSeconds(),
+                                [weekName]: res.data
+                            }
+                    });
+                })
+            } else {
+                setWeeklyLadder(weeklyLadderCache[weekName]);
+            }
         } else {
-            getWeeklyLadder(weekName).then(res => {
-                setWeeklyLadder(res.data)
-            })
+            if (isWeekLadderCacheOutdated(weeklyLadderCache?.timestamp, weekName) || !weeklyLadderCache[weekName]) {
+                getWeeklyLadder(weekName).then(res => {
+                    setWeeklyLadder(res.data)
+                    dispatch({
+                        type: 'SET_WEEKLY_LADDER',
+                        payload:
+                            {
+                                timestamp: getCurrentTimeSeconds(),
+                                [weekName]: res.data
+                            }
+                    });
+                })
+            } else {
+                setWeeklyLadder(weeklyLadderCache[weekName]);
+            }
         }
     }, []);
 

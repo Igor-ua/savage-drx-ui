@@ -10,6 +10,7 @@ import {getNewsByPage} from "../requests";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {LadderNews, LiveLadderWidget} from "../Ladder";
 import {ROUTES} from "../utils/constants";
+import useWindowDimensions from "../utils";
 
 import './scss/styles-homepage.scss';
 
@@ -17,12 +18,13 @@ import './scss/styles-homepage.scss';
 export default () => {
     const history = useHistory();
     const params: any = useParams();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const newsCache = useSelector((state: any) => state.newsPageReducer, shallowEqual);
     const [page, setPage] = useState(params?.p ? params.p : 1);
     const [pages, setPages] = useState(0);
     const [news, setNews] = useState([]);
     const maxElementsOnPage = 3;
+    const {height, width} = useWindowDimensions();
 
     useEffect(() => {
         if (page) {
@@ -46,58 +48,64 @@ export default () => {
     }, [page]);
 
     return <div className={'home-page'}>
-        <div className={'media-large-screen'}>
-            <Grid columns='equal'>
-                <Grid.Column>
-                    <Container className={'base-align-right'}>
-                        <Discord/>
-                        <br/>
-                        <LiveLadderWidget/>
-                        <br/>
-                        <Patreon/>
-                    </Container>
-                </Grid.Column>
-                <Grid.Column width={7}>
-                    <Container className={'base-container'}>
-                        {news.map((ns: any, i) => {
-                            return <Segment key={i} textAlign='center' className={'base-segment'}>
-                                {ns.is_weekly_ladder ? <LadderNews body={ns.body} week_name={ns.week_name}/> : null}
-                            </Segment>
-                        })}
-                        <Container textAlign={"center"} className={'base-pagination'}>
-                            <Pagination
-                                inverted
-                                defaultActivePage={page}
-                                totalPages={Math.ceil(pages / maxElementsOnPage)}
-                                onPageChange={(e, {activePage}) => {
-                                    setPage(Number(activePage));
-                                    if (activePage && activePage > 1) {
-                                        history.push("/page/" + activePage)
-                                    } else {
-                                        history.push(ROUTES.root)
-                                    }
-                                }}
-                            />
-                        </Container>
-                    </Container>
-                </Grid.Column>
-                <Grid.Column>
-                    <Container className={'base'}>
-                        <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
-                        <br/>
-                        <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
-                    </Container>
-                </Grid.Column>
-            </Grid>
-        </div>
-        <Footer/>
-
-        <div className={'media-small-screen'}>
-            <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
-            <br/>
-            <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
-            <br/>
-            <Discord/>
-        </div>
+        {
+            width < 1200
+                ? <div className={'media-small-screen'}>
+                    <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
+                    <br/>
+                    <Discord/>
+                    <br/>
+                    <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
+                </div>
+                : <div>
+                    <div className={'media-large-screen'}>
+                        <Grid columns='equal'>
+                            <Grid.Column>
+                                <Container className={'base-align-right'}>
+                                    <Discord/>
+                                    <br/>
+                                    <LiveLadderWidget/>
+                                    <br/>
+                                    <Patreon/>
+                                </Container>
+                            </Grid.Column>
+                            <Grid.Column width={7}>
+                                <Container className={'base-container'}>
+                                    {news.map((ns: any, i) => {
+                                        return <Segment key={i} textAlign='center' className={'base-segment'}>
+                                            {ns.is_weekly_ladder ?
+                                                <LadderNews body={ns.body} week_name={ns.week_name}/> : null}
+                                        </Segment>
+                                    })}
+                                    <Container textAlign={"center"} className={'base-pagination'}>
+                                        <Pagination
+                                            inverted
+                                            defaultActivePage={page}
+                                            totalPages={Math.ceil(pages / maxElementsOnPage)}
+                                            onPageChange={(e, {activePage}) => {
+                                                setPage(Number(activePage));
+                                                if (activePage && activePage > 1) {
+                                                    history.push("/page/" + activePage)
+                                                } else {
+                                                    history.push(ROUTES.root)
+                                                }
+                                            }}
+                                        />
+                                    </Container>
+                                </Container>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Container className={'base'}>
+                                    <Live server={'nl'} name={'Europe (NL)'}
+                                          background={'/images/beast_unit_predator.jpg'}/>
+                                    <br/>
+                                    <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
+                                </Container>
+                            </Grid.Column>
+                        </Grid>
+                    </div>
+                    <Footer/>
+                </div>
+        }
     </div>
 }

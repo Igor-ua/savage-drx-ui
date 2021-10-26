@@ -1,38 +1,71 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 
 import {TeamStats, WLInfo, WLNames, WPlayer, WPlayerAccuracy} from "../types";
 import {getSSF, getWeeklyLadder} from "../requests";
 import {
     formatInfoValue,
     formatNumber,
+    getCurrentTimeSeconds,
     getEndDateOfISOWeek,
     getExpectedTeamName,
     getFormattedDate,
-    getStartDateOfISOWeek
+    getStartDateOfISOWeek,
+    isCacheOutdated,
+    isWeekLadderCacheOutdated
 } from "../utils";
 import {drawableItems} from "../GamesHistory/items";
-import {CLAN_ICON_URL, getSsfInfoField, INFO_FIELDS} from "../utils/constants";
+import {CLAN_ICON_URL, getSsfInfoField, SSF_TTL_SECONDS} from "../utils/constants";
 
 import './scss/styles-player.scss'
 
 
 export default () => {
+    const dispatch = useDispatch()
+    const weeklyLadderCache = useSelector((state: any) => state.weeklyLadderReducer, shallowEqual);
+    const ssfCache = useSelector((state: any) => state.SSFReducer, shallowEqual);
     const params: any = useParams();
     const weekParam = params?.weekName;
     const idParam = params?.id;
     const [ssf, setSSF] = useState<WPlayer>()
 
     useEffect(() => {
-        if (weekParam?.length > 5) {
-            getWeeklyLadder(weekParam).then((res) => {
-                setSSF(res.data.players[idParam])
-            })
+        if (weekParam?.length > 5 && idParam && Number(idParam) > 0) {
+            if (isWeekLadderCacheOutdated(weeklyLadderCache?.timestamp, weekParam) || !weeklyLadderCache[weekParam]) {
+                getWeeklyLadder(weekParam).then((res) => {
+                    setSSF(res.data.players[idParam])
+                    dispatch({
+                        type: 'SET_WEEKLY_LADDER',
+                        payload:
+                            {
+                                timestamp: getCurrentTimeSeconds(),
+                                [weekParam]: res.data
+                            }
+                    });
+
+                })
+            } else {
+                setSSF(weeklyLadderCache[weekParam].players[idParam])
+            }
         } else if (idParam && Number(idParam) > 0) {
-            getSSF(idParam).then((res) => {
-                setSSF(res.data)
-            })
+            if (isCacheOutdated(SSF_TTL_SECONDS, ssfCache?.timestamp) || !ssfCache[idParam]) {
+                getSSF(idParam).then((res) => {
+                    setSSF(res.data)
+                    dispatch({
+                        type: 'SET_SSF',
+                        payload:
+                            {
+                                timestamp: getCurrentTimeSeconds(),
+                                ttl: SSF_TTL_SECONDS,
+                                [idParam]: res.data
+                            }
+                    });
+                })
+            } else {
+                setSSF(ssfCache[idParam])
+            }
         }
     }, []);
 
@@ -228,7 +261,6 @@ const getGeneralInfoTable = (info: WLInfo) => {
         </Table.Header>
         <Table.Body>
             {Object.entries(info).map((inf, index) => {
-                console.log(inf[0])
                 return <Table.Row key={index} textAlign={"left"}>
                     <Table.Cell content={getSsfInfoField(inf[0])}/>
                     <Table.Cell>

@@ -15,7 +15,6 @@ export default () => {
     const params: any = useParams();
     const uidParam = params?.uid;
     const nameParam = params?.name;
-
     const [uid, setUid] = useState(uidParam || '')
     const [name, setName] = useState(nameParam || '')
     const [players, setPlayers] = useState<Array<SearchableSSFPlayer>>()

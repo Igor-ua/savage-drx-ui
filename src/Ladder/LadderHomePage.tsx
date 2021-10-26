@@ -2,13 +2,24 @@ import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import {Button, Grid, Header, Icon, Segment, Select, Table} from "semantic-ui-react";
 
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {getLadderWeeks} from "../requests";
-import {getCurrentWeekCode, getEndDateOfISOWeek, getFormattedDate, getStartDateOfISOWeek} from "../utils";
+import {
+    getCurrentTimeSeconds,
+    getCurrentWeekCode,
+    getEndDateOfISOWeek,
+    getFormattedDate,
+    getStartDateOfISOWeek,
+    isCacheOutdated
+} from "../utils";
+import {WEEKLY_LADDERS_LIST_TTL_SECONDS} from "../utils/constants";
 
 import './scss/styles-ladder-home-page.scss';
 
 
 export const LadderHomePage = () => {
+    const dispatch = useDispatch()
+    const weeklyLaddersListCache = useSelector((state: any) => state.weeklyLaddersListReducer, shallowEqual);
     const current_year_week = getCurrentWeekCode()
     const current_year = new Date().getFullYear()
     const current_week = current_year_week.split('_')[1]
@@ -23,9 +34,23 @@ export const LadderHomePage = () => {
     ]
 
     useEffect(() => {
-        getLadderWeeks(selectedYear).then(res => {
-            setWeeks(res.data);
-        })
+        if (isCacheOutdated(weeklyLaddersListCache?.ttl, weeklyLaddersListCache?.timestamp)
+            || !weeklyLaddersListCache[selectedYear]) {
+            getLadderWeeks(selectedYear).then(res => {
+                setWeeks(res.data);
+                dispatch({
+                    type: 'SET_WEEKLY_LADDERS_LIST',
+                    payload:
+                        {
+                            timestamp: getCurrentTimeSeconds(),
+                            ttl: WEEKLY_LADDERS_LIST_TTL_SECONDS,
+                            [selectedYear]: res.data
+                        }
+                });
+            })
+        } else {
+            setWeeks(weeklyLaddersListCache[selectedYear]);
+        }
     }, [selectedYear]);
 
     return <div className={'weekly-ladder-home-page'}>
