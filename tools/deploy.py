@@ -1,5 +1,5 @@
 import shutil
-from datetime import date
+import datetime
 from paramiko import SSHClient
 from scp import SCPClient
 
@@ -9,12 +9,13 @@ class _Settings:
     SSH_PORT = 22
     SSH_USER = 'example'
     SSH_PASSWORD = 'example'
-    ARCHIVE_NAME = 'ui-{}.zip'.format(date.today().strftime("%Y-%m-%d"))
+    BUILD_DATE = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    ARCHIVE_NAME = 'ui-{}.zip'.format(BUILD_DATE)
     SSH_FILE_LOCATION = '/home/igor/upload/{}'.format(ARCHIVE_NAME)
 
 
 def build_archive():
-    shutil.make_archive('./../deploy/ui-{}'.format(date.today().strftime("%Y-%m-%d")), 'zip', './../build')
+    shutil.make_archive('./../deploy/ui-{}'.format(_Settings.BUILD_DATE), 'zip', './../build')
     print('Archive is ready')
 
 
