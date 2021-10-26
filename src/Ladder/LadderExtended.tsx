@@ -14,7 +14,6 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
     const [activeMenu, setActiveMenu] = useState('stats');
     const [item, setItem] = useState(INFO_FIELDS.COMM_POINTS);
     const [damageItem, setDamageItem] = useState('Hatchet');
-    const weekName = sortedWeeklyLadder.week_name.split('_')[1]
 
     return <div className={'ladder-extended-wrapper'}>
 
@@ -170,7 +169,7 @@ const getChart = (data: Array<any>, title: string, key: string) => {
             }
         }
     };
-    return <div className={'ladder-extended-chart'}>
+    return <div key={key} className={'ladder-extended-chart'}>
         <HighchartsReact highcharts={Highcharts} options={options}/>
     </div>
 }
