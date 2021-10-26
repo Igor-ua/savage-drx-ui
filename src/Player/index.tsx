@@ -255,8 +255,7 @@ const getGeneralInfoTable = (info: WLInfo) => {
                   textAlign={"center"}>
         <Table.Header>
             <Table.Row textAlign={"left"}>
-                <Table.HeaderCell>{'Field'}</Table.HeaderCell>
-                <Table.HeaderCell>{'Value'}</Table.HeaderCell>
+                <Table.HeaderCell colSpan="2">{'Meta Stats'}</Table.HeaderCell>
             </Table.Row>
         </Table.Header>
         <Table.Body>
