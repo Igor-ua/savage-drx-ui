@@ -37,7 +37,11 @@ export const LadderHomePage = () => {
         if (isCacheOutdated(weeklyLaddersListCache?.ttl, weeklyLaddersListCache?.timestamp)
             || !weeklyLaddersListCache[selectedYear]) {
             getLadderWeeks(selectedYear).then(res => {
-                setWeeks(res.data);
+                setWeeks(res.data.sort((a: any, b: any) => {
+                    const week_a = Number(a.split('_')[1])
+                    const week_b = Number(b.split('_')[1])
+                    return week_b - week_a
+                }));
                 dispatch({
                     type: 'SET_WEEKLY_LADDERS_LIST',
                     payload:
