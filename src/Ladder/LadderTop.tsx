@@ -59,7 +59,7 @@ export const LadderTop = ({sortedWeeklyLadder}: LadderTopProps) => {
 
             <Grid.Column textAlign={"center"}>
                 <Segment className={"segment-e"}>
-                    <Header as="h4" content={"Different"} inverted/>
+                    <Header as="h4" content={"Misc."} inverted/>
                     {getTable(sortedWeeklyLadder.ladder, INFO_FIELDS.ON_TEAM_TIME.key, INFO_FIELDS.ON_TEAM_TIME.title, sortedWeeklyLadder.week_name)}
                     {getTable(sortedWeeklyLadder.ladder, INFO_FIELDS.AUTO_BUFF.key, INFO_FIELDS.AUTO_BUFF.title, sortedWeeklyLadder.week_name)}
                     {getTable(sortedWeeklyLadder.ladder, INFO_FIELDS.FLAG_CAPTURE.key, INFO_FIELDS.FLAG_CAPTURE.title, sortedWeeklyLadder.week_name)}
