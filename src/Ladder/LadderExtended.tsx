@@ -52,9 +52,10 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
                             activeMenu === 'stats'
                                 ? <List animated>
                                     {Object.entries(INFO_FIELDS).map((k, index) => {
-                                        return <List.Item key={index} as={'a'} onClick={() => (setItem(k[1]))}
-                                                          active={item === k[1]}
-                                                          content={k[1].title}/>
+                                        return k[1].key !== INFO_FIELDS.KILL_STREAK.key ?
+                                            <List.Item key={index} as={'a'} onClick={() => (setItem(k[1]))}
+                                                       active={item === k[1]}
+                                                       content={k[1].title}/> : null
                                     })}
                                 </List>
                                 : <List animated>

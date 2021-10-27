@@ -139,11 +139,11 @@ export const GameHistoryStats = () => {
 
 const drawInfo = (gameResult: ExtendedGameResult) => {
     return <div>
-        {StatsInfoTable(gameResult.game.teams['1'])}
-        {StatsInfoTable(gameResult.game.teams['2'])}
+        {gameResult.game.teams['1'].players.length ? StatsInfoTable(gameResult.game.teams['1']) : null}
+        {gameResult.game.teams['2'].players.length ? StatsInfoTable(gameResult.game.teams['2']) : null}
         {gameResult.game.teams['3'] ? StatsInfoTable(gameResult.game.teams['3']) : null}
         {gameResult.game.teams['4'] ? StatsInfoTable(gameResult.game.teams['4']) : null}
-        {StatsInfoTable(gameResult.game.teams['0'])}
+        {gameResult.game.teams['0'].players.length ? StatsInfoTable(gameResult.game.teams['0']) : null}
     </div>
 }
 

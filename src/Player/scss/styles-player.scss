@@ -10,6 +10,8 @@
   .player-header-segment {
 
     .player-header {
+      margin-top: 0;
+
       .week-number {
         color: #6dbf2f;
       }
@@ -71,5 +73,11 @@
       padding-top: 3px !important;
       padding-bottom: 3px !important;
     }
+  }
+
+  .overall-stats-button {
+    position: absolute;
+    right: 15px;
+    vertical-align: center;
   }
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
+import {Link, useParams} from "react-router-dom";
+import {Button, Grid, Header, Image, Segment, Table} from "semantic-ui-react";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 
 import {TeamStats, WLInfo, WLNames, WPlayer, WPlayerAccuracy} from "../types";
@@ -17,7 +17,7 @@ import {
     isWeekLadderCacheOutdated
 } from "../utils";
 import {drawableItems} from "../GamesHistory/items";
-import {CLAN_ICON_URL, getSsfInfoField, SSF_TTL_SECONDS} from "../utils/constants";
+import {CLAN_ICON_URL, getSsfInfoField, INFO_FIELDS, SSF_TTL_SECONDS} from "../utils/constants";
 
 import './scss/styles-player.scss'
 
@@ -67,10 +67,24 @@ export default () => {
                 setSSF(ssfCache[idParam])
             }
         }
-    }, []);
+    }, [idParam, weekParam]);
 
     return <div className={'csp-stats-player'}>
         <Segment textAlign={"center"} className={'player-header-segment'}>
+            {
+                weekParam?.length
+                    ? <Button
+                        primary
+                        size={"small"}
+                        floated={"right"}
+                        as={Link}
+                        to={'/player/' + idParam}
+                        className={'overall-stats-button'}>
+                        Overall Stats
+                    </Button>
+                    : null
+            }
+
             <Header as={'h4'} inverted className={'player-header'}>
                 {ssf
                     ? <span>
@@ -87,6 +101,7 @@ export default () => {
                         : null
                 }
             </Header>
+
         </Segment>
         {ssf
             ? <div>
@@ -260,12 +275,12 @@ const getGeneralInfoTable = (info: WLInfo) => {
         </Table.Header>
         <Table.Body>
             {Object.entries(info).map((inf, index) => {
-                return <Table.Row key={index} textAlign={"left"}>
+                return inf[0] !== INFO_FIELDS.KILL_STREAK.key ? <Table.Row key={index} textAlign={"left"}>
                     <Table.Cell content={getSsfInfoField(inf[0])}/>
                     <Table.Cell>
                         {formatInfoValue(inf[0], inf[1])}
                     </Table.Cell>
-                </Table.Row>
+                </Table.Row> : null
             })}
         </Table.Body>
     </Table>
