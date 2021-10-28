@@ -41,34 +41,34 @@ export const StatsInfoTable = (team: GRTeam) => {
 
         <Table.Body>
             {team.players.map((grPlayer, index) => {
-                return grPlayer.p?.info ? <Table.Row key={index}>
-                        <Table.Cell collapsing textAlign={"left"} content={formatPlayer(grPlayer)}
-                                    className={grPlayer.is_commander ? 'commander' : ''}/>
-                        <Table.Cell collapsing>{formatGameTime(grPlayer.p.info.on_team_time)}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.experience}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.kills}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.deaths}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.auto_buff}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.blocks}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.build}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.carn_hp}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.client_damage}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.flag_capture}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.kill_streak}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.melee_kill}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.mine}</Table.Cell>
-                        <Table.Cell collapsing>
-                            {grPlayer.p.info.money_gained - grPlayer.p.info.money_spent > 0 ? '+' : ''}
-                            {grPlayer.p.info.money_gained - grPlayer.p.info.money_spent}
-                        </Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.npc_kill}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.ranged_kill}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.sacrifice}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.siege_kill}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.build_damage}</Table.Cell>
-                        <Table.Cell collapsing>{grPlayer.p.info.build_kill}</Table.Cell>
-                    </Table.Row>
-                    : null
+                return <Table.Row key={index}>
+                    <Table.Cell collapsing textAlign={"left"} content={formatPlayer(grPlayer)}
+                                className={grPlayer.is_commander ? 'commander' : ''}/>
+                    <Table.Cell
+                        collapsing>{grPlayer?.p?.info ? formatGameTime(grPlayer.p.info.on_team_time) : null}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.experience}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.kills}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.deaths}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.auto_buff}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.blocks}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.build}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.carn_hp}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.client_damage}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.flag_capture}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.kill_streak}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.melee_kill}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.mine}</Table.Cell>
+                    <Table.Cell collapsing>
+                        {grPlayer?.p?.info ? grPlayer?.p?.info?.money_gained - grPlayer?.p?.info?.money_spent > 0 ? '+' : '' : null}
+                        {grPlayer?.p?.info ? grPlayer?.p?.info?.money_gained - grPlayer?.p?.info?.money_spent : null}
+                    </Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.npc_kill}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.ranged_kill}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.sacrifice}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.siege_kill}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.build_damage}</Table.Cell>
+                    <Table.Cell collapsing>{grPlayer?.p?.info?.build_kill}</Table.Cell>
+                </Table.Row>
             })}
         </Table.Body>
     </Table>
