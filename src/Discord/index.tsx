@@ -48,7 +48,7 @@ export default () => {
                     compact
                     fluid
                     as={'a'}
-                    href='https://discord.com/invite/Hu6MavHK?utm_source=Discord%20Widget&utm_medium=Connect'
+                    href='https://discord.com/invite/gMXqMA7?utm_source=Discord%20Widget&utm_medium=Connect'
                     target={'_blank'}>
                     Join
                 </Button>
