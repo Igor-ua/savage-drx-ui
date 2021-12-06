@@ -83,7 +83,7 @@ export const LadderExtended = ({sortedWeeklyLadder}: LadderTopProps) => {
                 <Container className={"ladder-extended-chart-container"}>
                     {activeMenu === 'stats'
                         ? getChart(sortedWeeklyLadder.ladder.info[item.key], item.title, item.key)
-                        : getChart(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, item.key)}
+                        : getChart(sortedWeeklyLadder.ladder.damage[damageItem], damageItem, damageItem)}
                 </Container>
             </Grid.Column>
         </Grid>
