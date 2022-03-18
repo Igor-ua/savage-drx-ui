@@ -31,6 +31,7 @@ const Navigation = () => {
 
     const isOnlinePath = Boolean(location.pathname === ROUTES.online)
     const isServerPath = Boolean(location.pathname === ROUTES.servers)
+    const isClientPath = Boolean(location.pathname === ROUTES.client)
     const isAboutPath = Boolean(location.pathname === ROUTES.about)
 
     const activeColor = 'orange'
@@ -92,6 +93,15 @@ const Navigation = () => {
                 active={isServerPath}>
                 <Icon name='server'/>
                 Servers
+            </Menu.Item>
+            <Menu.Item
+                name='client'
+                as={Link}
+                to={ROUTES.client}
+                color={null ? activeColor : inactiveColor}
+                active={isClientPath}>
+                <Icon name='gamepad'/>
+                Client
             </Menu.Item>
             <Menu.Item
                 name='about'

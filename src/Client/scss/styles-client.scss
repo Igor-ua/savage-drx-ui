@@ -1,0 +1,58 @@
+.csp-client-wrapper {
+  width: 100%;
+  margin: 0 13% 15px;
+
+  .client-header-segment {
+    background-color: #2d2e30 !important;
+    color: white !important;
+  }
+
+  .details-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+
+    .details-div {
+      margin-bottom: 10px;
+    }
+
+    .discord-setup-questions {
+      color: red;
+    }
+  }
+
+  .windows-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+  }
+
+  .linux-segment {
+    background-color: #2d2e30 !important;
+    color: #8a8e94 !important;
+  }
+
+  .header {
+    color: #8a8e94;
+  }
+
+  .platform-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .platform-table {
+    margin-top: 10px;
+
+    th {
+      background-color: #155b80 !important;
+    }
+
+    tr {
+      background-color: #202225;
+      color: #8a8e94;
+    }
+
+    .td-div {
+      width: 180px;
+    }
+  }
+}

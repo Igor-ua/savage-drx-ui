@@ -6,6 +6,7 @@ import Navigation from "../Navigation";
 import Player from "../Player";
 import Stats from "../Stats";
 import Server from '../Server';
+import Client from '../Client';
 import About from '../About';
 import {HistoricalOnline} from "../Online";
 import {GameHistoryStats, GamesHistory} from "../GamesHistory";
@@ -35,6 +36,7 @@ export default () => {
             <Route exact path={ROUTES.player} component={Player}/>
             <Route exact path={ROUTES.playerWeekly} component={Player}/>
             <Route exact path={ROUTES.servers} component={Server}/>
+            <Route exact path={ROUTES.client} component={Client}/>
             <Route exact path={ROUTES.about} component={About}/>
         </Switch>
     </div>

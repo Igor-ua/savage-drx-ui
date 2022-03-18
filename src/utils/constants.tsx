@@ -13,6 +13,7 @@ export const ROUTES = {
     player: "/player/:id",
     playerWeekly: "/player/:weekName/:id",
     servers: "/servers",
+    client: "/client/drx",
     about: "/about"
 }
 
