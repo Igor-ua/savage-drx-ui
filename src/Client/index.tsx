@@ -35,7 +35,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'http://217.61.19.31/files/drx_setup-1.0-cl_win_prod.exe'}>
+                                    <a href={'https://community-server.info/public/drx/drx_setup-1.0-cl_win_prod.exe'}>
                                         drx_setup-1.0-cl_win_prod.exe
                                     </a>
                                 }/>
@@ -61,9 +61,7 @@ export default () => {
                            textAlign={"center"}>
                         <Table.Body>
                             <Table.Row>
-                                <Table.Cell textAlign={"left"}>
-                                    <div className={'td-div'}>Type</div>
-                                </Table.Cell>
+                                <Table.Cell textAlign={"left"} width={"3"} content={'Type'}/>
                                 <Table.Cell textAlign={"left"} content={
                                     '.deb package for Debian 11/Ubuntu 20.04LTS/Mint/POP! OS 21.04'
                                 }/>
@@ -71,7 +69,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'http://217.61.19.31/files/savage-drx_2022.03.09-1.deb'}>
+                                    <a href={'https://community-server.info/public/drx/savage-drx_2022.03.09-1.deb'}>
                                         savage-drx_2022.03.09-1.deb
                                     </a>
                                 }/>
@@ -104,9 +102,7 @@ export default () => {
                            textAlign={"center"}>
                         <Table.Body>
                             <Table.Row>
-                                <Table.Cell textAlign={"left"}>
-                                    <div className={'td-div'}>Type</div>
-                                </Table.Cell>
+                                <Table.Cell textAlign={"left"} width={"3"} content={'Type'}/>
                                 <Table.Cell textAlign={"left"} content={
                                     'Flatpak bundle'
                                 }/>
@@ -114,7 +110,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'http://217.61.19.31/files/savagedrx-x86_64-2022.03.09-1.flatpak'}>
+                                    <a href={'https://community-server.info/public/drx/savagedrx-x86_64-2022.03.09-1.flatpak'}>
                                         savagedrx-x86_64-2022.03.09-1.flatpak
                                     </a>
                                 }/>
@@ -150,9 +146,7 @@ export default () => {
                            textAlign={"center"}>
                         <Table.Body>
                             <Table.Row>
-                                <Table.Cell textAlign={"left"}>
-                                    <div className={'td-div'}>Type</div>
-                                </Table.Cell>
+                                <Table.Cell textAlign={"left"} width={"3"} content={'Type'}/>
                                 <Table.Cell textAlign={"left"} content={
                                     'Standalone zip, I\'ll sort out the dependencies myself'
                                 }/>
@@ -160,7 +154,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'http://217.61.19.31/files/savage-drx_2022.03.09-1.zip'}>
+                                    <a href={'https://community-server.info/public/drx/savage-drx_2022.03.09-1.zip'}>
                                         savage-drx_2022.03.09-1.zip
                                     </a>
                                 }/>
