@@ -33,10 +33,18 @@ export default () => {
                            textAlign={"center"}>
                         <Table.Body>
                             <Table.Row>
-                                <Table.Cell textAlign={"left"} content={'Download'}/>
+                                <Table.Cell textAlign={"left"} content={'Download #1'}/>
                                 <Table.Cell textAlign={"left"} content={
                                     <a href={'https://community-server.info/public/drx/drx_setup-1.0-cl_win_prod.exe'}>
-                                        drx_setup-1.0-cl_win_prod.exe
+                                        https://community-server.info/drx_setup-1.0-cl_win_prod.exe
+                                    </a>
+                                }/>
+                            </Table.Row>
+                            <Table.Row>
+                                <Table.Cell textAlign={"left"} content={'Download #2'}/>
+                                <Table.Cell textAlign={"left"} content={
+                                    <a href={'https://mega.nz/file/M2Qj0JxB#44mfuirfKqblDxMlGAyp6JFE7KdQixCogurALSNURUQ'}>
+                                        https://mega.nz/drx_setup-1.0-cl_win_prod.exe
                                     </a>
                                 }/>
                             </Table.Row>
