@@ -35,16 +35,8 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download #1'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://community-server.info/public/drx/drx_setup-1.0-cl_win_prod.exe'}>
-                                        https://community-server.info/drx_setup-1.0-cl_win_prod.exe
-                                    </a>
-                                }/>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell textAlign={"left"} content={'Download #2'}/>
-                                <Table.Cell textAlign={"left"} content={
                                     <a href={'https://mega.nz/file/M2Qj0JxB#44mfuirfKqblDxMlGAyp6JFE7KdQixCogurALSNURUQ'}>
-                                        https://mega.nz/drx_setup-1.0-cl_win_prod.exe
+                                        drx_setup-1.0-cl_win_prod.exe
                                     </a>
                                 }/>
                             </Table.Row>
@@ -77,7 +69,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://community-server.info/public/drx/savage-drx_2022.03.09-1.deb'}>
+                                    <a href={'https://mega.nz/file/5m5imRhS#5aMcSPXeLfbcdmqPRFfYJ-pmHqYyjWLQKa6exvEf1zA'}>
                                         savage-drx_2022.03.09-1.deb
                                     </a>
                                 }/>
@@ -118,7 +110,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://community-server.info/public/drx/savagedrx-x86_64-2022.03.09-1.flatpak'}>
+                                    <a href={'https://mega.nz/file/16IAjTDD#Kay2GbJUc4iWRPn_OSQf48xVatKUaDgPoBU0nJJFZuE'}>
                                         savagedrx-x86_64-2022.03.09-1.flatpak
                                     </a>
                                 }/>
@@ -162,7 +154,7 @@ export default () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://community-server.info/public/drx/savage-drx_2022.03.09-1.zip'}>
+                                    <a href={'https://mega.nz/file/x6h1DZBC#eFVXumBCZC6rVS-oMebIyuS4Vi1Qip0rHDtWj9AcPbE'}>
                                         savage-drx_2022.03.09-1.zip
                                     </a>
                                 }/>
