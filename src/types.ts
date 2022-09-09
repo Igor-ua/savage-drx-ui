@@ -36,6 +36,7 @@ export interface Player {
 
 export interface ServerInfo {
     name: string;
+    ip: string;
     world: string;
     cnum: number;
     vnum: number;
@@ -58,8 +59,6 @@ export interface ServerInfo {
 }
 
 export interface LiveProps {
-    server: string;
-    name: string;
     background: string;
 }
 

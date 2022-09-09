@@ -6,8 +6,8 @@ export const getDiscordServerInfo = () => {
     return axios.get(`https://discord.com/api/guilds/511261029838225419/widget.json`)
 }
 
-export const getLiveServerInfo = (server: string) => {
-    return axios.get(`${SERVER_URL}/stats/live?server=${server}`)
+export const getLiveServersInfo = () => {
+    return axios.get(`${SERVER_URL}/stats/live`)
 }
 
 export const getWeeklyOnline = (server: string) => {

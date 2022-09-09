@@ -51,11 +51,9 @@ export default () => {
         {
             width < 1200
                 ? <div className={'media-small-screen'}>
-                    <Live server={'nl'} name={'Europe (NL)'} background={'/images/beast_unit_predator.jpg'}/>
+                    <Live background={'/images/beast_unit_predator.jpg'}/>
                     <br/>
                     <Discord/>
-                    <br/>
-                    <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
                 </div>
                 : <div>
                     <div className={'media-large-screen'}>
@@ -96,10 +94,7 @@ export default () => {
                             </Grid.Column>
                             <Grid.Column>
                                 <Container className={'base'}>
-                                    <Live server={'nl'} name={'Europe (NL)'}
-                                          background={'/images/beast_unit_predator.jpg'}/>
-                                    <br/>
-                                    <Live server={'us'} name={'USA (Dallas)'} background={'/images/beast_unit_shaman.jpg'}/>
+                                    <Live background={'/images/beast_unit_predator.jpg'}/>
                                 </Container>
                             </Grid.Column>
                         </Grid>
