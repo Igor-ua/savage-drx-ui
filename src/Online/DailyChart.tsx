@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {shallowEqual, useDispatch, useSelector} from 'react-redux'
+import {escape} from "html-escaper";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
@@ -159,12 +160,12 @@ export const DailyChart = ({server}: DailyChartInfo) => {
             formatter: function (a: any) {
                 const point = a.chart.hoverPoint;
                 let result = '<b>Online:</b> ' + point.y + '<br/>';
-                result += '<b>Map:</b> ' + point.tooltipData.mapName + '<br/>';
-                result += '<b>Team1:</b> ' + point.tooltipData?.t1?.join(', ') + '<br/>';
-                result += '<b>Team2:</b> ' + point.tooltipData?.t2?.join(', ') + '<br/>';
-                result += point.tooltipData?.t3 ? '<b>Team3:</b> ' + point.tooltipData?.t3.join(', ') + '<br/>' : ''
-                result += point.tooltipData?.t4 ? '<b>Team3:</b> ' + point.tooltipData?.t4.join(', ') + '<br/>' : ''
-                result += '<b>Spectators:</b> ' + point.tooltipData?.t0?.join(', ') + '<br/>';
+                result += '<b>Map:</b> ' + escape(point.tooltipData.mapName) + '<br/>';
+                result += '<b>Team1:</b> ' + escape(point.tooltipData?.t1?.join(', ')) + '<br/>';
+                result += '<b>Team2:</b> ' + escape(point.tooltipData?.t2?.join(', ')) + '<br/>';
+                result += point.tooltipData?.t3?.length ? '<b>Team3:</b> ' + escape(point.tooltipData?.t3.join(', ')) + '<br/>' : ''
+                result += point.tooltipData?.t4?.length ? '<b>Team4:</b> ' + escape(point.tooltipData?.t4.join(', ')) + '<br/>' : ''
+                result += point.tooltipData?.t0?.length ? '<b>Spectators:</b> ' + escape(point.tooltipData?.t0?.join(', ')) + '<br/>' : '';
                 return result;
             }
         }

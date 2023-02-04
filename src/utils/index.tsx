@@ -15,14 +15,13 @@ import {
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
     date.setSeconds(gameTime / 1000);
-    return date.toISOString().substr(11, 8);
+    return date.toISOString().substring(11, 19);
 }
 
 export const formatGameTimeWithDays = (gameTime: number) => {
     const date = new Date(0);
     date.setSeconds(gameTime / 1000);
-
-    return date.toISOString().substr(8, 11);
+    return date.toISOString().substring(8, 19);
 }
 
 export const getWinner = (id: number) => {
@@ -38,16 +37,16 @@ export const getWinner = (id: number) => {
 }
 
 export const addCommanders = (gameResults: Array<GameResult>) => {
-    gameResults.map((gr) => {
-        Object.values(gr.game.teams).forEach((team) => {
+    gameResults.map((gr) => (
+        Object.values(gr.game.teams).forEach((team) => (
             team.players.map((p) => {
                 if (p.is_commander) {
                     team.commander_name = p.name;
                     team.commander_clan_id = p.clan_id;
                 }
             })
-        })
-    });
+        ))
+    ));
     return gameResults;
 }
 

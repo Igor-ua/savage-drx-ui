@@ -13,18 +13,18 @@
     "fontsource-roboto": "^4.0.0",
     "highcharts": "^9.0.1",
     "highcharts-react-official": "^3.0.0",
+    "html-escaper": "^3.0.0",
     "html-react-parser": "^1.4.0",
     "moment-timezone": "^0.5.33",
     "npm-watch": "^0.11.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-iframe": "^1.8.0",
     "react-moment": "^1.1.1",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2",
-    "semantic-ui-react": "^2.0.3",
+    "semantic-ui-react": "^2.1.4",
     "shortid": "^2.2.16",
     "typescript": "^4.4.3",
     "web-vitals": "^1.1.0",
@@ -59,13 +59,21 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.3.0",
-    "@semantic-ui-react/craco-less": "^1.2.3",
+    "@craco/craco": "^7.0.0-alpha.3",
+    "@semantic-ui-react/craco-less": "^3.0.0",
+    "@types/html-escaper": "^3.0.0",
     "@types/react-router-dom": "^5.1.8",
     "envify": "^4.1.0",
     "sass": "^1.39.2",
-    "semantic-ui-less": "^2.4.1",
+    "semantic-ui-less": "^2.5.0",
     "terser": "^5.6.0-beta",
-    "uglifyify": "^5.0.2"
-  }
+    "uglifyify": "^5.0.0"
+  },
+  "comment": {
+    "1": "https://create-react-app.dev/docs/proxying-api-requests-in-development/",
+    "2": "Proxying API Requests in Development",
+    "3": "REACT_APP_API_URL must have empty value (in .env)",
+    "proxy": "https://api.community-server.info"
+  },
+  "proxy": "https://api.community-server.info"
 }
