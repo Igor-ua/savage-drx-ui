@@ -36,14 +36,11 @@
 
     .discord-segment-bottom {
       background-color: #202225 !important;
+      margin-top: -1px !important;
     }
 
     .customized-scrollbar::-webkit-scrollbar {
       width: 7px;
-    }
-
-    .online-label {
-      margin-left: 5px;
     }
   }
 }

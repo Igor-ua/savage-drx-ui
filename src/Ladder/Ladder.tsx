@@ -21,7 +21,7 @@ import './scss/styles-ladder.scss';
 
 
 export const Ladder = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const weeklyLadderCache = useSelector((state: any) => state.weeklyLadderReducer, shallowEqual);
     const isLive = useRouteMatch(ROUTES.ladderLiveTab);
     const params: any = useParams();
@@ -70,6 +70,7 @@ export const Ladder = () => {
                 setWeeklyLadder(weeklyLadderCache[weekName]);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -155,13 +156,13 @@ const getSortedWeeklyLadder = (weeklyLadder: WeeklyLadder) => {
             }
     }
 
-    Object.keys(weeklyLadder.ladder.info).map((k) => {
+    Object.keys(weeklyLadder.ladder.info).forEach((k) => {
         let values = Object.values(weeklyLadder.ladder.info[k]);
         sortedWeeklyLadder.ladder.info[k] =
             values.sort((a, b) => b.item_value - a.item_value)
     })
 
-    Object.keys(weeklyLadder.ladder.damage).map((k) => {
+    Object.keys(weeklyLadder.ladder.damage).forEach((k) => {
         const filtered = Object.values(weeklyLadder.ladder.damage[k])
             .filter((v) => k === 'acc_damage' || v.a_item_shots !== 0)
 

@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import {Container, Grid, Pagination, Segment} from "semantic-ui-react";
 
 import Discord from "../Discord";
-import Live from "../Live";
+import {LivePanel} from "../Live";
 import Footer from "../Footer";
 import Patreon from '../Patreon';
 import {getNewsByPage} from "../requests";
@@ -51,7 +51,7 @@ export default () => {
         {
             width < 1200
                 ? <div className={'media-small-screen'}>
-                    <Live background={'/images/beast_unit_predator.jpg'}/>
+                    <LivePanel background={'/images/beast_unit_predator.jpg'}/>
                     <br/>
                     <Discord/>
                 </div>
@@ -94,7 +94,7 @@ export default () => {
                             </Grid.Column>
                             <Grid.Column>
                                 <Container className={'base'}>
-                                    <Live background={'/images/beast_unit_predator.jpg'}/>
+                                    <LivePanel background={'/images/beast_unit_predator.jpg'}/>
                                 </Container>
                             </Grid.Column>
                         </Grid>

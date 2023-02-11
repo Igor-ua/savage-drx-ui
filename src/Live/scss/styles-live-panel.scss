@@ -38,12 +38,9 @@
       }
     }
 
-    .discord-segment-bottom {
+    .segment-live-bottom {
       background-color: #202225;
-    }
-
-    .online-label {
-      margin-left: 45px !important;
+      margin-top: -1px !important;
     }
 
     .name-without-icon {
@@ -54,33 +51,54 @@
       width: 7px;
     }
 
-    .segment-world-info {
-      .world-img-column {
-        padding-left: 0 !important;
-        padding-right: 4px !important;
-        //padding-top: 6px !important;
-        //padding-bottom: 14px !important;
-      }
-
-      .world-image {
-        //border: 1px solid yellow;
-      }
-
-      padding-top: 2px;
+    .segment-servers {
+      padding-top: 25px;
       //padding-bottom: 2px;
       background-color: #202225;
       color: #acb2b3;
-    }
 
-    .server-segments {
-      margin: 5px 0 !important;
+      overflow: auto;
+      //max-height: 300px;
+      //min-height: 100px;
+      background-blend-mode: saturation;
+      background-repeat: no-repeat, no-repeat !important;
+      background-position: 50% 100%, 100% 100% !important;
+      background-size: auto 100% !important;
 
-      //border: 1px solid red;
-      //margin-bottom: 10px;
-      //background-color: #202225;
+      .grid:not(:first-child) {
+        margin-top: 0;
+      }
 
-      .header {
-        color: #d37f29 !important;
+      .server-label {
+        word-break: break-word;
+        background-color: #347b4f !important;
+        color: white;
+
+
+      }
+
+      .server-label:hover {
+        background-color: #244936 !important;
+      }
+
+      .online-label {
+        background-color: #b7621f !important;
+
+        .online-label-span-live {
+          color: white !important;
+        }
+
+        .online-label-span-max {
+          color: #323232 !important;
+        }
+      }
+
+      .server-icon {
+        margin-right: 2px;
+      }
+
+      .online-column {
+        padding-left: 0 !important;
       }
     }
 
