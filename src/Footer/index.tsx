@@ -1,10 +1,10 @@
-import React from "react";
-import {Container, Icon, Label} from "semantic-ui-react";
+import React from "react"
+import {Container, Icon, Label} from "semantic-ui-react"
 
-import './scss/styles-footer.scss';
+import './scss/styles-footer.scss'
 
 
-export default () => {
+const Footer = () => {
     const current_year = new Date().getFullYear()
 
     return <div className={'csp-footer'}>
@@ -17,3 +17,5 @@ export default () => {
         </Container>
     </div>
 }
+
+export default Footer

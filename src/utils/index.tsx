@@ -1,16 +1,15 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {useState, useEffect} from 'react';
-import {Icon, Image} from "semantic-ui-react";
+import React, {useEffect, useState} from "react"
+import {Link} from "react-router-dom"
+import {Icon, Image} from "semantic-ui-react"
 
-import {GameResult} from "../types";
+import {A2SPlayer, GameResult} from "../types"
 import {weekNumber} from 'weeknumber'
 import {
     CLAN_ICON_URL,
     FINISHED_WEEKLY_LADDER_TTL_SECONDS,
     INFO_FIELDS,
     LIVE_WEEKLY_LADDER_TTL_SECONDS
-} from "./constants";
+} from "./constants"
 
 export const formatGameTime = (gameTime: number) => {
     const date = new Date(0);
@@ -39,7 +38,7 @@ export const getWinner = (id: number) => {
 export const addCommanders = (gameResults: Array<GameResult>) => {
     gameResults.map((gr) => (
         Object.values(gr.game.teams).forEach((team) => (
-            team.players.map((p) => {
+            team.players.forEach((p) => {
                 if (p.is_commander) {
                     team.commander_name = p.name;
                     team.commander_clan_id = p.clan_id;
@@ -200,8 +199,25 @@ const _formatPlayer = (p: any, weekName: any) => {
         </span>
 }
 
+export const formatA2SPlayer = (p: A2SPlayer) => {
+    // p.clan = 32994
+    return <span>
+            {p.is_comm
+                ? <Icon name={'copyright'} size={"large"}/>
+                : null
+            }
+            {
+                p.clan
+                    ? <Image src={CLAN_ICON_URL + p.clan + '.png'}
+                             size={"small"}
+                             inline/>
+                    : null
+            }
+            <span className={p.clan ? 'span-name' : ''}>{p.name}</span>
+        </span>
+}
 
-function getWindowDimensions() {
+const _getWindowDimensions = () => {
     const {innerWidth: width, innerHeight: height} = window;
     return {
         width,
@@ -209,12 +225,12 @@ function getWindowDimensions() {
     };
 }
 
-export default function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+export const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(_getWindowDimensions());
 
     useEffect(() => {
         function handleResize() {
-            setWindowDimensions(getWindowDimensions());
+            setWindowDimensions(_getWindowDimensions());
         }
 
         window.addEventListener('resize', handleResize);
@@ -222,4 +238,8 @@ export default function useWindowDimensions() {
     }, []);
 
     return windowDimensions;
+}
+
+export const capitalizeFirstLetter = (s: string) => {
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }

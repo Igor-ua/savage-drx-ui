@@ -1,10 +1,10 @@
 import React from "react";
-import {Icon, List, Segment} from "semantic-ui-react";
+import {List, Segment} from "semantic-ui-react";
 
 import './scss/styles-about.scss'
 
 
-export default () => {
+const About = () => {
 
     return <div className={'csp-about-wrapper'}>
         <Segment textAlign={"left"} className={'about-segment'} style={{
@@ -30,3 +30,5 @@ export default () => {
 
     </div>
 }
+
+export default About

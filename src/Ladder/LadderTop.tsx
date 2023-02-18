@@ -1,11 +1,11 @@
 import React from 'react'
-import {Grid, Header, Segment, Table} from "semantic-ui-react";
+import {Grid, Header, Segment, Table} from "semantic-ui-react"
 
-import {formatInfoValue, formatWeeklyPlayer} from "../utils";
-import {LadderTopProps, SortedWLadder} from "../types";
-import {INFO_FIELDS} from "../utils/constants";
+import {formatInfoValue, formatWeeklyPlayer} from "../utils"
+import {LadderTopProps, SortedWLadder} from "../types"
+import {INFO_FIELDS} from "../utils/constants"
 
-import './scss/styles-ladder-top.scss';
+import './scss/styles-ladder-top.scss'
 
 
 export const LadderTop = ({sortedWeeklyLadder}: LadderTopProps) => {
@@ -77,7 +77,7 @@ export const LadderTop = ({sortedWeeklyLadder}: LadderTopProps) => {
 const getTable = (swl: SortedWLadder, infoKey: string, header: string, weekName: string) => {
     const top: any = []
     let count = 0
-    Object.values(swl.info[infoKey]).map((s, v) => {
+    Object.values(swl.info[infoKey]).forEach((s, v) => {
         const s_copy = {...s}
         if (count < 5) {
             s_copy.item_value = formatInfoValue(infoKey, s_copy.item_value)

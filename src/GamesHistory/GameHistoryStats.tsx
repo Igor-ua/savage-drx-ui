@@ -38,17 +38,17 @@ export const GameHistoryStats = () => {
                     const playersMap: any = {};
                     const accuracyPlayerMap: APMCollection = {};
 
-                    result.players.map((p) => {
+                    result.players.forEach((p) => {
                         playersMap[p.name] = p;
-                        p.accuracy.map((accuracy) => {
+                        p.accuracy.forEach((accuracy) => {
                             const an = accuracyPlayerMap[accuracy.name] || {};
                             an[p.name] = accuracy;
                             accuracyPlayerMap[accuracy.name] = an;
                         })
                     })
 
-                    Object.values(result.game.teams).map((team) => {
-                        team.players.map((player) => {
+                    Object.values(result.game.teams).forEach((team) => {
+                        team.players.forEach((player) => {
                             player.p = playersMap[player.name]
                         })
                     })
@@ -86,6 +86,7 @@ export const GameHistoryStats = () => {
         } else {
             setGameResult(gameStatsCache.data)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div className={'game-history-stats'}>

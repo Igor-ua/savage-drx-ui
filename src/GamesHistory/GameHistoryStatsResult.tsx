@@ -46,7 +46,7 @@ export const GameHistoryStatsResult = (gameResult: ExtendedGameResult) => {
                         {gameResult?.game ? formatGameTime(gameResult?.game.game_time) : null}
                     </Table.Cell>
                     <Table.Cell textAlign={"center"}>
-                        {gameResult?.winner == 0 ? 'Draw' : gameResult?.winner == 1 ? 'Human' : 'Beast'}
+                        {gameResult?.winner === 0 ? 'Draw' : gameResult?.winner === 1 ? 'Human' : 'Beast'}
                     </Table.Cell>
                     <Table.Cell textAlign={"center"}>{gameResult?.game.online}</Table.Cell>
                     <Table.Cell textAlign={"right"}>

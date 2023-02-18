@@ -39,6 +39,7 @@ export const DailyChart = ({server}: DailyChartInfo) => {
                 setDailyOnline(dailyCache[server].data)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [server]);
 
     useEffect(() => {

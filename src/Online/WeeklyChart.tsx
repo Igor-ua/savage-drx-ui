@@ -38,6 +38,7 @@ export const WeeklyChart = ({server}: WeeklyChartInfo) => {
                 setWeeklyOnline(weeklyCache[server].data)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [server]);
 
 

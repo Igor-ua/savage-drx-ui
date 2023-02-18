@@ -7,7 +7,7 @@ import {LiveServerInfo, LiveProps} from "../types";
 import './scss/styles-live-panel.scss';
 import {Link} from "react-router-dom";
 
-export const LivePanel = ({background}: LiveProps) => {
+export const LivePanel = ({background, serverProp}: LiveProps) => {
     const [liveServersInfo, setLiveServersInfo] = useState<Array<LiveServerInfo>>();
     const [isDisabled, setIsDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -47,14 +47,14 @@ export const LivePanel = ({background}: LiveProps) => {
             </Segment>
 
             <Segment className={'segment-servers'} style={{backgroundImage: `url(${background})`}}>
-                {liveServersInfo?.map(server => (
-                    <Grid>
-                        <Grid.Column width={"12"} textAlign={"left"} verticalAlign={"middle"}>
-                            <Label as={Link} to={'/server/' + server?.data?.ip} image className={'server-label'}>
+                {liveServersInfo?.map((server, i) => (
+                    <Grid key={'grid' + i} className={server?.data?.ip === serverProp ? "selected-server" : ""}>
+                        <Grid.Column key={'label' + i} width={"12"} textAlign={"left"} verticalAlign={"middle"}>
+                            <Label as={Link} to={'/servers/' + server?.data?.ip} image className={'server-label'}>
                                 <Icon name='game' color={"yellow"} className={'server-icon'}/> {server?.data?.name}
                             </Label>
                         </Grid.Column>
-                        <Grid.Column width={"4"} textAlign={"right"} verticalAlign={"middle"}
+                        <Grid.Column key={'online'+ i} width={"4"} textAlign={"right"} verticalAlign={"middle"}
                                      className={'online-column'}>
                             <Label color={"grey"} className={'online-label'}>
                                 <span className={'online-label-span-live'}>{server?.data?.cnum}</span>

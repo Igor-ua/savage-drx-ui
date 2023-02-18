@@ -59,7 +59,8 @@ export interface ServerInfo {
 }
 
 export interface LiveProps {
-    background: string;
+    background: string
+    serverProp: string
 }
 
 export interface WeeklyChartInfo {
@@ -392,8 +393,54 @@ export interface LadderTopProps {
 }
 
 export interface SearchableSSFPlayer {
-    uid: number,
-    clan_id: number,
-    clan_tag_name: string,
+    uid: number
+    clan_id: number
+    clan_tag_name: string
     name: string
+}
+
+
+// ===============================================================================================
+// A2S Server Info / Valve  ======================================================================
+// ===============================================================================================
+
+export interface A2SPlayer {
+    index: number
+    name: string
+    score: number
+    duration: number
+    deaths: number
+    team: number
+    clan: number
+    is_comm: number
+}
+
+export interface A2SInfo {
+    server_name: string
+    server_ip: string
+    port: number
+    map_name: string
+    game: string
+    player_count: number
+    max_players: number
+    bot_count: number
+    server_type: string
+    platform: string
+    password_protected: boolean
+    version: string
+    edf: number
+    ping: number
+}
+
+export interface A2SResponse {
+    info: A2SInfo,
+    players: Array<A2SPlayer>
+}
+
+export interface LiveServerProps {
+    address: string;
+}
+
+export interface SortedA2SPlayers {
+    [index: string]: Array<A2SPlayer>
 }

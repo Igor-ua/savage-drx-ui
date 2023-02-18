@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {Image, Segment, Label, List, Button} from "semantic-ui-react";
+import {Image, Segment, Label, List, Button} from "semantic-ui-react"
 
-import {getDiscordServerInfo} from "../requests";
-import {DiscordInfo} from "../types";
+import {getDiscordServerInfo} from "../requests"
+import {DiscordInfo} from "../types"
 
-import './scss/styles-discord.scss';
+import './scss/styles-discord.scss'
 
 
-export default () => {
+const Discord = () => {
     const [discordServerInfo, setDiscordServerInfo] = useState<DiscordInfo>();
 
     useEffect(() => {
@@ -63,3 +63,5 @@ export default () => {
         {/*</iframe>*/}
     </div>
 }
+
+export default Discord

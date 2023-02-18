@@ -4,7 +4,7 @@ import {Button, Image, Segment} from "semantic-ui-react";
 import './scss/styles-patreon-widget.scss';
 
 
-export default () => {
+const Patreon = () => {
     return <div className={'patreon-widget'}>
         <Segment.Group className={'patreon-widget-segment'}>
             <Segment className={'patreon-widget-segment-top'} compact textAlign={"center"}>
@@ -31,3 +31,5 @@ export default () => {
         </Segment.Group>
     </div>
 }
+
+export default Patreon

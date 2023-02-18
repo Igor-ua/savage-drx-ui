@@ -1,10 +1,10 @@
-import React from "react";
-import {Flag, Grid, Header, Image, Segment, Table} from "semantic-ui-react";
+import React from "react"
+import {Flag, Grid, Header, Image, Segment, Table} from "semantic-ui-react"
 
 import './scss/styles-server.scss'
 
 
-export default () => {
+const Server = () => {
 
     return <div className={'csp-server-wrapper'}>
         <Segment textAlign={"center"} className={'server-header-segment'}>
@@ -123,3 +123,5 @@ const serverInfoTable = (serverType: string,
         </Table.Body>
     </Table>
 }
+
+export default Server

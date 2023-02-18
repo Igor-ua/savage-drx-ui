@@ -22,7 +22,7 @@ import {CLAN_ICON_URL, getSsfInfoField, INFO_FIELDS, SSF_TTL_SECONDS} from "../u
 import './scss/styles-player.scss'
 
 
-export default () => {
+const Player = () => {
     const dispatch = useDispatch()
     const weeklyLadderCache = useSelector((state: any) => state.weeklyLadderReducer, shallowEqual);
     const ssfCache = useSelector((state: any) => state.SSFReducer, shallowEqual);
@@ -67,6 +67,7 @@ export default () => {
                 setSSF(ssfCache[idParam])
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [idParam, weekParam]);
 
     return <div className={'csp-stats-player'}>
@@ -299,3 +300,5 @@ const getWeekHeader = (weekParam: string) => {
         getFormattedDate(getEndDateOfISOWeek(requestedWeek, requestedYear))})
     </span>
 }
+
+export default Player

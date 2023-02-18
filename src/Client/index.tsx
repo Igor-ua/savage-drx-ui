@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
-import {Grid, Header, Image, Segment, Table} from "semantic-ui-react";
+import {Grid, Header, Image, Segment, Table} from "semantic-ui-react"
 
 import './scss/styles-client.scss'
 
 
-export default () => {
+const Client = () => {
 
     return <div className={'csp-client-wrapper'}>
         <Segment textAlign={"center"} className={'client-header-segment'}>
@@ -180,3 +180,5 @@ export default () => {
         </Segment>
     </div>
 }
+
+export default Client

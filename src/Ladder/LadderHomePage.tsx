@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {Link} from "react-router-dom";
-import {Button, Grid, Header, Icon, Segment, Select, Table} from "semantic-ui-react";
+import {Link} from "react-router-dom"
+import {Button, Grid, Header, Icon, Segment, Select, Table} from "semantic-ui-react"
 
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {getLadderWeeks} from "../requests";
+import {shallowEqual, useDispatch, useSelector} from "react-redux"
+import {getLadderWeeks} from "../requests"
 import {
     getCurrentTimeSeconds,
     getCurrentWeekCode,
@@ -11,10 +11,10 @@ import {
     getFormattedDate,
     getStartDateOfISOWeek,
     isCacheOutdated
-} from "../utils";
-import {WEEKLY_LADDERS_LIST_TTL_SECONDS} from "../utils/constants";
+} from "../utils"
+import {WEEKLY_LADDERS_LIST_TTL_SECONDS} from "../utils/constants"
 
-import './scss/styles-ladder-home-page.scss';
+import './scss/styles-ladder-home-page.scss'
 
 
 export const LadderHomePage = () => {
@@ -55,6 +55,7 @@ export const LadderHomePage = () => {
         } else {
             setWeeks(weeklyLaddersListCache[selectedYear]);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedYear]);
 
     return <div className={'weekly-ladder-home-page'}>

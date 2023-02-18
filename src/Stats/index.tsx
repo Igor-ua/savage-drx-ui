@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {Link, useHistory, useParams} from "react-router-dom";
-import {Button, Form, Grid, Header, Icon, Segment, Table} from "semantic-ui-react";
+import React, {useEffect, useState} from "react"
+import {Link, useHistory, useParams} from "react-router-dom"
+import {Button, Form, Grid, Header, Icon, Segment, Table} from "semantic-ui-react"
 
-import {formatPlayer} from "../utils";
-import {searchSSFByName, searchSSFByUid} from "../requests";
-import {SearchableSSFPlayer} from "../types";
-import {ROUTES} from "../utils/constants";
+import {formatPlayer} from "../utils"
+import {searchSSFByName, searchSSFByUid} from "../requests"
+import {SearchableSSFPlayer} from "../types"
+import {ROUTES} from "../utils/constants"
 
 import './scss/styles-stats.scss'
 
 
-export default () => {
+const Stats = () => {
     const history = useHistory()
-    const params: any = useParams();
-    const uidParam = params?.uid;
-    const nameParam = params?.name;
+    const params: any = useParams()
+    const uidParam = params?.uid
+    const nameParam = params?.name
     const [uid, setUid] = useState(uidParam || '')
     const [name, setName] = useState(nameParam || '')
     const [players, setPlayers] = useState<Array<SearchableSSFPlayer>>()
@@ -147,3 +147,5 @@ const getTable = (data: Array<SearchableSSFPlayer>) => {
         </Table.Body>
     </Table>
 }
+
+export default Stats

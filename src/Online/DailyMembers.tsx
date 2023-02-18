@@ -15,10 +15,10 @@ const removeDuplicates = (arr: Array<DPlayer>) =>
 
 const extractPlayers = (dailyOnline: Array<DailySnapshot>) => {
     const dPlayers = Array<DPlayer>();
-    dailyOnline.map((d: DailySnapshot) => {
-        Object.values(d.teams).map((dsTeam) => {
+    dailyOnline.forEach((d: DailySnapshot) => {
+        Object.values(d.teams).forEach((dsTeam) => {
             if (dsTeam && dsTeam.players) {
-                dsTeam.players.map((p) => {
+                dsTeam.players.forEach((p) => {
                     dPlayers.push({name: p.name, uid: p.uid, clan_id: p.clan_id});
                 });
             }

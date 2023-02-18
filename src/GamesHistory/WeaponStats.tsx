@@ -12,6 +12,7 @@ export const WeaponStats = ({players}: WSProps) => {
     const [editedPlayers, setEditedPlayers] = useState<Array<ACRPlayer>>()
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         players = editItemsAndPlayers(players);
         if (players.length) {
             setEditedPlayers(players);
@@ -29,7 +30,7 @@ const editItemsAndPlayers = (players: Array<ACRPlayer>) => {
     const items = Object.keys(drawableItems)
     const filteredPlayers = Array<ACRPlayer>()
 
-    players.map((p) => {
+    players.forEach((p) => {
         const acr = p.accuracies.filter((acr) => acr.value)
 
         let generalDamage = 0;

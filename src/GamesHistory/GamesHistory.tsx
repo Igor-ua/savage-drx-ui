@@ -35,6 +35,7 @@ export const GamesHistory = () => {
         } else {
             setGameResult(gamesHistoryCache.data);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div className={'games-history-wrapper'}>
