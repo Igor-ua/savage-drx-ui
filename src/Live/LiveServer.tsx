@@ -56,16 +56,16 @@ export const LiveServer = ({address}: LiveServerProps) => {
             <Grid.Row>
                 <Grid.Column>
                     <Header as="h3">
-                        {response?.info.server_name}
+                        {response?.info?.server_name}
                     </Header>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>
                 <Grid.Column>
-                    {response ? getTable(response) : null}
+                    {response?.info ? getTable(response) : null}
                 </Grid.Column>
                 <Grid.Column>
-                    {response?.info.map_name
+                    {response?.info?.map_name
                         ? <Image
                             className={'world-image'}
                             src={process.env.REACT_APP_WORLD_LOCATION + response?.info.map_name + '_overhead.jpg'}
