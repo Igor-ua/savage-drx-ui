@@ -9,9 +9,10 @@ import {Link} from "react-router-dom";
 
 export const LivePanel = ({background, serverProp}: LiveProps) => {
     const [liveServersInfo, setLiveServersInfo] = useState<Array<LiveServerInfo>>();
-    const [isDisabled, setIsDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const refreshDisabledTimeout = 500;
+    const [intervalId, setIntervalId] = useState<any>()
+    const refreshDisabledTimeout = 1000;
+    const generalRefreshInterval = 60000;
 
     useEffect(() => {
         getLiveServersInfo().then(res => {
@@ -19,12 +20,23 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
         })
     }, []);
 
+    useEffect(() => {
+        clearInterval(intervalId)
+        if (liveServersInfo) {
+            setIntervalId(setInterval(() => {
+                disableWithTimeout();
+                console.log("interval...")
+                getLiveServersInfo().then(res => {
+                    setLiveServersInfo(res.data);
+                })
+            }, generalRefreshInterval))
+        }
+    }, [liveServersInfo]);
+
     const disableWithTimeout = () => {
-        setIsDisabled(true);
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-            setIsDisabled(false);
         }, refreshDisabledTimeout);
     }
 
@@ -67,7 +79,6 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
 
             <Segment textAlign='center' className={'segment-live-bottom'}>
                 <Button icon
-                        loading={isLoading}
                         primary
                         fluid
                         size={"small"}
@@ -77,9 +88,9 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
                                 setLiveServersInfo(res.data);
                             })
                         }}
-                        disabled={isDisabled}
+                        disabled={isLoading}
                         compact>
-                    <Icon name='refresh'/> Refresh
+                    <Icon name='refresh' loading={isLoading} className={isLoading ? "icon-loading" : ""}/> Refresh
                 </Button>
             </Segment>
         </Segment.Group>

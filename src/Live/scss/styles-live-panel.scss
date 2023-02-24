@@ -41,6 +41,10 @@
     .segment-live-bottom {
       background-color: #202225;
       margin-top: -1px !important;
+
+      .icon-loading {
+        color: yellow;
+      }
     }
 
     .name-without-icon {
