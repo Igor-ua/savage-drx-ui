@@ -25,12 +25,12 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
         if (liveServersInfo) {
             setIntervalId(setInterval(() => {
                 disableWithTimeout();
-                console.log("interval...")
                 getLiveServersInfo().then(res => {
                     setLiveServersInfo(res.data);
                 })
             }, generalRefreshInterval))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [liveServersInfo]);
 
     const disableWithTimeout = () => {
