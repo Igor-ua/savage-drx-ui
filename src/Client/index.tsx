@@ -35,8 +35,8 @@ const Client = () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download #1'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://mega.nz/file/AvQHmQKI#AqFu5zulxhjwDx5OW4om6GMP_AGkIcp6KAJYhIrigW8'}>
-                                        drx_setup-1.0-cl_win_prod.exe
+                                    <a href={'https://mega.nz/file/1yIXzIBI#nazUrLamxp6Tto5-XbmBYTzikc_m-skjXc66XFB0VEk'}>
+                                        drx_setup-1.01-cl_win_prod.exe
                                     </a>
                                 }/>
                             </Table.Row>
