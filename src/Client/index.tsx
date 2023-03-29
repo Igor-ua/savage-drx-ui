@@ -63,27 +63,27 @@ const Client = () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} width={"3"} content={'Type'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    '.deb package for Debian 11/Ubuntu 20.04LTS/Mint/POP! OS 21.04'
+                                    '.deb package for Debian 11/Ubuntu 22.04, 22.10 LTS/Mint/POP! OS 21.04 etc'
                                 }/>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://mega.nz/file/5m5imRhS#5aMcSPXeLfbcdmqPRFfYJ-pmHqYyjWLQKa6exvEf1zA'}>
-                                        savage-drx_2022.03.09-1.deb
+                                    <a href={'https://mega.nz/file/1jRGTQjA#IYV_FdstUa3OJIs5rwMhO9eTY4mnyQyJ4Pp8kJbpKQQ'}>
+                                        savage-drx_2023.03.29-1.deb
                                     </a>
                                 }/>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Sha256'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    '751419c7f4c3c1dde78862d40138ecde54fea9d63d110540cf6c0389463c8518'
+                                    '3b849ca419bcc837587acc4c40f6e20ab89c4032c112ce60b99036963038025b'
                                 }/>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Install with'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    'sudo apt install ./savage-drx_2022.03.09-1.deb'
+                                    'sudo apt install ./savage-drx_2023.03.29-1.deb'
                                 }/>
                             </Table.Row>
                             <Table.Row>
@@ -110,15 +110,15 @@ const Client = () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://mega.nz/file/16IAjTDD#Kay2GbJUc4iWRPn_OSQf48xVatKUaDgPoBU0nJJFZuE'}>
-                                        savagedrx-x86_64-2022.03.09-1.flatpak
+                                    <a href={'https://mega.nz/file/UmZUAS6D#sx-5X05lfHDz-_uf0IREsnmzaBuvBsrTTS0jHYOBexQ'}>
+                                        savage-drx-x86_64-2023.03.29-1.flatpak
                                     </a>
                                 }/>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Sha256'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    '51b3315a7e686af86d234f78503a3c51c993ff3e8f721ea7af6db52168ac2677'
+                                    'da222b19bf38f4a9424886fb47c57ab5d9ca22166eca9880b4cd08f4fa8294b4'
                                 }/>
                             </Table.Row>
                             <Table.Row>
@@ -127,13 +127,13 @@ const Client = () => {
                                     * flatpak --user remote-add --if-not-exists flathub
                                     https://flathub.org/repo/flathub.flatpakrepo
                                     <br/>
-                                    * flatpak --user install ./savagedrx-x86_64-2022.03.09-1.flatpak
+                                    * flatpak --user install ./savage-drx-x86_64-2023.03.29-1.flatpak
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Uninstall with'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    'flatpak uninstall --user --delete-data org.newerth.savagedrx'
+                                    'flatpak uninstall --user --delete-data org.savagedrx.savagedrx'
                                 }/>
                             </Table.Row>
                         </Table.Body>
@@ -154,15 +154,15 @@ const Client = () => {
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Download'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    <a href={'https://mega.nz/file/x6h1DZBC#eFVXumBCZC6rVS-oMebIyuS4Vi1Qip0rHDtWj9AcPbE'}>
-                                        savage-drx_2022.03.09-1.zip
+                                    <a href={'https://mega.nz/file/MjBTRCQY#mnPSstwKOS7tckNh01s0MooWsIGf9jhACYbET0QpveE'}>
+                                        savage-drx_2023.03.29-1.zip
                                     </a>
                                 }/>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell textAlign={"left"} content={'Sha256'}/>
                                 <Table.Cell textAlign={"left"} content={
-                                    'b5e9a63f6584617859c29e16e18fdeea9969840dc87fb641d5d471d83072e169'
+                                    '562cfa3704e307eba2e010f942153061e2e607e69dcf710d96f07d12a25a2b24'
                                 }/>
                             </Table.Row>
                         </Table.Body>
