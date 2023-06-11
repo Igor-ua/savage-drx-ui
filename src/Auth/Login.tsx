@@ -60,7 +60,8 @@ const Login = () => {
 
     const showErrorNotification = () => {
         if (showError && !errorMessage?.includes('Incorrect')) {
-            const message = errorMessage ? errorMessage : errorCode + ' - ' + errorStatusText
+            const messageWithCode = errorCode ? errorCode + ' - ' + errorStatusText : "Unknown error"
+            const message = errorMessage ? errorMessage : messageWithCode
             return <Form.Field width={8} className={'login-error field-size'}>
                 <Message size={"small"} error header='Error:' content={message}/>
             </Form.Field>

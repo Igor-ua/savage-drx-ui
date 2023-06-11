@@ -155,7 +155,11 @@ const RegistrationForm = (props: RegistrationFormProps) => {
                             <Message size={"small"}
                                      error
                                      header={'Error:'}
-                                     content={errorMessage ? errorMessage : errorCode + ' - ' + errorStatusText}/>
+                                     content={errorMessage
+                                         ? errorMessage
+                                         : errorCode
+                                             ? errorCode + ' - ' + errorStatusText
+                                             : "Unknown error"}/>
                         </Form.Field>
                         : null
                 }
