@@ -1,0 +1,184 @@
+import React, {useEffect, useRef, useState} from 'react'
+import {Button, Form, Icon, Message} from "semantic-ui-react";
+import {Link} from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha"
+
+import {ROUTES} from "../utils/constants";
+import {sendRegistrationRequest} from "../requests";
+import {RegistrationFormProps, RegistrationProps} from "../types";
+import {isString} from "../utils";
+
+import RegDisplayNameForm from "./RegDisplayNameForm";
+import RegEmailForm from "./RegEmailForm";
+
+import './scss/styles-registration.scss';
+
+
+
+const RegistrationForm = (props: RegistrationFormProps) => {
+
+    const [regEmail, setRegEmail] = useState("")
+    const [regPassword1, setRegPassword1] = useState("")
+    const [regPassword2, setRegPassword2] = useState("")
+    const [isRegEnabled, setIsRegEnabled] = useState(false)
+
+    const [showError, setShowError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+    const [errorCode, setErrorCode] = useState(0)
+    const [errorStatusText, setErrorStatusText] = useState("")
+
+    const [showEmailConfirmationForm, setShowEmailConfirmationForm] = useState(false)
+    const [showPreviousForm, setShowPreviousForm] = useState(false)
+
+    const site_key = String(process.env.REACT_APP_CAPTCHA_SITE_KEY)
+    const captchaRef = useRef<ReCAPTCHA>(null)
+    const [captchaToken, setCaptchaToken] = useState<any>(null)
+
+    useEffect(() => {
+        setIsRegEnabled(regEmail && captchaToken && regPassword1 === regPassword2)
+    }, [regEmail, captchaToken, regPassword1, regPassword2]);
+
+    const register = () => {
+        if (isRegEnabled) {
+            const registrationProps: RegistrationProps = {
+                username: regEmail,
+                password: regPassword1,
+                display_name: props.displayName,
+                token: captchaToken
+            }
+            sendRegistrationRequest(registrationProps).then(res => {
+                setShowEmailConfirmationForm(true)
+            }).catch(error => {
+                captchaRef?.current?.reset()
+                setCaptchaToken(null)
+                processError(error)
+            })
+        }
+    }
+
+    const processError = (error: any) => {
+        setShowError(true)
+        setErrorMessage(isString(error?.response?.data?.detail) ? error?.response?.data?.detail : '')
+        setErrorCode(error?.response?.status)
+        setErrorStatusText(error?.response?.statusText)
+    }
+
+    const resetErrorNotification = () => {
+        setShowError(false)
+        setErrorMessage("")
+        setErrorCode(0)
+        setErrorStatusText("")
+    }
+
+    const arePasswordsEqual = () => {
+        return Boolean(regPassword1) && Boolean(regPassword2) && regPassword1 === regPassword2
+    }
+
+    const showRegistrationForm = () => {
+        return <div>
+            <Form inverted size={"small"} className={"form-registration"} error={showError}
+                  onSubmit={() => {
+                      register()
+                  }}>
+
+                <Form.Input name='email' label='email (username)' placeholder='example@gmail.com' type={"email"}
+                            required width={8} className={'field-size'}
+                            onChange={(e, {name, value}) => {
+                                setRegEmail(value)
+                                resetErrorNotification()
+                            }}
+                            error={showError && errorMessage?.includes("Email")}
+                            icon={showError && errorMessage?.includes("Email")
+                                ? 'times circle icon-invalid active big input-icon'
+                                : 'question circle outline big input-icon'}
+                />
+                <Form.Input name='nick' label='displayed username' placeholder='Nick'
+                            value={props.displayName}
+                            required width={8} className={'field-size'} disabled={true}
+                            error={errorMessage?.includes("Display")}
+                            icon={errorMessage?.includes("Display")
+                                ? 'times circle icon-invalid active big input-icon'
+                                : 'chevron circle down icon-valid active big input-icon'}
+                />
+                <Form.Input name='password1' label='password' placeholder='Password' type={"password"}
+                            required width={8} className={'field-size'}
+                            onChange={(e, {name, value}) => {
+                                setRegPassword1(value)
+                            }}
+                            icon={regPassword1
+                                ? arePasswordsEqual()
+                                    ? 'chevron circle down icon-valid active big input-icon'
+                                    : 'times circle icon-invalid active big input-icon'
+                                : 'question circle outline big input-icon'
+                            }
+                />
+                <Form.Input name='password2' label='confirm password' placeholder='Password' type={"password"}
+                            required width={8} className={'field-size'}
+                            onChange={(e, {name, value}) => {
+                                setRegPassword2(value)
+                            }}
+                            icon={regPassword2
+                                ? arePasswordsEqual()
+                                    ? 'chevron circle down icon-valid active big input-icon'
+                                    : 'times circle icon-invalid active big input-icon'
+                                : 'question circle outline big input-icon'
+                            }
+                />
+
+                <div className={"site-captcha"}>
+                    <ReCAPTCHA sitekey={site_key} ref={captchaRef} onChange={() => {
+                        setCaptchaToken(captchaRef?.current?.getValue())
+                        resetErrorNotification()
+                    }}/>
+                </div>
+
+                <Button color={"blue"} type='submit' size={"tiny"} className={"go-back-button"}
+                        onClick={() => {
+                            resetErrorNotification()
+                            setShowPreviousForm(true)
+                            setRegPassword1("")
+                            setRegPassword2("")
+                        }}>
+                    <Icon name='chevron circle left'/>
+                    Back
+                </Button>
+
+                <Button color={"teal"} type='submit' size={"tiny"} className={"create-account-button"}
+                        disabled={!isRegEnabled}>
+                    <Icon name='plug'/>
+                    Register
+                </Button>
+
+                {
+                    showError
+                        ? <Form.Field width={8} className={'registration-error field-size'}>
+                            <Message size={"small"}
+                                     error
+                                     header={'Error:'}
+                                     content={errorMessage ? errorMessage : errorCode + ' - ' + errorStatusText}/>
+                        </Form.Field>
+                        : null
+                }
+            </Form>
+
+            <Link to={ROUTES.confirmEmail} className={'link-color link-email-validation'}>
+                <Icon name={'mail'} size={"large"}/>
+                Already registered and need to confirm email?
+            </Link>
+        </div>
+    }
+
+    const selectForm = () => {
+        if (showPreviousForm) {
+            return <RegDisplayNameForm response={{is_available: true, display_name: props.displayName}}/>;
+        }
+        if (showEmailConfirmationForm) {
+            return <RegEmailForm props={{password: regPassword1, email: regEmail, disableFields: true}}/>;
+        }
+        return showRegistrationForm();
+    }
+
+    return selectForm();
+}
+
+export default RegistrationForm;

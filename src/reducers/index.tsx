@@ -7,8 +7,10 @@ import {newsPageReducer} from "./NewsReducer";
 import {weeklyLaddersListReducer} from "./WeeklyLaddersListReducer";
 import {weeklyLadderReducer} from './WeeklyLadderReducer';
 import {SSFReducer} from "./SSFReducer";
+import {authReducer} from "./AuthReducer";
 
 export default combineReducers({
+    authReducer,
     dailyOnlineReducer,
     gamesHistoryReducer,
     weeklyOnlineReducer,

@@ -433,14 +433,93 @@ export interface A2SInfo {
 }
 
 export interface A2SResponse {
-    info: A2SInfo,
+    info: A2SInfo
     players: Array<A2SPlayer>
 }
 
 export interface LiveServerProps {
-    address: string;
+    address: string
 }
 
 export interface SortedA2SPlayers {
     [index: string]: Array<A2SPlayer>
+}
+
+
+// ===============================================================================================
+// Auth  =========================================================================================
+// ===============================================================================================
+
+export interface LoginProps {
+    username: string
+    password: string
+    token: string
+}
+
+export interface RegistrationProps {
+    username: string
+    password: string
+    display_name: string
+    token: string
+}
+
+export interface Credentials {
+    id: number
+    display_name: string
+    created: string
+    last_online: string
+    proof: string
+    auth: string
+}
+
+export interface OAuthResponse {
+    token_type: string
+    access_token: string
+}
+
+export interface BaseContainerProps {
+    header?: any
+    body?: any
+    footer?: any
+}
+
+export interface BearerToken {
+    aud: string
+    exp: number
+    iat: number
+    iss: string
+    name: string
+    sub: string
+    metadata: Array<any>
+}
+
+export interface AuthState {
+    isLoggedIn: boolean
+    token: BearerToken | null
+}
+
+export interface DisplayNameResponse {
+    display_name: string | null
+    is_available: boolean
+}
+
+export interface EmailConfirmationProps {
+    username: string
+    password: string
+    mail_token: string
+}
+
+export interface EmailTokenRenewProps {
+    username: string
+    password: string
+}
+
+export interface RegEmailFormProps {
+    disableFields: boolean
+    email: string | null
+    password: string | null
+}
+
+export interface RegistrationFormProps {
+    displayName: string
 }

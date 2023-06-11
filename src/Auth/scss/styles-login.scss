@@ -1,0 +1,31 @@
+.login-wrapper {
+  //border: 1px solid red;
+
+  .form-login {
+    margin: auto;
+    width: 80%;
+    //border: 1px solid yellow;
+
+    .field-size {
+      margin: auto !important;
+      //width: 50%;
+    }
+  }
+
+  .site-captcha {
+    margin-top: 10px;
+    text-align: center;
+
+    > div {
+      display: inline-block;
+    }
+  }
+
+  .submit-button {
+    margin-top: 10px !important;
+  }
+
+  .login-error {
+    padding-top: 20px;
+  }
+}

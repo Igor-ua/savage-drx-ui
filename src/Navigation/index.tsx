@@ -1,14 +1,20 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
-import {Link, useRouteMatch} from "react-router-dom";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import {Link, useHistory, useLocation, useRouteMatch} from 'react-router-dom'
 
-import {Icon, Menu, Sticky} from 'semantic-ui-react'
+import {logOut} from "../utils/auth";
+import {escape} from "html-escaper";
+import {Dropdown, Icon, Menu, Sticky} from 'semantic-ui-react'
 import {ROUTES} from "../utils/constants";
 
 import './scss/styles-navigation.scss';
 
 
 const Navigation = () => {
+    const history = useHistory();
+    const auth = useSelector((state: any) => state.authReducer, shallowEqual);
+
+    const dispatch = useDispatch();
     const location = useLocation();
 
     const routeHomeWithPage = useRouteMatch(ROUTES.homeWithPage);
@@ -39,6 +45,7 @@ const Navigation = () => {
 
     return <Sticky className={'csp-navigation'}>
         <Menu inverted size={'mini'} borderless className={'csp-menu'} fixed={"top"}>
+            <div className={"menu-placeholder-large"}/>
             <Menu.Item
                 name='home'
                 as={Link}
@@ -113,6 +120,51 @@ const Navigation = () => {
                 <Icon name='hashtag'/>
                 About
             </Menu.Item>
+
+            <div className={"menu-placeholder-small"} hidden={auth.isLoggedIn}>
+                <Menu.Item
+                    name='login'
+                    as={Link}
+                    to={ROUTES.login}
+                    position={"left"}
+                    active={false}>
+                    <Icon name='sign-in'/>
+                    Log in
+                </Menu.Item>
+            </div>
+            <div className={"menu-placeholder-small"} hidden={auth.isLoggedIn}>
+                <Menu.Item
+                    name='registration'
+                    as={Link}
+                    to={ROUTES.registration}
+                    position={"left"}
+                    active={false}>
+                    <Icon name='globe'/>
+                    Sign up
+                </Menu.Item>
+            </div>
+
+            <div className={"menu-placeholder-large"} hidden={!auth.isLoggedIn}>
+                <Dropdown item
+                          icon={"user yellow"}
+                          text={auth?.token?.name ? escape(auth.token.name) : 'User'}
+                          floating
+                          compact
+                          basic
+                          className={"logged-in-dropdown"}>
+                    <Dropdown.Menu direction={"left"}>
+                        <Dropdown.Item
+                            as={Link}
+                            to={ROUTES.accountSettings}
+                            icon={'cog'}
+                            text={'Settings'}
+                        />
+                        <Dropdown.Item icon={'sign-out'} text={'Log out'} onClick={() => {
+                            logOut(dispatch, history)
+                        }}/>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
         </Menu>
     </Sticky>
 }

@@ -20,11 +20,15 @@ const About = () => {
                 </List.Item>
                 <List.Item>
                     <List.Icon name='discord' size={"big"} color={"orange"}/>
-                    <List.Content>tinyurl.com/xrdiscord</List.Content>
+                    <List.Content>
+                        <a href={'https://tinyurl.com/drxdiscord'} className={'link-discord'}>
+                            https://tinyurl.com/drxdiscord
+                        </a>
+                    </List.Content>
                 </List.Item>
             </List>
             <div className={'written-by'}>
-                Written by drk in 2021
+                Created in 2021
             </div>
         </Segment>
 

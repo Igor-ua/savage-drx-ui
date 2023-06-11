@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import {Link} from "react-router-dom";
 import {Button, Grid, Header, Icon, Label, Segment} from "semantic-ui-react";
 
 import {getLiveServersInfo} from "../requests";
-import {LiveServerInfo, LiveProps} from "../types";
+import {LiveProps, LiveServerInfo} from "../types";
 
 import './scss/styles-live-panel.scss';
-import {Link} from "react-router-dom";
+
 
 export const LivePanel = ({background, serverProp}: LiveProps) => {
     const [liveServersInfo, setLiveServersInfo] = useState<Array<LiveServerInfo>>();
@@ -21,6 +22,7 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
     }, []);
 
     useEffect(() => {
+        // can be disabled during local development
         clearInterval(intervalId)
         if (liveServersInfo) {
             setIntervalId(setInterval(() => {
@@ -66,7 +68,7 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
                                 <Icon name='game' color={"yellow"} className={'server-icon'}/> {server?.data?.name}
                             </Label>
                         </Grid.Column>
-                        <Grid.Column key={'online'+ i} width={"4"} textAlign={"right"} verticalAlign={"middle"}
+                        <Grid.Column key={'online' + i} width={"4"} textAlign={"right"} verticalAlign={"middle"}
                                      className={'online-column'}>
                             <Label color={"grey"} className={'online-label'}>
                                 <span className={'online-label-span-live'}>{server?.data?.cnum}</span>

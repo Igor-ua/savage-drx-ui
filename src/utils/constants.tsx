@@ -15,11 +15,18 @@ export const ROUTES = {
     servers: "/servers",
     server: "/servers/:server",
     client: "/client/drx",
-    about: "/about"
+    about: "/about",
+    login: "/auth/login",
+    registration: "/auth/registration",
+    confirmEmail: "/auth/email/confirm",
+    registrationFinished: "/auth/registration/success",
+    accountSettings: "/account/settings"
 }
 
 export const CLAN_ICON_URL = '/public/cached/icondir/'
 export const ITEMS_ICON_URL = process.env.PUBLIC_URL + '/images/weapons/'
+
+export const LOCAL_STORAGE_TOKEN = 'remember-me'
 
 export const GAMES_HISTORY_TTL_SECONDS = 10
 export const DAILY_CHART_TTL_SECONDS = 60 * 5
@@ -29,6 +36,7 @@ export const WEEKLY_LADDERS_LIST_TTL_SECONDS = 60 * 10
 export const FINISHED_WEEKLY_LADDER_TTL_SECONDS = 60 * 60 * 24
 export const LIVE_WEEKLY_LADDER_TTL_SECONDS = 60 * 2
 export const SSF_TTL_SECONDS = 60 * 2
+export const RESEND_EMAIL_TOKEN_TIMEOUT = 60 * 2
 
 export const DEFAULT_GAMES_HISTORY_QUANTITY = 20
 

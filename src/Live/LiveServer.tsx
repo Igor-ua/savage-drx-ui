@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {Checkbox, Grid, Header, Icon, Image, Label, Table} from "semantic-ui-react";
 
-import './scss/styles-live-server.scss';
+import BaseContainer from "../HomePage/BaseContainer";
 import {getA2sServerInfo} from "../requests";
 import {A2SPlayer, A2SResponse, LiveServerProps, SortedA2SPlayers} from "../types";
 import {capitalizeFirstLetter, formatA2SPlayer,} from "../utils";
 
-export const LiveServer = ({address}: LiveServerProps) => {
+import './scss/styles-live-server.scss';
+
+
+const LiveServer = ({address}: LiveServerProps) => {
 
     const [response, setResponse] = useState<A2SResponse>();
     const [sortedPlayers, setSortedPlayers] = useState<SortedA2SPlayers>()
@@ -25,7 +28,91 @@ export const LiveServer = ({address}: LiveServerProps) => {
         }
     }, [response]);
 
-    return <div className={'div-live-server'}>
+    const getTable = (response: A2SResponse) => {
+        return <Table celled singleLine inverted compact size={"small"} textAlign={"center"}>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Address</Table.Cell>
+                    <Table.Cell collapsing>{response.info.server_ip}:{response.info.port}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Map</Table.Cell>
+                    <Table.Cell collapsing>{response.info.map_name}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Player Count</Table.Cell>
+                    <Table.Cell collapsing>{response.info.player_count}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Max Players</Table.Cell>
+                    <Table.Cell collapsing>{response.info.max_players}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Bot Count</Table.Cell>
+                    <Table.Cell collapsing>{response.info.bot_count}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Password</Table.Cell>
+                    <Table.Cell
+                        collapsing>{capitalizeFirstLetter(String(response.info.password_protected))}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Game Version</Table.Cell>
+                    <Table.Cell collapsing>{response.info.version}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="2" textAlign={"left"}>Game Type</Table.Cell>
+                    <Table.Cell collapsing>{response.info.game}</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+    }
+
+    const getTeamTable = (teamName: string, players: Array<A2SPlayer>) => {
+        return <Table celled singleLine compact inverted size={"small"} textAlign={"center"}
+                      className={"team-table"}>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell colSpan="3">{teamName}</Table.HeaderCell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.HeaderCell>Name</Table.HeaderCell>
+                    <Table.HeaderCell>Kills</Table.HeaderCell>
+                    <Table.HeaderCell>Deaths</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {players.map((p: A2SPlayer, index: any) => (
+                    <Table.Row key={index}>
+                        <Table.Cell textAlign={"left"}>
+                            {formatA2SPlayer(p)}
+                        </Table.Cell>
+                        <Table.Cell>{p.score}</Table.Cell>
+                        <Table.Cell>{p.deaths}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    }
+
+    const sortPlayersByTeams = (response: A2SResponse) => {
+        const result: SortedA2SPlayers = {
+            0: Array<A2SPlayer>(),
+            1: Array<A2SPlayer>(),
+            2: Array<A2SPlayer>(),
+            3: Array<A2SPlayer>(),
+            4: Array<A2SPlayer>()
+        };
+
+        response.players.forEach((p) => {
+            const team = String(p.team)
+            result[team].push(p)
+        })
+
+        return result
+    }
+
+    const getBody = () => <div className={'div-live-server'}>
         <div className={"refresh-group"}>
             <div>
                 <Label className={"refresh-label"}>
@@ -108,87 +195,8 @@ export const LiveServer = ({address}: LiveServerProps) => {
             </Grid.Row>
         </Grid>
     </div>
+
+    return <BaseContainer body={getBody()}/>
 }
 
-const getTable = (response: A2SResponse) => {
-    return <Table celled singleLine inverted compact size={"small"} textAlign={"center"}>
-        <Table.Body>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Address</Table.Cell>
-                <Table.Cell collapsing>{response.info.server_ip}:{response.info.port}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Map</Table.Cell>
-                <Table.Cell collapsing>{response.info.map_name}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Player Count</Table.Cell>
-                <Table.Cell collapsing>{response.info.player_count}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Max Players</Table.Cell>
-                <Table.Cell collapsing>{response.info.max_players}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Bot Count</Table.Cell>
-                <Table.Cell collapsing>{response.info.bot_count}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Password</Table.Cell>
-                <Table.Cell collapsing>{capitalizeFirstLetter(String(response.info.password_protected))}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Game Version</Table.Cell>
-                <Table.Cell collapsing>{response.info.version}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell colSpan="2" textAlign={"left"}>Game Type</Table.Cell>
-                <Table.Cell collapsing>{response.info.game}</Table.Cell>
-            </Table.Row>
-        </Table.Body>
-    </Table>
-}
-
-const getTeamTable = (teamName: string, players: Array<A2SPlayer>) => {
-    return <Table celled singleLine compact inverted size={"small"} textAlign={"center"}
-                  className={"team-table"}>
-        <Table.Header>
-            <Table.Row>
-                <Table.HeaderCell colSpan="3">{teamName}</Table.HeaderCell>
-            </Table.Row>
-            <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Kills</Table.HeaderCell>
-                <Table.HeaderCell>Deaths</Table.HeaderCell>
-            </Table.Row>
-        </Table.Header>
-        <Table.Body>
-            {players.map((p: A2SPlayer, index: any) => (
-                <Table.Row key={index}>
-                    <Table.Cell textAlign={"left"}>
-                        {formatA2SPlayer(p)}
-                    </Table.Cell>
-                    <Table.Cell>{p.score}</Table.Cell>
-                    <Table.Cell>{p.deaths}</Table.Cell>
-                </Table.Row>
-            ))}
-        </Table.Body>
-    </Table>
-}
-
-const sortPlayersByTeams = (response: A2SResponse) => {
-    const result: SortedA2SPlayers = {
-        0: Array<A2SPlayer>(),
-        1: Array<A2SPlayer>(),
-        2: Array<A2SPlayer>(),
-        3: Array<A2SPlayer>(),
-        4: Array<A2SPlayer>()
-    };
-
-    response.players.forEach((p) => {
-        const team = String(p.team)
-        result[team].push(p)
-    })
-
-    return result
-}
+export default LiveServer

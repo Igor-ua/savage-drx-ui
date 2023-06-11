@@ -1,0 +1,86 @@
+.registration-wrapper {
+  //border: 1px solid red;
+
+  .form-registration {
+    width: 80%;
+    margin: auto auto 50px;
+    //border: 1px solid yellow;
+
+    .field-size {
+      margin: auto !important;
+      //width: 50%;
+    }
+  }
+
+  .site-captcha {
+    margin-top: 10px;
+    text-align: center;
+
+    > div {
+      display: inline-block;
+    }
+  }
+
+  .create-account-button {
+    margin-top: 10px !important;
+  }
+
+  .check-display-name-button {
+    margin-top: 10px !important;
+    margin-right: 10px !important;
+  }
+
+  .go-next-button {
+
+  }
+
+  .go-back-button {
+    margin-right: 10px !important;
+  }
+
+  .link-email-validation {
+    text-decoration: underline;
+
+    .icon {
+      text-decoration: none;
+    }
+  }
+
+  .registration-error {
+    padding-top: 20px;
+  }
+
+  .input-icon {
+    width: 1.5em !important;
+  }
+
+  .icon-valid {
+    color: green;
+  }
+
+  .icon-invalid {
+    color: red;
+  }
+
+  .resend-email-token-button {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .reg-finished-wrapper {
+
+    .text-block {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .link-finished {
+      text-decoration: underline;
+
+      .icon {
+        text-decoration: none;
+      }
+    }
+  }
+}

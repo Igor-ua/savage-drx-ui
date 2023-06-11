@@ -23,6 +23,10 @@ export const formatGameTimeWithDays = (gameTime: number) => {
     return date.toISOString().substring(8, 19);
 }
 
+export const isString = (variable: any) => {
+    return typeof variable === 'string' || variable instanceof String
+}
+
 export const getWinner = (id: number) => {
     if (id === 0) {
         return 'Draw'
@@ -168,6 +172,10 @@ export const formatWeeklyPlayer = (p: any, weekName: string) => {
 }
 
 const _formatPlayer = (p: any, weekName: any) => {
+
+    // for local testing
+    // p.clan_id = 32994
+
     return Number(p.uid)
         ? <Link to={'/player/' + (weekName ? weekName + '/' : '') + p.uid} className={'link-color'}>
             {p.is_commander
@@ -206,14 +214,14 @@ export const formatA2SPlayer = (p: A2SPlayer) => {
                 ? <Icon name={'copyright'} size={"large"}/>
                 : null
             }
-            {
-                p.clan
-                    ? <Image src={CLAN_ICON_URL + p.clan + '.png'}
-                             size={"small"}
-                             inline/>
-                    : null
-            }
-            <span className={p.clan ? 'span-name' : ''}>{p.name}</span>
+        {
+            p.clan
+                ? <Image src={CLAN_ICON_URL + p.clan + '.png'}
+                         size={"small"}
+                         inline/>
+                : null
+        }
+        <span className={p.clan ? 'span-name' : ''}>{p.name}</span>
         </span>
 }
 

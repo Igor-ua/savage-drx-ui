@@ -48,7 +48,7 @@ const Client = () => {
             <Grid.Column textAlign={"left"}>
                 <Segment textAlign={"center"} className={'linux-segment'}>
                     <Image className={"platform-image"}
-                           src={process.env.PUBLIC_URL + '/images/linux.png'}
+                           src={'/images/linux.png'}
                            rounded
                            inline
                            centered
