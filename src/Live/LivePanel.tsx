@@ -65,7 +65,7 @@ export const LivePanel = ({background, serverProp}: LiveProps) => {
                     <Grid key={'grid' + i} className={server?.data?.ip === serverProp ? "selected-server" : ""}>
                         <Grid.Column key={'label' + i} width={"12"} textAlign={"left"} verticalAlign={"middle"}>
                             <Label as={Link} to={'/servers/' + server?.data?.ip} image className={'server-label'}>
-                                <Icon name='game' color={"yellow"} className={'server-icon'}/> {server?.data?.name}
+                                <Icon name='game' color={"yellow"} className={'server-icon'}/> <span dangerouslySetInnerHTML={{__html: server?.data?.name}}/>
                             </Label>
                         </Grid.Column>
                         <Grid.Column key={'online' + i} width={"4"} textAlign={"right"} verticalAlign={"middle"}
