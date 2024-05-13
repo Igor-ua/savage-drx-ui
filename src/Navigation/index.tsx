@@ -108,7 +108,7 @@ const Navigation = () => {
                 color={null ? activeColor : inactiveColor}
                 active={isClientPath}>
                 <Icon name='gamepad'/>
-                Client
+                Downloads
             </Menu.Item>
             <Menu.Item
                 name='about'

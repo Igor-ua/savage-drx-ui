@@ -40,6 +40,12 @@ const Client = () => {
                                     </a>
                                 }/>
                             </Table.Row>
+                            <Table.Row>
+                                <Table.Cell textAlign={"left"} content={'Sha256'}/>
+                                <Table.Cell textAlign={"left"} content={
+                                    '5f6fefbe29b3f1d464b23dfb85810f5ffafed98934f92378f45dc7b3819f5ed7'
+                                }/>
+                            </Table.Row>
                         </Table.Body>
                     </Table>
 
