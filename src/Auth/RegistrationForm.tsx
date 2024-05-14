@@ -33,6 +33,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     const site_key = String(process.env.REACT_APP_CAPTCHA_SITE_KEY)
     const captchaRef = useRef<ReCAPTCHA>(null)
     const [captchaToken, setCaptchaToken] = useState<any>(null)
+    const minPasswordLength = 8
 
     useEffect(() => {
         setIsRegEnabled(regEmail && captchaToken && regPassword1 === regPassword2)
@@ -70,8 +71,14 @@ const RegistrationForm = (props: RegistrationFormProps) => {
         setErrorStatusText("")
     }
 
+    const isInitialPasswordValid = () => {
+        return Boolean(regPassword1) && regPassword1?.length >= minPasswordLength;
+    }
+
     const arePasswordsEqual = () => {
-        return Boolean(regPassword1) && Boolean(regPassword2) && regPassword1 === regPassword2
+        return Boolean(regPassword1) && Boolean(regPassword2)
+            && regPassword1 === regPassword2
+            && regPassword1?.length >= minPasswordLength && regPassword2?.length >= minPasswordLength;
     }
 
     const showRegistrationForm = () => {
@@ -100,13 +107,13 @@ const RegistrationForm = (props: RegistrationFormProps) => {
                                 ? 'times circle icon-invalid active big input-icon'
                                 : 'chevron circle down icon-valid active big input-icon'}
                 />
-                <Form.Input name='password1' label='password' placeholder='Password' type={"password"}
+                <Form.Input name='password1' label='password (minimum 8 characters)' placeholder='Password' type={"password"}
                             required width={8} className={'field-size'}
                             onChange={(e, {name, value}) => {
                                 setRegPassword1(value)
                             }}
                             icon={regPassword1
-                                ? arePasswordsEqual()
+                                ? isInitialPasswordValid()
                                     ? 'chevron circle down icon-valid active big input-icon'
                                     : 'times circle icon-invalid active big input-icon'
                                 : 'question circle outline big input-icon'
