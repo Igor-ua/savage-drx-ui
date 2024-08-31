@@ -1,0 +1,63 @@
+name: savage-drx-ui-ci
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+
+      # cache the dependencies to speed up the build
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate build
+        run: npm run build
+
+      # Deploy
+      - name: Prepare archive
+        run: |
+          rm -r ./build/public/cached/
+          tar -zcvf build.tar.gz ./build
+
+      - name: Upload build.tar.gz
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EU_SSH_HOST }}
+          username: ${{ secrets.EU_SSH_USER }}
+          password: ${{ secrets.EU_SSH_PASSWORD }}
+          port: ${{ secrets.EU_SSH_PORT }}
+          source: "build.tar.gz"
+          target: /home/igor/upload
+          overwrite: true
+
+      - name: Extract archive and replace current UI
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EU_SSH_HOST }}
+          port: ${{ secrets.EU_SSH_PORT }}
+          username: ${{ secrets.EU_SSH_USER }}
+          password: ${{ secrets.EU_SSH_PASSWORD }}
+          script: |
+            mkdir /home/igor/upload/extract
+            tar -xf /home/igor/upload/build.tar.gz -C /home/igor/upload/extract
+            cp -r /home/igor/upload/extract/build/* /home/igor/savage-csp-web/web_root
+            rm -r /home/igor/upload/extract
