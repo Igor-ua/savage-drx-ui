@@ -42,9 +42,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     const register = () => {
         if (isRegEnabled) {
             const registrationProps: RegistrationProps = {
-                username: regEmail,
+                userName: regEmail,
                 password: regPassword1,
-                display_name: props.displayName,
+                displayName: props.displayName,
                 token: captchaToken
             }
             sendRegistrationRequest(registrationProps).then(res => {
@@ -59,7 +59,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
 
     const processError = (error: any) => {
         setShowError(true)
-        setErrorMessage(isString(error?.response?.data?.detail) ? error?.response?.data?.detail : '')
+        setErrorMessage(isString(error?.response?.data?.messages[0]) ? error?.response?.data?.messages[0] : '')
         setErrorCode(error?.response?.status)
         setErrorStatusText(error?.response?.statusText)
     }

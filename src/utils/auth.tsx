@@ -22,7 +22,7 @@ export const updateAuthState = (dispatch: any, auth: AuthState) => {
 
 export const updateAuthStateOnLogin = (dispatch: any, authResponse: OAuthResponse | undefined) => {
     if (authResponse) {
-        const json_cred = JSON.stringify(authResponse.access_token)
+        const json_cred = JSON.stringify(authResponse.accessToken)
         if (json_cred) {
             localStorage.setItem(LOCAL_STORAGE_TOKEN, json_cred);
             const token: BearerToken = jwt(json_cred)

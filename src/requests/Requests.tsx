@@ -2,6 +2,12 @@ import axios from 'axios'
 import {EmailConfirmationProps, EmailTokenRenewProps, LoginProps, RegistrationProps} from "../types";
 
 const SERVER_URL = process.env.REACT_APP_API_URL
+const J_SERVER = `${SERVER_URL}/metaserver`
+
+// for local testing
+// const J_SERVER = `${SERVER_URL}`
+// const J_SERVER = `${SERVER_URL}/jserver`
+
 
 export const getDiscordServerInfo = () => {
     return axios.get(`https://discord.com/api/guilds/511261029838225419/widget.json`)
@@ -60,36 +66,36 @@ export const getA2sServerInfo = (serverAddress: string) => {
 }
 
 export const sendLoginRequest = (loginProps: LoginProps) => {
-    const formData = new FormData();
-    formData.append('username', loginProps.username);
-    formData.append('password', loginProps.password);
-
-    return axios.post(`${SERVER_URL}/metaserver/v2/oauth2/login`, formData,
+    return axios.post(`${J_SERVER}/v1/oauth2/login`, {},
         {
+            auth: {
+                username: loginProps.username,
+                password: loginProps.password
+            },
             headers: {
-                'x-token': loginProps.token
+                'X-Token': loginProps.token
             }
         })
 }
 
 export const sendRegistrationRequest = (props: RegistrationProps) => {
-    return axios.post(`${SERVER_URL}/metaserver/v2/oauth2/register`, {
-        'username': props.username,
-        'display_name': props.display_name,
+    return axios.post(`${J_SERVER}/v1/oauth2/register`, {
+        'userName': props.userName,
+        'displayName': props.displayName,
         'password': props.password
     }, {
         headers: {
-            'x-token': props.token
+            'X-Token': props.token
         }
     })
 }
 
 export const sendCheckDisplayName = (displayName: string) => {
-    return axios.get(`${SERVER_URL}/metaserver/v2/oauth2/register/name`, {params: {name: displayName}})
+    return axios.get(`${J_SERVER}/v1/oauth2/verify/name`, {params: {name: displayName}})
 }
 
 export const sendEmailConfirmationRequest = (props: EmailConfirmationProps) => {
-    return axios.post(`${SERVER_URL}/metaserver/v1/user/email/verify`,
+    return axios.post(`${J_SERVER}/v1/oauth2/email/verify`,
         {'mail_token': props.mail_token},
         {
             auth: {
@@ -100,7 +106,7 @@ export const sendEmailConfirmationRequest = (props: EmailConfirmationProps) => {
 }
 
 export const sendRenewEmailRequest = (props: EmailTokenRenewProps) => {
-    return axios.post(`${SERVER_URL}/metaserver/v1/user/email/renew-token`,
+    return axios.post(`${J_SERVER}/v1/oauth2/email/token/renew`,
         {},
         {
             auth: {
@@ -113,7 +119,7 @@ export const sendRenewEmailRequest = (props: EmailTokenRenewProps) => {
 
 // test-data
 // export const getUserByIdRequest = (headers: any, userId: number) => {
-//     return axios.get(`${SERVER_URL}/metaserver/v1/user/by-id`,
+//     return axios.get(`${J_SERVER}/v1/user/by-id`,
 //         {
 //             params: {user_id: userId},
 //             headers: headers

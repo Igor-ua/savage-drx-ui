@@ -457,9 +457,9 @@ export interface LoginProps {
 }
 
 export interface RegistrationProps {
-    username: string
+    userName: string
     password: string
-    display_name: string
+    displayName: string
     token: string
 }
 
@@ -473,8 +473,8 @@ export interface Credentials {
 }
 
 export interface OAuthResponse {
-    token_type: string
-    access_token: string
+    tokenType: string
+    accessToken: string
 }
 
 export interface BaseContainerProps {

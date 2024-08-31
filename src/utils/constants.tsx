@@ -23,7 +23,7 @@ export const ROUTES = {
     accountSettings: "/account/settings"
 }
 
-export const CLAN_ICON_URL = '/public/cached/icondir/'
+export const CLAN_ICON_URL = '/icons/drx/'
 export const ITEMS_ICON_URL = process.env.PUBLIC_URL + '/images/weapons/'
 
 export const LOCAL_STORAGE_TOKEN = 'remember-me'
