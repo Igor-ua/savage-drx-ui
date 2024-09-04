@@ -35,7 +35,6 @@ jobs:
       # Deploy
       - name: Prepare archive
         run: |
-          rm -r ./build/public/cached/
           tar -zcvf build.tar.gz ./build
 
       - name: Upload build.tar.gz
