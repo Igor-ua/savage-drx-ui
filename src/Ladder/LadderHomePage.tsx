@@ -30,7 +30,9 @@ export const LadderHomePage = () => {
     const years = [
         {key: 2021, value: 2021, text: 2021},
         {key: 2022, value: 2022, text: 2022},
-        {key: 2023, value: 2023, text: 2023}
+        {key: 2023, value: 2023, text: 2023},
+        {key: 2024, value: 2024, text: 2024},
+        {key: 2025, value: 2025, text: 2025}
     ]
 
     useEffect(() => {
